@@ -1,6 +1,8 @@
 import { Button } from "flowbite-react";
-const Welcome = () =>{
-    return <div className="text-white flex p-4 h-full">
+const Welcome = ({slide,setSlide}) =>{
+    return <div
+    style={{ right: slide.welcome }}
+     className={`text-white flex p-4  w-full h-full absolute transition-all duration-300 `}>
         <div className="flex flex-col w-1/3 ">
             <h3>Bienvenido Nombre y Apellido</h3>
             <span>image here</span>
@@ -16,7 +18,7 @@ const Welcome = () =>{
             deber ser USDT en la red de tron, TRC20
           </span>
           <Button color="blue" className="opacity-0 pointer-events-none">Continuar</Button>
-          <Button color="blue" className="absolute right-0 bottom-0">Continuar</Button>
+          <Button onClick={()=> setSlide({...slide,welcome:"100%",formData:"0%"})} color="blue" className="absolute right-0 bottom-0">Continuar</Button>
           </div>
         </div>
     </div>

@@ -23,6 +23,10 @@ declare module "@/components/sections/system_monitoring";
 declare module "@/components/editConfig/editConfig";
 declare module "@/components/footer/footer";
 declare module "@/components/excalidraw/login";
+declare module "@/components/excalidraw/welcome";
+declare module "@/components/excalidraw/formData";
+declare module "@/components/excalidraw/wallet";
+declare module "@/components/excalidraw/formContact";
 
 
 declare module "@/context/AppContextProvider";
