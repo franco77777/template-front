@@ -12,9 +12,12 @@ const Files = ({slide,setSlide}) =>{
     }
 
     const onFileSelect = (event) =>{
+        console.log("soy images", images);
         const files = event.target.files;
+        
         if(files.length === 0) return;
         for (let i = 0; i < files.length; i++) {
+           
             if(files[i].type.split("/")[0] !== "image") continue;
             if(!images.some (e => e.name === files[i].name)){
                 setImages((prevImages)=> [
@@ -26,13 +29,45 @@ const Files = ({slide,setSlide}) =>{
             }
             
         }
-        console.log("soy images", images);
+        
     }
 
     const deleteImage = (index) =>{
-    setImages((prevImages)=>{
-        prevImages.filter((_,i)=> i !== index)
-    })
+     
+    const newImages = [...images.filter((_,i)=> i !== index)]
+    setImages(newImages)
+    
+    }
+
+    const onDragOver = (event) =>{
+    event.preventDefault();
+    setIsDragging(true);
+    event.dataTransfer.dropEffect = "copy"
+    }
+    const onDragLeave = (event) =>{
+        event.preventDefault();
+        setIsDragging(false)
+    }
+
+    const onDrop =(event)=>{
+    event.preventDefault();
+    setIsDragging(false)
+    const files = event.dataTransfer.files;
+        
+        if(files.length === 0) return;
+        for (let i = 0; i < files.length; i++) {
+           
+            if(files[i].type.split("/")[0] !== "image") continue;
+            if(!images.some (e => e.name === files[i].name)){
+                setImages((prevImages)=> [
+                    ...prevImages,{
+                        name:files[i].name,
+                        url:URL.createObjectURL(files[i])
+                    }
+                ])
+            }
+            
+        }
     }
     
     return <div 
@@ -40,7 +75,9 @@ const Files = ({slide,setSlide}) =>{
     className="bg-green-500 w-full h-full flex  transition-all duration-300 absolute top-0">
        <div className="flex flex-col w-full items-center justify-center">
       <Label
-      
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
         htmlFor="dropzone-file"
         className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
 
@@ -73,7 +110,7 @@ const Files = ({slide,setSlide}) =>{
             <span onClick={selectFiles} >browse</span>
             </>
         )}
-<input type="file" multiple ref={fileInputRef} onChange={(e)=>onFileSelect(e)}/>
+<input type="file"  ref={fileInputRef} multiple onChange={(e)=>onFileSelect(e)}  />
     
       </Label>
       {/* <FileInput id="dropzone-file" className="hidden" onChange={(e) => setFile(e.target.files[0])}/> */}
