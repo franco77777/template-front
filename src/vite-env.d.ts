@@ -27,6 +27,7 @@ declare module "@/components/excalidraw/welcome";
 declare module "@/components/excalidraw/formData";
 declare module "@/components/excalidraw/wallet";
 declare module "@/components/excalidraw/formContact";
+declare module "@/components/excalidraw/files";
 
 
 declare module "@/context/AppContextProvider";
