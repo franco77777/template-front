@@ -28,6 +28,9 @@ declare module "@/components/excalidraw/formData";
 declare module "@/components/excalidraw/wallet";
 declare module "@/components/excalidraw/formContact";
 declare module "@/components/excalidraw/files";
+declare module "@/components/excalidrawFiles/firstFiles";
+declare module "@/components/excalidrawFiles/trafficLight";
+declare module "@/components/excalidrawFiles/process";
 
 
 declare module "@/context/AppContextProvider";
@@ -43,6 +46,7 @@ declare module "@/screens/home";
 declare module "@/screens/notFoundPage";
 declare module "@/screens/migrationTest";
 declare module "@/screens/excalidraw";
+declare module "@/screens/excalidrawFiles";
 
 declare module "@/theme/theme";
 
