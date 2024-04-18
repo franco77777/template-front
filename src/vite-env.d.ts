@@ -49,6 +49,7 @@ declare module "@/screens/migrationTest";
 declare module "@/screens/excalidraw";
 declare module "@/screens/excalidrawFiles";
 declare module "@/screens/excalidrawFilesSection";
+declare module "@/screens/excalidrawFiles2";
 
 declare module "@/theme/theme";
 
