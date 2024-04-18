@@ -31,6 +31,7 @@ declare module "@/components/excalidraw/files";
 declare module "@/components/excalidrawFiles/firstFiles";
 declare module "@/components/excalidrawFiles/trafficLight";
 declare module "@/components/excalidrawFiles/process";
+";
 
 
 declare module "@/context/AppContextProvider";
@@ -47,6 +48,7 @@ declare module "@/screens/notFoundPage";
 declare module "@/screens/migrationTest";
 declare module "@/screens/excalidraw";
 declare module "@/screens/excalidrawFiles";
+declare module "@/screens/excalidrawFilesSection";
 
 declare module "@/theme/theme";
 
