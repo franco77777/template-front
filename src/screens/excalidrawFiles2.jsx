@@ -1,5 +1,6 @@
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ExcalidrawFiles2 = () => {
     const [openModal, setOpenModal] = useState(false);
@@ -15,6 +16,7 @@ const ExcalidrawFiles2 = () => {
         console.log("soy new file", newFile);
         
       }
+      
     const [list, setList] = useState([{name:"Personal"},{name:"Projects"},{name:"Automations"},{name:"Deployments"},
     {name:"Access"},{name:"Access API"},{name:"Assignments"},{name:"Hardware"},{name:"Tasks"},{name:"Schedules"},{name:"Dazsync"}]);
 
@@ -40,7 +42,10 @@ const ExcalidrawFiles2 = () => {
 
           {/* <---------------------------------------BODY-------------------------------> */}
           <div className="bg-orange-500 w-full grow mt-4 text-base md:px-8 px-4 gap-2 grid grid-cols-2 auto-rows-[150px] sm:grid-cols-3 sm:auto-rows-[200px]">
-              {list.map((e,i)=><div key={i} className="bg-yellow-200 rounded-lg">{e.name}</div>)}
+              {list.map((e,i)=>
+                <Link className=" bg-blue-500 rounded-lg" to="/excalidrawFIles2/section">
+                  <div className="w-full h-full rounded-lg">
+                  {e.name}</div></Link>)}
               <div className="bg-purple-500 rounded-lg" >
               <Button onClick={() => setOpenModal(true)} color="purple" className="p-0 w-full h-full focus:ring-0">
       <div className="flex gap-2 cursor-pointer items-center">
