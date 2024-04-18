@@ -1,4 +1,4 @@
-import { FileInput, Label } from "flowbite-react";
+import { Button, FileInput, Label } from "flowbite-react";
 import { useState,useCallback, useRef } from "react";
 import {useDropzone} from 'react-dropzone'
 
@@ -127,8 +127,10 @@ const Files = ({slide,setSlide}) =>{
             </div>
         )}
       </div>
-      
+      <Button color="blue" className="opacity-0 pointer-events-none">Continuar</Button>
+          <Button onClick={()=> setSlide({...slide,formContact:"100%",files:"0%"})} color="blue" className="absolute right-0 bottom-0">Continuar</Button>
     </div>
+    
     </div>
 }
 export default Files;

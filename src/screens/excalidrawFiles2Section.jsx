@@ -1,10 +1,14 @@
 import ModalNewUser from "../components/excalidrawFiles2/modalNewUser";
+import {storeExcalidraw} from "../stores/Excalidraw/excalidrawStore"
 
 const ExcalidrawFiles2Section = () =>{
+  const storeName = storeExcalidraw((state) => state.name)
+  console.log("soy store", storeName);
+
     return <div className="w-full min-h-[100vh] bg-red-500 md:p-12 p-6 flex flex-col">
-        <div className="bg-orange-500 w-full h-full grow rounded-2xl flex flex-col">
+        <div className="bg-orange-500 w-full h-full grow rounded-2xl flex flex-col p-4 md:p-8">
             <header className="">
-                <h3>Personal</h3>
+                <h3>{storeName}</h3>
             <div className="w-full bg-blue-500 h-8 rounded-lg flex  justify-between items-center px-1 ">
                 <ModalNewUser/>
                 <img src="../public/icons/cfg.svg" alt="" className="w-6"/>
