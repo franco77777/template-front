@@ -18,6 +18,7 @@ const ExcalidrawFiles2 = React.lazy(() => import("@/screens/excalidrawFiles2"));
 const ExcalidrawFiles2Section = React.lazy(
   () => import("@/screens/excalidrawFiles2Section")
 );
+const Elementor = React.lazy(() => import("@/screens/elementor"));
 
 export default function Navigator() {
   let Logo = "";
@@ -61,6 +62,7 @@ export default function Navigator() {
       {/*Navbar secondary */}
 
       <Routes>
+        <Route path="/elementor" element={<Elementor />} />
         <Route
           path="/excalidrawFiles2/section"
           element={<ExcalidrawFiles2Section />}

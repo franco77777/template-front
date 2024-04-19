@@ -52,6 +52,7 @@ declare module "@/screens/excalidrawFiles";
 declare module "@/screens/excalidrawFilesSection";
 declare module "@/screens/excalidrawFiles2";
 declare module "@/screens/excalidrawFiles2Section";
+declare module "@/screens/elementor";
 
 declare module "@/theme/theme";
 
