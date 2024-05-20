@@ -19,6 +19,7 @@ const ExcalidrawFiles2Section = React.lazy(
   () => import("@/screens/excalidrawFiles2Section")
 );
 const Elementor = React.lazy(() => import("@/screens/elementor"));
+const Administration = React.lazy(() => import("@/screens/administration"));
 
 export default function Navigator() {
   let Logo = "";
@@ -73,10 +74,11 @@ export default function Navigator() {
           element={<ExcalidrawFilesSection />}
         />
         <Route path="/excalidrawFiles" element={<ExcalidrawFiles />} />
-        <Route path="/excalidraw" element={<Excalidraw />} />
+        <Route path="/sign-up" element={<Excalidraw />} />
         <Route path="/testing" element={<MigrationTest />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/administration" element={<Administration />} />
       </Routes>
 
       {/*other tools */}

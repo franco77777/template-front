@@ -32,6 +32,9 @@ declare module "@/components/excalidrawFiles/firstFiles";
 declare module "@/components/excalidrawFiles/trafficLight";
 declare module "@/components/excalidrawFiles/process";
 declare module "@/components/excalidrawFiles2/modalNewUser";
+declare module "@/components/elementor/sidebarElementor";
+declare module "@/components/elementor/workAreaElementor";
+declare module "@/components/elementor/structureOptionsElementor";
 
 
 
@@ -53,6 +56,7 @@ declare module "@/screens/excalidrawFilesSection";
 declare module "@/screens/excalidrawFiles2";
 declare module "@/screens/excalidrawFiles2Section";
 declare module "@/screens/elementor";
+declare module "@/screens/administration";
 
 declare module "@/theme/theme";
 
