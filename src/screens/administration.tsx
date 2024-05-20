@@ -1,4 +1,13 @@
+import { storeAdministration } from "@/stores/administration/administrationStore";
+import { useNavigate } from "react-router-dom";
+
 const Administration = () => {
+  const SetAdministrationName = storeAdministration((state) => state.setName);
+  const navigate = useNavigate();
+  const handleAdministration2 = (value: string) => {
+    SetAdministrationName(value);
+    navigate("/administration2");
+  };
   return (
     <div className="font-normal   w-full px-[4vw] py-[4vw] bg-primary min-h-screen">
       <div className="text-secondary w-full h-12 md:h-14 xl:h-16 bg-tertiary rounded bg  flex items-center justify-between px-[2vw]">
@@ -15,7 +24,10 @@ const Administration = () => {
         />
       </div>
       <section className="grid gap-[1vw] grid-cols-[repeat(auto-fit,minmax(400px,1fr))] 2xl:grid-cols-3 mt-[2vw]">
-        <div className="bg-tertiary border-secondary border-[5px] flex flex-col rounded">
+        <div
+          onClick={() => handleAdministration2("Organizations")}
+          className="bg-tertiary border-secondary border-[5px] flex flex-col rounded"
+        >
           <div className="bg-secondary text-2xl font-semibold text-black">
             Organizations
           </div>
@@ -28,7 +40,10 @@ const Administration = () => {
             <li className=" bg-primary text-secondary">6</li>
           </ul>
         </div>
-        <div className="bg-tertiary border-secondary border-[5px] rounded flex flex-col  ">
+        <div
+          onClick={() => handleAdministration2("Structure")}
+          className="bg-tertiary border-secondary border-[5px] rounded flex flex-col  "
+        >
           <div className="bg-secondary text-2xl font-semibold text-black">
             Structure
           </div>
@@ -36,7 +51,10 @@ const Administration = () => {
             <div className=" text-secondary">IMAGE FILE</div>
           </div>
         </div>
-        <div className="bg-tertiary border-secondary border-[5px] rounded flex flex-col ">
+        <div
+          onClick={() => handleAdministration2("Documents")}
+          className="bg-tertiary border-secondary border-[5px] rounded flex flex-col "
+        >
           <div className="bg-secondary text-2xl font-semibold text-black">
             Documents
           </div>
@@ -46,7 +64,10 @@ const Administration = () => {
             </div>
           </div>
         </div>
-        <div className="bg-tertiary border-secondary border-[5px] rounded flex flex-col ">
+        <div
+          onClick={() => handleAdministration2("Api Tools")}
+          className="bg-tertiary border-secondary border-[5px] rounded flex flex-col "
+        >
           <div className="bg-secondary text-2xl font-semibold text-black">
             Api Tools
           </div>
@@ -59,7 +80,10 @@ const Administration = () => {
             <li className=" bg-primary text-secondary">6</li>
           </ul>
         </div>
-        <div className="bg-tertiary border-secondary border-[5px] rounded  flex flex-col ">
+        <div
+          onClick={() => handleAdministration2("Staff")}
+          className="bg-tertiary border-secondary border-[5px] rounded  flex flex-col "
+        >
           <div className="bg-secondary text-2xl font-semibold text-black">
             Staff
           </div>
@@ -72,7 +96,10 @@ const Administration = () => {
             <li className=" bg-primary text-secondary">6</li>
           </ul>
         </div>
-        <div className="bg-tertiary border-secondary border-[5px] rounded  flex flex-col ">
+        <div
+          onClick={() => handleAdministration2("Tools")}
+          className="bg-tertiary border-secondary border-[5px] rounded  flex flex-col "
+        >
           <div className="bg-secondary text-2xl font-semibold text-black">
             Tools
           </div>
