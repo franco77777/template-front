@@ -138,7 +138,7 @@ const Administration2InputDrag = () => {
         <div
           data-drag="dragzone"
           onClick={OpenInput}
-          className="w-full h-full bg-primary py-4 rounded cursor-pointer active-animation"
+          className="w-full h-full bg-primary py-4 rounded cursor-pointer active-animation flex items-center justify-center duration-500"
           style={{
             backgroundImage: `${
               isDragging
@@ -147,55 +147,57 @@ const Administration2InputDrag = () => {
             }`,
           }}
         >
-          <svg
-            data-drag="dragzone"
-            className=" h-20 w-20 mx-auto text-secondary"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 16"
-          >
-            <path
+          <div>
+            <svg
               data-drag="dragzone"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-            />
-          </svg>
-          {isDragging ? (
-            <div
-              data-drag="dragzone"
-              className="text-secondary text-center mx-auto"
+              className=" h-20 w-20 mx-auto text-secondary"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 16"
             >
-              drop here
-            </div>
-          ) : (
-            <div
-              data-drag="dragzone"
-              className="text-secondary text-center mx-auto"
-            >
-              click to upload
-            </div>
-          )}
+              <path
+                data-drag="dragzone"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            {isDragging ? (
+              <div
+                data-drag="dragzone"
+                className="text-secondary text-center mx-auto"
+              >
+                drop here
+              </div>
+            ) : (
+              <div
+                data-drag="dragzone"
+                className="text-secondary text-center mx-auto"
+              >
+                click to upload
+              </div>
+            )}
 
-          <p
-            data-drag="dragzone"
-            className="text-xs text-secondary mx-auto w-fit"
-          >
-            SVG, PNG, JPG or GIF (MAX. 800x400px)
-          </p>
-          <input
-            onDragEnd={() => console.log("dragend2")}
-            data-drag="dragzone"
-            type="file"
-            className="hidden"
-            data-administration="input"
-            multiple
-            onChange={(e) => onFileSelect(e)}
-            id="testinput"
-          />
+            <p
+              data-drag="dragzone"
+              className="text-xs text-secondary mx-auto w-fit"
+            >
+              SVG, PNG, JPG or GIF (MAX. 800x400px)
+            </p>
+            <input
+              onDragEnd={() => console.log("dragend2")}
+              data-drag="dragzone"
+              type="file"
+              className="hidden"
+              data-administration="input"
+              multiple
+              onChange={(e) => onFileSelect(e)}
+              id="testinput"
+            />
+          </div>
         </div>
       </div>
 

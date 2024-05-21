@@ -22,6 +22,8 @@ const Elementor = React.lazy(() => import("@/screens/elementor"));
 const Administration = React.lazy(() => import("@/screens/administration"));
 const Administration2 = React.lazy(() => import("@/screens/administration2"));
 const Administration3 = React.lazy(() => import("@/screens/administration3"));
+const Administration4 = React.lazy(() => import("@/screens/administration4"));
+const UserProfile = React.lazy(() => import("@/screens/userProfile"));
 
 export default function Navigator() {
   let Logo = "";
@@ -83,6 +85,8 @@ export default function Navigator() {
         <Route path="/administration" element={<Administration />} />
         <Route path="/administration-2" element={<Administration2 />} />
         <Route path="/administration-3" element={<Administration3 />} />
+        <Route path="/administration-4" element={<Administration4 />} />
+        <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
 
       {/*other tools */}

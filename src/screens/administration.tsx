@@ -1,10 +1,11 @@
 import { storeAdministration } from "@/stores/administration/administrationStore";
 import { useNavigate } from "react-router-dom";
-import { Theming, UseBg, UseBgDarker, UsePrimary } from "@/theme/theming";
+import { UseBg, UseBgDarker, UsePrimary } from "@/theme/theming";
 import ModalTheming from "@/components/administration/modalTheming";
 import { storeTheme } from "@/stores/theme/theme";
-import { ThemingType } from "@/theme/theming";
+
 import { useState } from "react";
+import { CircleUserRound } from "lucide-react";
 
 const Administration = () => {
   const SetAdministrationName = storeAdministration((state) => state.setName);
@@ -20,13 +21,16 @@ const Administration = () => {
 
     navigate("/administration-2");
   };
+  const HandleProfile = () => {
+    navigate("/user-profile");
+  };
 
   return (
     <div
       style={{
         backgroundColor: UseBg(),
       }}
-      className={`font-normal   w-full px-[4vw] py-[4vw] bg-primary min-h-screen relative`}
+      className={`font-normal w-full px-[4vw] py-[4vw] bg-primary min-h-screen relative`}
     >
       {handleModal ? <ModalTheming /> : ""}
 
@@ -37,8 +41,13 @@ const Administration = () => {
         }}
         className="text-secondary w-full h-12 md:h-14 xl:h-16 bg-tertiary rounded bg  flex items-center justify-between px-[2vw]"
       >
-        <div>user name </div>
-        <div onClick={() => setHandleModal(!handleModal)}>user image</div>
+        <div onClick={() => setHandleModal(!handleModal)}>user name </div>
+        <div
+          onClick={() => HandleProfile()}
+          className="cursor-pointer hover:scale-105 duration-100"
+        >
+          <CircleUserRound size={40} strokeWidth={2} />
+        </div>
       </div>
       <div
         style={{
