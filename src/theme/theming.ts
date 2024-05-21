@@ -32,9 +32,9 @@ export const Theming:ThemingType ={
         bgDarker:"#05070e"
     },
     4:{
-        primary:"#0b1021",
-        bg:"#3b0c1a",
-        bgDarker:"#000000"
+        primary:"#ff0000",
+        bg:"#000000",
+        bgDarker:"#3e0b19"
     },
   
     5:{
