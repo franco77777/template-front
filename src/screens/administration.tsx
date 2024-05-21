@@ -23,7 +23,7 @@ const Administration = () => {
           className="rounded h-[60%] mx-auto bg-primary border-secondary"
         />
       </div>
-      <section className="grid gap-[1vw] grid-cols-[repeat(auto-fit,minmax(400px,1fr))] 2xl:grid-cols-3 mt-[2vw]">
+      <section className="grid gap-[1vw] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] 2xl:grid-cols-3 mt-[2vw]">
         <div
           onClick={() => handleAdministration2("Organizations")}
           className="bg-tertiary border-secondary border-[5px] flex flex-col rounded"

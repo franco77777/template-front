@@ -1,4 +1,6 @@
 import Administration2InputDrag from "@/components/administration2/InputDrag";
+import Administration2Folders from "@/components/administration2/folders";
+import Administration2Table from "@/components/administration2/table";
 import { storeAdministration } from "@/stores/administration/administrationStore";
 
 const Administration2 = () => {
@@ -14,10 +16,12 @@ const Administration2 = () => {
           className="rounded h-[60%] sm:mx-auto ml-auto bg-primary border-secondary"
         />
       </header>
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] mt-[2vw]">
+      <section className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] mt-[2vw]">
         <Administration2InputDrag />
-
-        <div>2</div>
+        <Administration2Folders />
+      </section>
+      <section className=" w-full overflow-x-auto rounded mt-8">
+        <Administration2Table />
       </section>
     </div>
   );
