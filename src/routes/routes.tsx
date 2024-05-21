@@ -80,7 +80,7 @@ export default function Navigator() {
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/administration" element={<Administration />} />
-        <Route path="/administration2" element={<Administration2 />} />
+        <Route path="/administration-2" element={<Administration2 />} />
       </Routes>
 
       {/*other tools */}

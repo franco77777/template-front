@@ -1,26 +1,55 @@
 import { storeAdministration } from "@/stores/administration/administrationStore";
 import { useNavigate } from "react-router-dom";
+import { Theming, UseBg, UseBgDarker, UsePrimary } from "@/theme/theming";
+import ModalTheming from "@/components/administration/modalTheming";
+import { storeTheme } from "@/stores/theme/theme";
+import { ThemingType } from "@/theme/theming";
 
 const Administration = () => {
   const SetAdministrationName = storeAdministration((state) => state.setName);
+  const Theme = storeTheme((state) => state.theme);
   const navigate = useNavigate();
   const handleAdministration2 = (value: string) => {
     SetAdministrationName(value);
     navigate("/administration2");
   };
+
   return (
-    <div className="font-normal   w-full px-[4vw] py-[4vw] bg-primary min-h-screen">
-      <div className="text-secondary w-full h-12 md:h-14 xl:h-16 bg-tertiary rounded bg  flex items-center justify-between px-[2vw]">
+    <div
+      style={{
+        backgroundColor: UseBg(),
+      }}
+      className={`font-normal   w-full px-[4vw] py-[4vw] bg-primary min-h-screen relative`}
+    >
+      <ModalTheming />
+      <div
+        style={{
+          color: UsePrimary(),
+          backgroundColor: UseBgDarker(),
+        }}
+        className="text-secondary w-full h-12 md:h-14 xl:h-16 bg-tertiary rounded bg  flex items-center justify-between px-[2vw]"
+      >
         <div>user name </div>
         <div>user image</div>
       </div>
-      <div className=" text-secondary w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center mt-[2vw] rounded px-[2vw] relative">
+      <div
+        style={{
+          color: UsePrimary(),
+          backgroundColor: UseBgDarker(),
+        }}
+        className=" text-secondary w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center mt-[2vw] rounded px-[2vw] relative"
+      >
         <div className="absolute top-[50%] left-[2vw] translate-y-[-50%] ">
           Gravitad
         </div>
         <input
+          style={{
+            borderColor: UsePrimary(),
+            color: UsePrimary(),
+            backgroundColor: UseBg(),
+          }}
           type="text"
-          className="rounded h-[60%] mx-auto bg-primary border-secondary"
+          className="rounded h-[60%] mx-auto bg-primary "
         />
       </div>
       <section className="grid gap-[1vw] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] 2xl:grid-cols-3 mt-[2vw]">
