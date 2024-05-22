@@ -1,5 +1,11 @@
 import { UseCreateElement } from "@/hooks/elementsHooks";
-import { CircleX, Folder, SquarePlus } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  CircleX,
+  Folder,
+  SquarePlus,
+} from "lucide-react";
 import { useState } from "react";
 
 const Administration6 = () => {
@@ -11,14 +17,23 @@ const Administration6 = () => {
   const CreateStructure = () => {
     const IconFolder = document.querySelector("[data-icon=folder]");
     const IconPlus = document.querySelector("[data-icon=plus]");
+    const IconChevron = document.querySelector("[data-icon=chevronR]");
     if (!structureName) return;
     const UlElement = document.querySelector(
       "[data-administration=fileContainer]"
     );
     const ul = UseCreateElement("ul", "ml-8");
-    const li = UseCreateElement("li", "flex flex-col");
+    const li = UseCreateElement("li", "flex flex-col gap-2");
     const div = UseCreateElement("div", "");
-    const divIcon = UseCreateElement("div", "cursor-pointer hover:scale-105");
+    const divIconPlus = UseCreateElement(
+      "div",
+      "cursor-pointer hover:scale-105"
+    );
+    const divIconChevron = UseCreateElement(
+      "div",
+      "cursor-pointer hover:scale-105"
+    );
+
     div.append(structureName);
     const divContainer = UseCreateElement("div", "flex gap-4 flex");
 
@@ -28,11 +43,17 @@ const Administration6 = () => {
     const IconPlusCloned = IconPlus?.cloneNode(true) as HTMLElement;
     IconPlusCloned?.classList.remove("hidden");
 
-    divIcon.addEventListener("click", AddFolder);
-    divIcon.appendChild(IconPlusCloned);
+    const IconChevronCloned = IconChevron?.cloneNode(true) as HTMLElement;
+    IconChevronCloned?.classList.remove("hidden");
+
+    divIconPlus.addEventListener("click", AddFolder);
+    divIconPlus.appendChild(IconPlusCloned);
+    divIconChevron.addEventListener("click", ShowFolder);
+    divIconChevron.appendChild(IconChevronCloned);
+    divContainer.appendChild(divIconChevron);
     divContainer.appendChild(IconFolderCloned);
     divContainer.appendChild(div);
-    divContainer.appendChild(divIcon);
+    divContainer.appendChild(divIconPlus);
     li.appendChild(divContainer);
     if (elementForAppend) {
       console.log("element", elementForAppend);
@@ -48,6 +69,51 @@ const Administration6 = () => {
     setHandleModal(!handleModal);
   };
 
+  const ShowFolder = (e: MouseEvent) => {
+    const IconChevron = document.querySelector(
+      "[data-icon=chevron]"
+    ) as HTMLElement;
+    const IconChevronR = document.querySelector(
+      "[data-icon=chevronR]"
+    ) as HTMLElement;
+    console.log("logsd");
+
+    const IconChevronCloned = IconChevron?.cloneNode(true) as HTMLElement;
+    IconChevronCloned.classList.remove("hidden");
+
+    const IconChevronRCloned = IconChevronR?.cloneNode(true) as HTMLElement;
+    IconChevronRCloned.classList.remove("hidden");
+    const Target = e.target as HTMLElement;
+    const Data = Target.getAttribute("data-icon");
+    const Li = Target.parentElement?.parentElement?.parentElement;
+    if (Data === "chevronR") {
+      Target?.parentElement?.replaceChild(IconChevronCloned, Target);
+    } else {
+      Target?.parentElement?.replaceChild(IconChevronRCloned, Target);
+    }
+
+    const parent = Li?.querySelectorAll("ul");
+    console.log("soy evento", Target);
+    var len = parent?.length;
+    if (e.target && IconChevron)
+      if (len && parent)
+        for (var i of parent) {
+          i.classList.toggle("hidden");
+        }
+    // for(var i=0;i<len;i++){
+    //   	parent[i].addEventListener('click', function (event) {
+    //     if(event.target !== event.currentTarget.children[0].children[0]){
+    //         if(event.currentTarget.children[0].style.display === 'block'){
+    //           event.currentTarget.children[0].style.display = 'none';
+    //         } else {
+    //           event.currentTarget.children[0].style.display = 'block';
+    //         }
+    //      }
+
+    // 	});
+    //   }
+  };
+
   const AddFolder = (e: MouseEvent) => {
     setHandleModal((oldVal) => !oldVal);
 
@@ -56,37 +122,28 @@ const Administration6 = () => {
 
     console.log("teseting", ParentElement);
     if (ParentElement) setElementForAppend(ParentElement);
-
-    // const li = UseCreateElement("li", "");
-    // const div = UseCreateElement("div", "");
-    // div.append(structureName);
-    // const divContainer = UseCreateElement("div", "flex gap-4");
-    // const IconFolder = document.querySelector("[data-icon=folder]");
-    // const IconPlus = document.querySelector("[data-icon=plus]");
-
-    // const IconFolderCloned = IconFolder?.cloneNode(true) as HTMLElement;
-    // IconFolderCloned?.classList.remove("hidden");
-
-    // const IconPlusCloned = IconPlus?.cloneNode(true) as HTMLElement;
-    // IconPlusCloned?.classList.remove("hidden");
-
-    // IconPlusCloned.addEventListener("click", AddFolder);
-
-    // divContainer.appendChild(IconFolderCloned);
-    // divContainer.appendChild(div);
-    // divContainer.appendChild(IconPlusCloned);
-    // li.appendChild(divContainer);
-    // ParentElement?.append(li);
-
-    // if (handleModal) return;
   };
   return (
     <div className="min-h-screen  p-[4vw] bg-primary font-normal relative text-secondary">
+      <div data-icon="chevronR" className="hidden" onClick={() => ShowFolder}>
+        <ChevronRight
+          size={24}
+          strokeWidth={2}
+          className=" pointer-events-none"
+        />
+      </div>
+      <div data-icon="chevron" className="hidden" onClick={() => ShowFolder}>
+        <ChevronDown
+          size={24}
+          strokeWidth={2}
+          className=" pointer-events-none"
+        />
+      </div>
       <SquarePlus
         data-icon="plus"
         size={24}
         strokeWidth={2}
-        className=" pointer-events-none"
+        className=" pointer-events-none hidden"
       />
       <Folder data-icon="folder" color="#00CCB4" className="hidden" />
       {handleModal && (
@@ -123,7 +180,7 @@ const Administration6 = () => {
           className="rounded h-[60%] sm:mx-auto ml-auto bg-primary border-secondary"
         />
       </header>
-      <section className="mt-8 text-base border-2 border-secondary rounded text-secondary p-2">
+      <section className="mt-8 text-base border-2 border-secondary rounded text-secondary p-4">
         <div
           onClick={() => setHandleModal(!handleModal)}
           className="flex gap-4"
@@ -135,7 +192,10 @@ const Administration6 = () => {
             className="cursor-pointer hover:scale-105"
           />
         </div>
-        <ul data-administration="fileContainer"></ul>
+        <ul
+          data-administration="fileContainer"
+          className="flex flex-col gap-8 mt-8"
+        ></ul>
       </section>
     </div>
   );
