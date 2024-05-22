@@ -1,5 +1,7 @@
+import UserProfileAddress from "@/components/userProfile/address";
+import UserProfileFiles from "@/components/userProfile/files";
 import PersonalInformation from "@/components/userProfile/personalInformation";
-import { storeAdministration } from "@/stores/administration/administrationStore";
+
 import { CircleUserRound, Settings, UsersRound } from "lucide-react";
 
 const UserProfile = () => {
@@ -23,8 +25,12 @@ const UserProfile = () => {
           <Settings size={40} strokeWidth={2} />
         </div>
       </section>
-      <section>
+      <section className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] gap-4 mt-8">
         <PersonalInformation />
+        <div>
+          <UserProfileAddress />
+          <UserProfileFiles />
+        </div>
       </section>
     </div>
   );
