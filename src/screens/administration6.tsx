@@ -5,28 +5,90 @@ import { useState } from "react";
 const Administration6 = () => {
   const [handleModal, setHandleModal] = useState(false);
   const [structureName, setStructureName] = useState("");
-  console.log("structure name", structureName);
+  const [elementForAppend, setElementForAppend] =
+    useState<HTMLElement | null>();
+
   const CreateStructure = () => {
-    const Icon = document.getElementById("icon");
+    const IconFolder = document.querySelector("[data-icon=folder]");
+    const IconPlus = document.querySelector("[data-icon=plus]");
     if (!structureName) return;
     const UlElement = document.querySelector(
       "[data-administration=fileContainer]"
     );
-    const li = UseCreateElement("li", "flex gap-4 items-center");
+    const ul = UseCreateElement("ul", "ml-8");
+    const li = UseCreateElement("li", "flex flex-col");
     const div = UseCreateElement("div", "");
+    const divIcon = UseCreateElement("div", "cursor-pointer hover:scale-105");
     div.append(structureName);
+    const divContainer = UseCreateElement("div", "flex gap-4 flex");
 
-    const IconCloned = Icon?.cloneNode(true) as HTMLElement;
-    IconCloned?.classList.remove("hidden");
+    const IconFolderCloned = IconFolder?.cloneNode(true) as HTMLElement;
+    IconFolderCloned?.classList.remove("hidden");
 
-    if (IconCloned) li.appendChild(IconCloned);
-    li.appendChild(div);
+    const IconPlusCloned = IconPlus?.cloneNode(true) as HTMLElement;
+    IconPlusCloned?.classList.remove("hidden");
 
-    UlElement?.append(li);
+    divIcon.addEventListener("click", AddFolder);
+    divIcon.appendChild(IconPlusCloned);
+    divContainer.appendChild(IconFolderCloned);
+    divContainer.appendChild(div);
+    divContainer.appendChild(divIcon);
+    li.appendChild(divContainer);
+    if (elementForAppend) {
+      console.log("element", elementForAppend);
+
+      ul.append(li);
+      elementForAppend.append(ul);
+    } else {
+      UlElement?.append(li);
+    }
+
+    setStructureName("");
+    setElementForAppend(null);
+    setHandleModal(!handleModal);
+  };
+
+  const AddFolder = (e: MouseEvent) => {
+    setHandleModal((oldVal) => !oldVal);
+
+    const ParentElement = (e.target as HTMLElement).parentElement
+      ?.parentElement;
+
+    console.log("teseting", ParentElement);
+    if (ParentElement) setElementForAppend(ParentElement);
+
+    // const li = UseCreateElement("li", "");
+    // const div = UseCreateElement("div", "");
+    // div.append(structureName);
+    // const divContainer = UseCreateElement("div", "flex gap-4");
+    // const IconFolder = document.querySelector("[data-icon=folder]");
+    // const IconPlus = document.querySelector("[data-icon=plus]");
+
+    // const IconFolderCloned = IconFolder?.cloneNode(true) as HTMLElement;
+    // IconFolderCloned?.classList.remove("hidden");
+
+    // const IconPlusCloned = IconPlus?.cloneNode(true) as HTMLElement;
+    // IconPlusCloned?.classList.remove("hidden");
+
+    // IconPlusCloned.addEventListener("click", AddFolder);
+
+    // divContainer.appendChild(IconFolderCloned);
+    // divContainer.appendChild(div);
+    // divContainer.appendChild(IconPlusCloned);
+    // li.appendChild(divContainer);
+    // ParentElement?.append(li);
+
+    // if (handleModal) return;
   };
   return (
     <div className="min-h-screen  p-[4vw] bg-primary font-normal relative text-secondary">
-      <Folder id="icon" color="#00CCB4" className="hidden" />
+      <SquarePlus
+        data-icon="plus"
+        size={24}
+        strokeWidth={2}
+        className=" pointer-events-none"
+      />
+      <Folder data-icon="folder" color="#00CCB4" className="hidden" />
       {handleModal && (
         <div className="modalAnimation ease-in-out overflow-hidden z-10 bg-tertiary  rounded absolute top-1/2 left-1/2  ">
           <div className="w-full h-full flex flex-col gap-4 relative  p-12 ">
@@ -67,13 +129,13 @@ const Administration6 = () => {
           className="flex gap-4"
         >
           <div className="text-xl">add structure</div>
-          <SquarePlus size={24} strokeWidth={2} />
+          <SquarePlus
+            size={24}
+            strokeWidth={2}
+            className="cursor-pointer hover:scale-105"
+          />
         </div>
-        <ul data-administration="fileContainer">
-          <li>user</li>
-          <li>user</li>
-          <li>user</li>
-        </ul>
+        <ul data-administration="fileContainer"></ul>
       </section>
     </div>
   );
