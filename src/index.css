@@ -96,3 +96,20 @@ img {
       background-position: left 15px top, right 15px bottom, left bottom 15px, right top 15px;
   }
   }
+
+  .modalAnimation {
+    
+    animation: zoom 0.3s ease-in-out forwards;
+  }
+
+  @keyframes zoom {
+    0%{
+      transform: translate(-50%,-50%);
+    }
+    100% {
+      transform: translate(-50%,-50%) scale(1);
+    }
+    50% {
+      transform:translate(-50%,-50%) scale(1.07);
+    }
+  }
