@@ -2,7 +2,7 @@ import { FileText } from "lucide-react";
 
 const UserProfileFiles = () => {
   return (
-    <ul className="flex  text-secondary border-2 border-secondary rounded px-4">
+    <ul className="flex gap-4 text-secondary border-2 border-secondary rounded p-4">
       <li>
         <FileText />
         DNI

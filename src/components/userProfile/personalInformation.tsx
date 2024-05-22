@@ -2,8 +2,8 @@ import { Copy, Settings, UserRound } from "lucide-react";
 
 const PersonalInformation = () => {
   return (
-    <div className="bg-tertiary border-2 border-secondary rounded text-secondary items-cemter justify-center flex gap-8 p-4">
-      <div className="w-1/2 bg-primary rounded">
+    <div className=" border-2 border-secondary rounded text-secondary items-cemter justify-center flex gap-8 p-4">
+      <div className="w-1/2  rounded">
         <UserRound size={140} strokeWidth={2} className="mx-auto" />
       </div>
       <ul className="w-1/2 flex flex-col justify-between bg-primary rounded">

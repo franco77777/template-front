@@ -1,6 +1,10 @@
 import UserProfileAddress from "@/components/userProfile/address";
+import UserProfileAssignedProjects from "@/components/userProfile/assignedProjects";
+import UserProfileContact from "@/components/userProfile/contact";
 import UserProfileFiles from "@/components/userProfile/files";
+import UserProfileOrganizations from "@/components/userProfile/organizations";
 import PersonalInformation from "@/components/userProfile/personalInformation";
+import UserProfileWallet from "@/components/userProfile/wallet";
 
 import { CircleUserRound, Settings, UsersRound } from "lucide-react";
 
@@ -25,12 +29,20 @@ const UserProfile = () => {
           <Settings size={40} strokeWidth={2} />
         </div>
       </section>
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] gap-4 mt-8">
+      <section className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] lg:grid-cols-2 gap-4 mt-8">
         <PersonalInformation />
-        <div>
+        <div className="flex flex-col gap-2">
           <UserProfileAddress />
           <UserProfileFiles />
         </div>
+        <UserProfileWallet />
+        <UserProfileContact />
+      </section>
+      <section>
+        <UserProfileAssignedProjects />
+      </section>
+      <section>
+        <UserProfileOrganizations />
       </section>
     </div>
   );

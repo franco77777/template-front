@@ -12,7 +12,7 @@ const Administration3 = () => {
         <div>user name </div>
         <div>user image</div>
       </div>
-      <div className="  overflow-x-auto rounded mt-8">
+      <div className=" overflow-x-auto rounded mt-8">
         <Administration2Table />
       </div>
 
