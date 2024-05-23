@@ -61,6 +61,7 @@ declare module "@/screens/administration2";
 declare module "@/screens/administration3";
 declare module "@/screens/administration4";
 declare module "@/screens/administration6";
+declare module "@/screens/administration7";
 declare module "@/screens/userProfile";
 declare module "@/screens/elementsToClone";
 

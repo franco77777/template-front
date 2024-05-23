@@ -24,6 +24,7 @@ const Administration2 = React.lazy(() => import("@/screens/administration2"));
 const Administration3 = React.lazy(() => import("@/screens/administration3"));
 const Administration4 = React.lazy(() => import("@/screens/administration4"));
 const Administration6 = React.lazy(() => import("@/screens/administration6"));
+const Administration7 = React.lazy(() => import("@/screens/administration7"));
 const UserProfile = React.lazy(() => import("@/screens/userProfile"));
 
 export default function Navigator() {
@@ -88,6 +89,7 @@ export default function Navigator() {
         <Route path="/administration-3" element={<Administration3 />} />
         <Route path="/administration-4" element={<Administration4 />} />
         <Route path="/administration-6" element={<Administration6 />} />
+        <Route path="/administration-7" element={<Administration7 />} />
         <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
 

@@ -1,5 +1,6 @@
 import { UseCreateElement } from "@/hooks/elementsHooks";
 import {
+  AlignJustify,
   ChevronDown,
   ChevronRight,
   CircleX,
@@ -7,17 +8,21 @@ import {
   SquarePlus,
 } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Administration6 = () => {
   const [handleModal, setHandleModal] = useState(false);
   const [structureName, setStructureName] = useState("");
   const [elementForAppend, setElementForAppend] =
     useState<HTMLElement | null>();
+  const navigate = useNavigate();
 
   const CreateStructure = () => {
     const IconFolder = document.querySelector("[data-icon=folder]");
     const IconPlus = document.querySelector("[data-icon=plus]");
     const IconChevron = document.querySelector("[data-icon=chevronR]");
+    const IconAlign = document.querySelector("[data-icon=align]");
+
     if (!structureName) return;
     const UlElement = document.querySelector(
       "[data-administration=fileContainer]"
@@ -46,6 +51,10 @@ const Administration6 = () => {
     const IconChevronCloned = IconChevron?.cloneNode(true) as HTMLElement;
     IconChevronCloned?.classList.remove("hidden");
 
+    const IconAlignCloned = IconAlign?.cloneNode(true) as HTMLElement;
+    IconAlignCloned?.classList.remove("hidden");
+
+    IconAlignCloned.addEventListener("click", NavigateFolder);
     divIconPlus.addEventListener("click", AddFolder);
     divIconPlus.appendChild(IconPlusCloned);
     divIconChevron.addEventListener("click", ShowFolder);
@@ -53,11 +62,10 @@ const Administration6 = () => {
     divContainer.appendChild(divIconChevron);
     divContainer.appendChild(IconFolderCloned);
     divContainer.appendChild(div);
+    divContainer.appendChild(IconAlignCloned);
     divContainer.appendChild(divIconPlus);
     li.appendChild(divContainer);
     if (elementForAppend) {
-      console.log("element", elementForAppend);
-
       ul.append(li);
       elementForAppend.append(ul);
     } else {
@@ -69,6 +77,43 @@ const Administration6 = () => {
     setHandleModal(!handleModal);
   };
 
+  const NavigateFolder = (e: MouseEvent) => {
+    let Switch = false;
+    const Target = e.target as HTMLElement;
+    const Text = (Target.previousSibling as HTMLElement).innerHTML;
+
+    let Parent = Target.parentElement?.parentElement;
+
+    let urlArray = [];
+    urlArray.push(Text);
+    while (!Switch) {
+      let data = Parent?.parentElement?.getAttribute("data-administration");
+      if (data === "fileContainer") {
+        Switch = true;
+        return;
+      }
+      Parent = Parent?.parentElement?.parentElement;
+      var div = Parent?.querySelector("div");
+      if (div) {
+        var divInsideText = div.children[2].innerHTML;
+
+        urlArray.unshift(divInsideText);
+      }
+
+      console.log("url", urlArray);
+      let url: string = "";
+      for (var i of urlArray) {
+        if (url) {
+          url += "/" + i;
+        } else {
+          url = i;
+        }
+      }
+    }
+
+    //navigate("/administration-7");
+  };
+
   const ShowFolder = (e: MouseEvent) => {
     const IconChevron = document.querySelector(
       "[data-icon=chevron]"
@@ -76,7 +121,6 @@ const Administration6 = () => {
     const IconChevronR = document.querySelector(
       "[data-icon=chevronR]"
     ) as HTMLElement;
-    console.log("logsd");
 
     const IconChevronCloned = IconChevron?.cloneNode(true) as HTMLElement;
     IconChevronCloned.classList.remove("hidden");
@@ -93,7 +137,7 @@ const Administration6 = () => {
     }
 
     const parent = Li?.querySelectorAll("ul");
-    console.log("soy evento", Target);
+
     var len = parent?.length;
     if (e.target && IconChevron)
       if (len && parent)
@@ -120,19 +164,28 @@ const Administration6 = () => {
     const ParentElement = (e.target as HTMLElement).parentElement
       ?.parentElement;
 
-    console.log("teseting", ParentElement);
     if (ParentElement) setElementForAppend(ParentElement);
   };
   return (
     <div className="min-h-screen  p-[4vw] bg-primary font-normal relative text-secondary">
-      <div data-icon="chevronR" className="hidden" onClick={() => ShowFolder}>
+      <div
+        data-icon="align"
+        className="hidden hover:scale-105 duration-150 cursor-pointer"
+      >
+        <AlignJustify
+          size={24}
+          strokeWidth={2}
+          className=" pointer-events-none"
+        />
+      </div>
+      <div data-icon="chevronR" className="hidden">
         <ChevronRight
           size={24}
           strokeWidth={2}
           className=" pointer-events-none"
         />
       </div>
-      <div data-icon="chevron" className="hidden" onClick={() => ShowFolder}>
+      <div data-icon="chevron" className="hidden">
         <ChevronDown
           size={24}
           strokeWidth={2}
@@ -147,7 +200,7 @@ const Administration6 = () => {
       />
       <Folder data-icon="folder" color="#00CCB4" className="hidden" />
       {handleModal && (
-        <div className="modalAnimation ease-in-out overflow-hidden z-10 bg-tertiary  rounded absolute top-1/2 left-1/2  ">
+        <div className="text-2xl modalAnimation ease-in-out overflow-hidden z-10 bg-tertiary  rounded absolute top-1/2 left-1/2  ">
           <div className="w-full h-full flex flex-col gap-4 relative  p-12 ">
             <div>structure name:</div>
             <input
