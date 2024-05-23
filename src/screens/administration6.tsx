@@ -1,4 +1,5 @@
 import { UseCreateElement } from "@/hooks/elementsHooks";
+import { storeAdministration6 } from "@/stores/administration/administration6Store";
 import {
   AlignJustify,
   ChevronDown,
@@ -15,6 +16,7 @@ const Administration6 = () => {
   const [structureName, setStructureName] = useState("");
   const [elementForAppend, setElementForAppend] =
     useState<HTMLElement | null>();
+  const SetURL = storeAdministration6((state) => state.setUrl);
   const navigate = useNavigate();
 
   const CreateStructure = () => {
@@ -90,7 +92,7 @@ const Administration6 = () => {
       let data = Parent?.parentElement?.getAttribute("data-administration");
       if (data === "fileContainer") {
         Switch = true;
-        return;
+        break;
       }
       Parent = Parent?.parentElement?.parentElement;
       var div = Parent?.querySelector("div");
@@ -101,17 +103,18 @@ const Administration6 = () => {
       }
 
       console.log("url", urlArray);
-      let url: string = "";
-      for (var i of urlArray) {
-        if (url) {
-          url += "/" + i;
-        } else {
-          url = i;
-        }
+    }
+    let url: string = "";
+    for (var i of urlArray) {
+      if (url) {
+        url += "/" + i;
+      } else {
+        url = i;
       }
     }
-
-    //navigate("/administration-7");
+    console.log("url", url);
+    SetURL(url);
+    navigate("/administration-7");
   };
 
   const ShowFolder = (e: MouseEvent) => {
