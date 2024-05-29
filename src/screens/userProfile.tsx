@@ -18,7 +18,7 @@ const UserProfile = () => {
         </div>
       </header>
       <section className="text-secondary w-full h-16 md:h-20 xl:h-24 bg-tertiary flex items-center justify-between rounded px-[2vw] mt-4">
-        <div className="text-[clamp(1.25rem,3cqw,3rem)]">Gravitad</div>
+        <div className="text-[clamp(1.25rem,3cqw,2.5rem)]">Gravitad</div>
         <input
           type="text"
           className="rounded h-10 bg-primary border-secondary lg:w-[300px]"

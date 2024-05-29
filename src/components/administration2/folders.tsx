@@ -1,3 +1,5 @@
+import { SquarePlus } from "lucide-react";
+
 const Administration2Folders = () => {
   return (
     <ul className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(350px,1fr))] grid-rows-[repeat(auto-fill,minmax(120px,1fr))]">
@@ -21,9 +23,15 @@ const Administration2Folders = () => {
           <div className="flex flex-col justify-center items-center gap-2 w-1/2">
             <input
               type="text"
-              className="rounded h-[60%]   bg-primary border-secondary w-full"
+              className="rounded h-10   bg-primary border-secondary w-full"
             />
-            <div className="text-secondary">Add</div>
+            <div className="text-secondary">
+              <SquarePlus
+                size={24}
+                strokeWidth={2}
+                className="cursor-pointer hover:scale-105 duration-150 "
+              />
+            </div>
           </div>
         </div>
       </li>
@@ -47,9 +55,16 @@ const Administration2Folders = () => {
           <div className="flex flex-col justify-center items-center gap-2 w-1/2">
             <input
               type="text"
-              className="rounded h-[60%]   bg-primary border-secondary w-full"
+              className="rounded h-10   bg-primary border-secondary w-full"
             />
-            <div className="text-secondary">Add</div>
+            <div className="text-secondary">
+              {" "}
+              <SquarePlus
+                size={24}
+                strokeWidth={2}
+                className="cursor-pointer hover:scale-105 duration-150 "
+              />
+            </div>
           </div>
         </div>
       </li>
@@ -73,9 +88,16 @@ const Administration2Folders = () => {
           <div className="flex flex-col justify-center items-center gap-2 w-1/2">
             <input
               type="text"
-              className="rounded h-[60%]   bg-primary border-secondary w-full"
+              className="rounded h-10   bg-primary border-secondary w-full"
             />
-            <div className="text-secondary">Add</div>
+            <div className="text-secondary">
+              {" "}
+              <SquarePlus
+                size={24}
+                strokeWidth={2}
+                className="cursor-pointer hover:scale-105 duration-150 "
+              />
+            </div>
           </div>
         </div>
       </li>
@@ -99,9 +121,16 @@ const Administration2Folders = () => {
           <div className="flex flex-col justify-center items-center gap-2 w-1/2">
             <input
               type="text"
-              className="rounded h-[60%]   bg-primary border-secondary w-full"
+              className="rounded h-10   bg-primary border-secondary w-full"
             />
-            <div className="text-secondary">Add</div>
+            <div className="text-secondary">
+              {" "}
+              <SquarePlus
+                size={24}
+                strokeWidth={2}
+                className="cursor-pointer hover:scale-105 duration-150 "
+              />
+            </div>
           </div>
         </div>
       </li>
@@ -125,9 +154,16 @@ const Administration2Folders = () => {
           <div className="flex flex-col justify-center items-center gap-2 w-1/2">
             <input
               type="text"
-              className="rounded h-[60%]   bg-primary border-secondary w-full"
+              className="rounded h-10   bg-primary border-secondary w-full"
             />
-            <div className="text-secondary">Add</div>
+            <div className="text-secondary">
+              {" "}
+              <SquarePlus
+                size={24}
+                strokeWidth={2}
+                className="cursor-pointer hover:scale-105 duration-150 "
+              />
+            </div>
           </div>
         </div>
       </li>

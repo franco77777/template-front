@@ -1,13 +1,27 @@
 import { Copy } from "lucide-react";
 
 const UserProfileWallet = () => {
+  const CopyButton = async (value: string) => {
+    const Element = document.querySelector(`[data-user=${value}]`);
+    console.log("coping text", Element?.innerHTML);
+
+    if (Element) await navigator.clipboard.writeText(Element.innerHTML);
+  };
+
   return (
     <ul className="flex flex-col gap-4  text-secondary border-2 border-secondary rounded p-4">
       <li className="flex flex-col  gap-2">
         <div>Wallet:</div>
         <div className="flex gap-4">
-          <div>0xb0A7c00EA503AdbdFE0071bdd9eB6Fbb18e7C6B5 </div>
-          <Copy size={20} strokeWidth={2} />
+          <div data-user="wallet">
+            0xb0A7c00EA503AdbdFE0071bdd9eB6Fbb18e7C6B5
+          </div>
+          <Copy
+            size={20}
+            strokeWidth={2}
+            onClick={() => CopyButton("wallet")}
+            className="cursor-pointer hover:scale-105 duration-150"
+          />
         </div>
       </li>
       <li className="flex flex-col gap-2 ">

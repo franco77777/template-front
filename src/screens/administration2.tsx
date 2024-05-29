@@ -8,12 +8,12 @@ const Administration2 = () => {
   return (
     <div className="font-normal   w-full px-[4vw] py-[4vw] bg-primary min-h-screen">
       <header className=" text-secondary w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center  rounded px-[2vw] relative">
-        <div className="absolute top-[50%] left-[2vw] translate-y-[-50%] text-secondary ">
+        <div className="absolute top-[50%] left-[2vw] translate-y-[-50%] text-secondary text-[clamp(1rem,3cqw,2rem)] ">
           {AdministrationName}
         </div>
         <input
           type="text"
-          className="rounded h-[60%] sm:mx-auto ml-auto bg-primary border-secondary"
+          className="rounded h-[60%] md:h-10 sm:mx-auto ml-auto bg-primary border-secondary"
         />
       </header>
       <section className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] mt-[2vw]">

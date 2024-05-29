@@ -3,19 +3,32 @@ import { storeTheme } from "@/stores/theme/theme"
 export interface Theme{
     primary:string,
     bg:string,
-    bgDarker:string
+    bgDarker:string,
+    
+}
+
+export interface GradientTheme extends Theme{
+    secondary:string
 }
 
 export interface ThemingType{
+    0:Theme,
     1:Theme,
     2:Theme,
     3:Theme,
     4:Theme,
     5:Theme,
     6:Theme,
+    7:GradientTheme,
+    8:GradientTheme
 }
 
 export const Theming:ThemingType ={
+    0:{
+        primary:"#00CCB4",
+        bg:"#0b1021",
+        bgDarker:"#06070f"
+    },
     1:{
         primary:"#5cabca",
         bg:"#0b1021",
@@ -47,23 +60,44 @@ export const Theming:ThemingType ={
         bg:"#0b1021",
         bgDarker:"#05070e"
     },
+    7:{
+        primary:"#7f00ff",
+        secondary:"#e100ff",
+        bg:"#0b1021",
+        bgDarker:"#05070e",
+        
+    },
+    8:{
+        secondary:"#f12711",
+        primary:"#f5af19",
+        bg:"#0b1021",
+        bgDarker:"#05070e",
+        
+    },
 }
 
 
 
 export const UsePrimary = () =>{
-    const Theme = storeTheme.getState().theme
+    const Theme = storeTheme.getState().primary
     console.log("theme", Theme);
     
-    return Theme ? Theming[Theme as keyof ThemingType].primary : ""
+    return Theme ? Theme : Theming[0].primary
+    
+  }
+  export const UseSecondary = () =>{
+    const Theme = storeTheme.getState().secondary
+    console.log("theme", Theme);
+    
+    return Theme 
     
   }
  export const UseBg = () =>{
-    const Theme = storeTheme.getState().theme
-    return Theme ? Theming[Theme as keyof ThemingType].bg : ""
+    const Theme = storeTheme.getState().bg
+    return Theme ? Theme : Theming[0].bg
   }
 
   export const UseBgDarker = () =>{
-    const Theme = storeTheme.getState().theme
-    return Theme ? Theming[Theme as keyof ThemingType].bgDarker : ""
+    const Theme = storeTheme.getState().bgDarker
+    return Theme ? Theme : Theming[0].bgDarker
   }
