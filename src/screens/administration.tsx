@@ -1,6 +1,12 @@
 import { storeAdministration } from "@/stores/administration/administrationStore";
 import { useNavigate } from "react-router-dom";
-import { UseBg, UseBgDarker, UsePrimary, UseSecondary } from "@/theme/theming";
+import {
+  SecondaryExist,
+  UseBg,
+  UseBgDarker,
+  UsePrimary,
+  UseSecondary,
+} from "@/theme/theming";
 import ModalTheming from "@/components/administration/modalTheming";
 import { storeTheme } from "@/stores/theme/theme";
 
@@ -10,6 +16,8 @@ import { CircleUserRound } from "lucide-react";
 const Administration = () => {
   const SetAdministrationName = storeAdministration((state) => state.setName);
   const Theme = storeTheme((state) => state.primary);
+  const Theme2 = storeTheme((state) => state);
+
   const [handleModal, setHandleModal] = useState(false);
   const navigate = useNavigate();
   const handleAdministration2 = (value: string) => {
@@ -25,17 +33,6 @@ const Administration = () => {
     navigate("/user-profile");
   };
 
-  const SecondaryExist = () => {
-    return UseSecondary()
-      ? `linear-gradient(to left, ${UsePrimary()},${UseSecondary()})`
-      : `linear-gradient(to left, ${UsePrimary()},${UsePrimary()})`;
-  };
-
-  const SecondaryTextExist = () => {
-    return UseSecondary()
-      ? `linear-gradient(45deg, ${UsePrimary()},${UseSecondary()})`
-      : `linear-gradient(45deg, ${UsePrimary()},${UsePrimary()})`;
-  };
   return (
     <div
       style={{
@@ -50,11 +47,11 @@ const Administration = () => {
           color: UsePrimary(),
           backgroundColor: UseBgDarker(),
         }}
-        className="text-[clamp(2rem,3cqw,5rem)] w-full h-12 md:h-14 xl:h-16  rounded-2xl bg  flex items-center justify-between px-[2vw] "
+        className=" w-full h-12 md:h-14 xl:h-16  rounded-2xl bg  flex items-center justify-between px-[2vw] "
       >
         <div
           onClick={() => setHandleModal(!handleModal)}
-          className=" font-semibold gradient-text"
+          className=" font-semibold gradient-text text-[clamp(2rem,3cqw,5rem)]"
           style={{
             backgroundImage: SecondaryExist(),
           }}
@@ -73,18 +70,24 @@ const Administration = () => {
           color: UsePrimary(),
           backgroundColor: UseBgDarker(),
         }}
-        className="  w-full h-14 md:h-16 xl:h-20  flex items-center mt-[2vw] rounded-2xl px-[2vw] relative "
+        className="  w-full h-14 md:h-16 xl:h-20  flex  items-center mt-[2vw] rounded-2xl px-[2vw] relative "
       >
-        <div className="text-[clamp(3rem,3cqw,6rem)] absolute top-[50%] left-[2vw] translate-y-[-50%] gradient-text font-bold">
+        <div
+          style={{
+            backgroundImage: SecondaryExist(),
+          }}
+          className="text-[clamp(2rem,3cqw,6rem)] absolute top-[50%] left-[2vw] translate-y-[-50%] gradient-text font-bold"
+        >
           Gravitad
         </div>
         <input
           style={{
             color: UsePrimary(),
             backgroundColor: UseBg(),
+            borderColor: UsePrimary(),
           }}
           type="text"
-          className="rounded-2xl h-[60%] mx-auto  "
+          className="rounded-2xl h-[60%] ml-auto md:mx-auto text-[clamp(1rem,3cqw,2rem)]"
         />
       </div>
       <section className="grid gap-[1vw] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] 2xl:grid-cols-3 mt-[2vw]">

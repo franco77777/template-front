@@ -113,21 +113,9 @@ img {
       transform:translate(-50%,-50%) scale(1.07);
     }
   }
-  :root {
-    --bg: #1e2345;
-    --violet: rgb(161, 132, 240);
-    --pink: #d60087;
-    --turquoise: #2fdabd;
-    font-size: 10px;
-  }
+  
 
-  .style{
-    
-      background-image: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
-      border-radius: 10px 10px 0px 0px;
-      height: 5px;
-    
-  }
+  
 
   .gradient-text {
     
@@ -138,4 +126,5 @@ img {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+  
   }

@@ -68,8 +68,8 @@ export const Theming:ThemingType ={
         
     },
     8:{
-        secondary:"#f12711",
-        primary:"#f5af19",
+        primary:"#f12711",
+        secondary:"#f5af19",
         bg:"#0b1021",
         bgDarker:"#05070e",
         
@@ -101,3 +101,15 @@ export const UsePrimary = () =>{
     const Theme = storeTheme.getState().bgDarker
     return Theme ? Theme : Theming[0].bgDarker
   }
+
+  export const SecondaryExist = () => {
+    return UseSecondary()
+      ? `linear-gradient(to right, ${UsePrimary()},${UseSecondary()})`
+      : `linear-gradient(to right, ${UsePrimary()},${UsePrimary()})`;
+  };
+
+  export const SecondaryTextExist = () => {
+    return UseSecondary()
+      ? `linear-gradient(45deg, ${UsePrimary()},${UseSecondary()})`
+      : `linear-gradient(45deg, ${UsePrimary()},${UsePrimary()})`;
+  };

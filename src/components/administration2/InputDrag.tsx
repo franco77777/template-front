@@ -1,4 +1,12 @@
+import {
+  SecondaryExist,
+  UseBgDarker,
+  UsePrimary,
+  UseSecondary,
+} from "@/theme/theming";
+import { CloudUpload } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+
 export interface Image {
   name: string;
   url: string;
@@ -7,6 +15,7 @@ export interface Image {
 const Administration2InputDrag = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [isDragging, setIsDragging] = useState(false);
+  const [rendering, setRendering] = useState({ background: "red" });
 
   const onFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log("soy images", images);
@@ -124,102 +133,151 @@ const Administration2InputDrag = () => {
 
   window.addEventListener("dragend", DragEnd);
 
+  const MouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log("entrando red");
+
+    const target = e.target as HTMLElement;
+    console.log(target);
+    target.style.background = SecondaryExist();
+    //setRendering({ background: "blue" });
+  };
+
+  const MouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log("saliendo blue");
+
+    const target = e.target as HTMLElement;
+    console.log(target);
+    target.style.background = "none";
+    //setRendering({ background: "red" });
+  };
+
+  const style = {
+    background: "blue",
+    ":hover": {
+      background: "red",
+    },
+  };
+
   return (
-    <div className="bg-tertiary border-secondary border-[5px] flex flex-col rounded ">
-      <div className="bg-secondary text-black font-semibold  md:text-2xl text-base">
-        Files
-      </div>
+    <div
+      style={{ background: SecondaryExist() }}
+      className="  flex flex-col rounded-2xl "
+    >
       <div
-        onDragOver={onDragOver}
-        onDragLeave={onDragLeave}
-        onDrop={onDrop}
-        className="mx-auto bg-tertiary w-full h-full p-4 "
+        style={{
+          //backgroundColor: UseBgDarker(),
+          backgroundColor: UseBgDarker(),
+        }}
+        className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
       >
         <div
-          data-drag="dragzone"
-          onClick={OpenInput}
-          className="w-full h-full bg-primary py-4 rounded cursor-pointer active-animation flex items-center justify-center duration-500"
           style={{
-            backgroundImage: `${
-              isDragging
-                ? "linear-gradient(90deg,#00CCB4 50%, transparent 50%), linear-gradient(90deg, #00CCB4 50%, transparent 50%), linear-gradient(0deg,#00CCB4 50%, transparent 50%), linear-gradient(0deg, #00CCB4 50%, transparent 50%)"
-                : ""
-            }`,
+            color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+            background: SecondaryExist(),
           }}
+          className=" font-semibold  md:text-2xl text-base"
         >
-          <div>
-            <svg
-              data-drag="dragzone"
-              className=" h-20 w-20 mx-auto text-secondary"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 16"
-            >
-              <path
-                data-drag="dragzone"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-              />
-            </svg>
-            {isDragging ? (
-              <div
-                data-drag="dragzone"
-                className="text-secondary text-center mx-auto"
-              >
-                drop here
-              </div>
-            ) : (
-              <div
-                data-drag="dragzone"
-                className="text-secondary text-center mx-auto"
-              >
-                click to upload
-              </div>
-            )}
-
-            <p
-              data-drag="dragzone"
-              className="text-xs text-secondary mx-auto w-fit"
-            >
-              SVG, PNG, JPG or GIF (MAX. 800x400px)
-            </p>
-            <input
-              onDragEnd={() => console.log("dragend2")}
-              data-drag="dragzone"
-              type="file"
-              className="hidden"
-              data-administration="input"
-              multiple
-              onChange={(e) => onFileSelect(e)}
-              id="testinput"
-            />
-          </div>
+          Files
         </div>
-      </div>
+        <div
+          onDragOver={onDragOver}
+          onDragLeave={onDragLeave}
+          onDrop={onDrop}
+          className="mx-auto bg-tertiary w-full h-full p-4 "
+        >
+          <div
+            data-drag="dragzone"
+            onClick={OpenInput}
+            className="w-full h-full bg-primary py-4 rounded cursor-pointer active-animation flex items-center justify-center duration-500"
+            style={{
+              backgroundImage: `${
+                isDragging
+                  ? `linear-gradient(90deg,${UsePrimary()} 50% , transparent 50%), linear-gradient(90deg, ${UsePrimary()} 50%, transparent 50%), linear-gradient(0deg, ${UsePrimary()} 50%, transparent 50%), linear-gradient(0deg, ${UsePrimary()} 50%, transparent 50%)`
+                  : ""
+              }`,
+            }}
+          >
+            <div>
+              <CloudUpload
+                style={{
+                  color: UsePrimary(),
+                }}
+                data-drag="dragzone"
+                className="mx-auto h-32 w-32 "
+              />
+              {isDragging ? (
+                <div
+                  data-drag="dragzone"
+                  className=" text-center mx-auto gradient-text font-semibold"
+                  style={{
+                    backgroundImage: SecondaryExist(),
+                  }}
+                >
+                  drop here
+                </div>
+              ) : (
+                <div
+                  data-drag="dragzone"
+                  className=" text-center mx-auto gradient-text font-semibold text-[clamp(1.5rem,3cqw,2rem)]"
+                  style={{
+                    backgroundImage: SecondaryExist(),
+                  }}
+                >
+                  click to upload
+                </div>
+              )}
 
-      <div
-        className={`w-full grid grid-cols-[repeat(auto-fill,minmax(125px,1fr))] auto-rows-[minmax(125px,1fr)] gap-4 duration-500 ease-in-out px-4  ${
-          images.length ? "h-auto pb-4" : "h-0 pb-0"
-        }`}
-      >
-        {images.length !== 0 &&
-          images.map((images, index) => (
-            <div
-              onClick={() => deleteImage(index)}
-              key={index}
-              className=" hover:overflow-visible overflow-hidden flex flex-col justify-center items-center rounded cursor-pointer hover:scale-105 duration-150 ease-in-out  border-primary hover:border-secondary border-4"
-            >
-              <img
-                src={images.url}
-                alt={images.name}
-                className="h-full w-full rounded "
+              <p
+                data-drag="dragzone"
+                className="text-xs  mx-auto w-fit"
+                style={{ color: UsePrimary() }}
+              >
+                SVG, PNG, JPG or GIF (MAX. 800x400px)
+              </p>
+              <input
+                onDragEnd={() => console.log("dragend2")}
+                data-drag="dragzone"
+                type="file"
+                className="hidden"
+                data-administration="input"
+                multiple
+                onChange={(e) => onFileSelect(e)}
+                id="testinput"
               />
             </div>
-          ))}
+          </div>
+        </div>
+
+        <div
+          className={`w-full grid grid-cols-[repeat(auto-fill,minmax(125px,1fr))] auto-rows-[minmax(125px,1fr)] gap-4 duration-500 ease-in-out px-4  ${
+            images.length ? "h-auto pb-4" : "h-0 pb-0"
+          }`}
+        >
+          {images.length !== 0 &&
+            images.map((images, index) => (
+              <div
+                onMouseEnter={(e) => MouseEnter(e)}
+                onMouseLeave={(e) => MouseLeave(e)}
+                onClick={() => deleteImage(index)}
+                key={index}
+                className={`rounded-xl cursor-pointer hover:scale-105 duration-150 ease-in-out  grid place-items-center`}
+              >
+                <div
+                  style={{
+                    //backgroundColor: UseBgDarker(),
+                    backgroundColor: UseBgDarker(),
+                  }}
+                  className="w-[calc(100%-7px)] h-[calc(100%-7px)] rounded-xl overflow-hidden  pointer-events-none   "
+                >
+                  <img
+                    src={images.url}
+                    alt={images.name}
+                    className="h-full w-full rounded pointer-events-none "
+                  />
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

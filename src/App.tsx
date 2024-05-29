@@ -33,15 +33,14 @@ export default function App() {
     <>
       <ThemeProvider theme={getTheme}>
         <CssBaseline />
-        <React.StrictMode>
-          <MoralisProvider appId={appId} serverUrl={serverUrl}>
-            <AppContextProvider>
-              <Router>
-                <MainAppRoutes />
-              </Router>
-            </AppContextProvider>
-          </MoralisProvider>
-        </React.StrictMode>
+
+        <MoralisProvider appId={appId} serverUrl={serverUrl}>
+          <AppContextProvider>
+            <Router>
+              <MainAppRoutes />
+            </Router>
+          </AppContextProvider>
+        </MoralisProvider>
       </ThemeProvider>
     </>
   );
