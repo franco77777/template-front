@@ -15,13 +15,13 @@ const Administration2 = () => {
     <div className="font-normal   w-full px-[4vw] py-[4vw] bg-primary min-h-screen">
       <header
         style={{ color: UsePrimary(), backgroundColor: UseBgDarker() }}
-        className="  w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center  rounded px-[2vw] relative"
+        className="  w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center  rounded-2xl px-[2vw] relative"
       >
         <div
           style={{
             backgroundImage: SecondaryExist(),
           }}
-          className=" gradient-text   font-semibold absolute top-[50%] left-[2vw] translate-y-[-50%] text-secondary text-[clamp(2rem,3cqw,5rem)] "
+          className=" gradient-text   font-semibold absolute top-[50%] left-[2vw] translate-y-[-50%]  text-[clamp(2rem,3cqw,5rem)] "
         >
           {AdministrationName}
         </div>

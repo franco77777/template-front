@@ -2,6 +2,7 @@ import { storeAdministration } from "@/stores/administration/administrationStore
 import { useNavigate } from "react-router-dom";
 import {
   SecondaryExist,
+  SecondaryTextExist,
   UseBg,
   UseBgDarker,
   UsePrimary,
@@ -33,6 +34,10 @@ const Administration = () => {
     navigate("/user-profile");
   };
 
+  const handleTest = () => {
+    navigate("/administration-7");
+  };
+
   return (
     <div
       style={{
@@ -42,7 +47,7 @@ const Administration = () => {
     >
       {handleModal ? <ModalTheming /> : ""}
 
-      <div
+      <header
         style={{
           color: UsePrimary(),
           backgroundColor: UseBgDarker(),
@@ -59,12 +64,13 @@ const Administration = () => {
           User Name
         </div>
         <div
+          style={{ color: SecondaryTextExist() }}
           onClick={() => HandleProfile()}
           className="cursor-pointer hover:scale-105 duration-100"
         >
           <CircleUserRound size={40} strokeWidth={2} />
         </div>
-      </div>
+      </header>
       <div
         style={{
           color: UsePrimary(),
@@ -73,6 +79,7 @@ const Administration = () => {
         className="  w-full h-14 md:h-16 xl:h-20  flex  items-center mt-[2vw] rounded-2xl px-[2vw] relative "
       >
         <div
+          onClick={handleTest}
           style={{
             backgroundImage: SecondaryExist(),
           }}
@@ -82,7 +89,7 @@ const Administration = () => {
         </div>
         <input
           style={{
-            color: UsePrimary(),
+            color: SecondaryTextExist(),
             backgroundColor: UseBg(),
             borderColor: UsePrimary(),
           }}
@@ -116,10 +123,12 @@ const Administration = () => {
             >
               Organizations
             </div>
-            <ul className="grid gap-3 grid-cols-3 grid-rows-2 p-3">
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid gap-3 grid-cols-3 grid-rows-2 p-3"
+            >
               <li
                 style={{
-                  color: UsePrimary(),
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -129,7 +138,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -139,7 +148,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -149,7 +158,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -159,7 +168,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -169,7 +178,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -191,7 +200,7 @@ const Administration = () => {
               //backgroundColor: UseBgDarker(),
               backgroundColor: UseBgDarker(),
             }}
-            className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
+            className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-b-xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
           >
             <div
               style={{
@@ -226,7 +235,7 @@ const Administration = () => {
               //backgroundColor: UseBgDarker(),
               backgroundColor: UseBgDarker(),
             }}
-            className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
+            className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-b-xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
           >
             <div
               style={{
@@ -274,10 +283,12 @@ const Administration = () => {
             >
               Api Tools
             </div>
-            <ul className="grid gap-3 grid-cols-3 grid-rows-2 p-3">
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid gap-3 grid-cols-3 grid-rows-2 p-3"
+            >
               <li
                 style={{
-                  color: UsePrimary(),
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -287,7 +298,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -297,7 +308,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -307,7 +318,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -317,7 +328,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -327,7 +338,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -362,10 +373,12 @@ const Administration = () => {
             >
               Staff
             </div>
-            <ul className="grid gap-3 grid-cols-3 grid-rows-2 p-3">
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid gap-3 grid-cols-3 grid-rows-2 p-3"
+            >
               <li
                 style={{
-                  color: UsePrimary(),
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -375,7 +388,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -385,7 +398,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -395,7 +408,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -405,7 +418,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -415,7 +428,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -450,10 +463,12 @@ const Administration = () => {
             >
               Tools
             </div>
-            <ul className="grid gap-3 grid-cols-3 grid-rows-2 p-3">
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid gap-3 grid-cols-3 grid-rows-2 p-3"
+            >
               <li
                 style={{
-                  color: UsePrimary(),
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -463,7 +478,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -473,7 +488,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -483,7 +498,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="  "
@@ -493,7 +508,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"
@@ -503,7 +518,7 @@ const Administration = () => {
               <li
                 style={{
                   borderColor: UsePrimary(),
-                  color: UsePrimary(),
+
                   backgroundColor: UseBg(),
                 }}
                 className="   rounded"

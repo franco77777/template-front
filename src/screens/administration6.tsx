@@ -1,6 +1,13 @@
 import { UseCreateElement } from "@/hooks/elementsHooks";
 import { storeAdministration6 } from "@/stores/administration/administration6Store";
 import {
+  SecondaryExist,
+  SecondaryTextExist,
+  UseBg,
+  UseBgDarker,
+  UsePrimary,
+} from "@/theme/theming";
+import {
   AlignJustify,
   ChevronDown,
   ChevronRight,
@@ -170,7 +177,10 @@ const Administration6 = () => {
     if (ParentElement) setElementForAppend(ParentElement);
   };
   return (
-    <div className="min-h-screen  p-[4vw] bg-primary font-normal relative text-secondary">
+    <div
+      style={{ background: UseBg(), color: SecondaryTextExist() }}
+      className="min-h-screen  p-[4vw]  font-normal relative "
+    >
       <div
         data-icon="align"
         className="hidden hover:scale-105 duration-150 cursor-pointer"
@@ -201,7 +211,7 @@ const Administration6 = () => {
         strokeWidth={2}
         className=" pointer-events-none hidden"
       />
-      <Folder data-icon="folder" color="#00CCB4" className="hidden" />
+      <Folder data-icon="folder" className="hidden" />
       {handleModal && (
         <div className="text-2xl modalAnimation ease-in-out overflow-hidden z-10 bg-tertiary  rounded absolute top-1/2 left-1/2  ">
           <div className="w-full h-full flex flex-col gap-4 relative  p-12 ">
@@ -227,7 +237,7 @@ const Administration6 = () => {
         </div>
       )}
 
-      <header className=" text-secondary w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center  rounded px-[2vw] relative">
+      {/* <header className=" text-secondary w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center  rounded px-[2vw] relative">
         <div className=" absolute top-[50%] left-[2vw] translate-y-[-50%] text-secondary text-[clamp(1.25rem,3cqw,3rem)]">
           Structures
         </div>
@@ -235,23 +245,56 @@ const Administration6 = () => {
           type="text"
           className="rounded h-[60%] sm:mx-auto ml-auto bg-primary border-secondary"
         />
-      </header>
-      <section className="mt-8 text-base border-2 border-secondary rounded text-secondary p-4">
+      </header> */}
+      <div
+        style={{
+          color: UsePrimary(),
+          backgroundColor: UseBgDarker(),
+        }}
+        className="  w-full h-14 md:h-16 xl:h-20  flex  items-center  rounded-2xl px-[2vw] relative "
+      >
         <div
-          onClick={() => setHandleModal(!handleModal)}
-          className="flex gap-4"
+          style={{
+            backgroundImage: SecondaryExist(),
+          }}
+          className="text-[clamp(2rem,3cqw,6rem)] absolute top-[50%] left-[2vw] translate-y-[-50%] gradient-text font-bold"
         >
-          <div className="text-xl">add structure</div>
-          <SquarePlus
-            size={24}
-            strokeWidth={2}
-            className="cursor-pointer hover:scale-105"
-          />
+          Structures
         </div>
-        <ul
-          data-administration="fileContainer"
-          className="flex flex-col gap-8 mt-8"
-        ></ul>
+        <input
+          style={{
+            color: SecondaryTextExist(),
+            backgroundColor: UseBg(),
+            borderColor: UsePrimary(),
+          }}
+          type="text"
+          className="rounded-2xl h-[60%] ml-auto md:mx-auto text-[clamp(1rem,3cqw,2rem)]"
+        />
+      </div>
+      <section
+        style={{ background: SecondaryExist(), color: SecondaryTextExist() }}
+        className="mt-8 text-base rounded-2xl p-[5px] "
+      >
+        <div
+          style={{ background: UseBgDarker() }}
+          className="w-full h-full rounded-2xl p-4"
+        >
+          <div
+            onClick={() => setHandleModal(!handleModal)}
+            className="flex gap-4"
+          >
+            <div className="text-xl">add structure</div>
+            <SquarePlus
+              size={24}
+              strokeWidth={2}
+              className="cursor-pointer hover:scale-105"
+            />
+          </div>
+          <ul
+            data-administration="fileContainer"
+            className="flex flex-col gap-8 mt-8"
+          ></ul>
+        </div>
       </section>
     </div>
   );

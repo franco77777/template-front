@@ -1,10 +1,14 @@
 import Administration2InputDrag from "@/components/administration2/InputDrag";
+import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
 
 const Administration4 = () => {
   return (
-    <div className="font-normal min-h-screen bg-primary px-[4vw] py-[4vw] w-full">
-      <div className="text-secondary text-2xl">Create Organization</div>
-      <div className="flex gap-4 text-secondary text-2xl w-full justify-center mb-8">
+    <div
+      style={{ color: SecondaryTextExist() }}
+      className="font-normal min-h-screen bg-primary px-[4vw] py-[4vw] w-full"
+    >
+      <div className=" text-2xl">Create Organization</div>
+      <div className="flex gap-4  text-2xl w-full justify-center mb-8">
         <div>Create organization</div>
         <div>/</div>
         <div>Add Branch</div>
@@ -12,44 +16,52 @@ const Administration4 = () => {
       <section className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(min(100%,500px),1fr))] mt-[2vw]">
         <Administration2InputDrag />
 
-        <ul className="text-secondary flex flex-col gap-4 mt-4 w-full items-center">
+        <ul
+          style={{ color: SecondaryTextExist() }}
+          className=" flex flex-col gap-4 mt-4 w-full items-center"
+        >
           <li>
             <div>Name Organization</div>
             <input
+              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
               type="text"
-              className="border-2 w-[400px] border-secondary text-secondary bg-tertiary rounded"
+              className="border-2 w-[400px]    rounded-xl"
             />
           </li>
           <li>
             <div>Country</div>
             <input
+              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
               type="text"
-              className="border-2 w-[400px] border-secondary text-secondary bg-tertiary rounded"
+              className="border-2 w-[400px]  rounded-xl"
             />
           </li>
           <li>
             {" "}
             <div>State</div>
             <input
+              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
               type="text"
-              className="border-2 w-[400px] border-secondary text-secondary bg-tertiary rounded"
+              className="border-2 w-[400px]  rounded-xl"
             />
           </li>
           <li>
             {" "}
             <div>Address</div>
             <input
+              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
               type="text"
-              className="border-2 w-[400px] border-secondary text-secondary bg-tertiary rounded"
+              className="border-2 w-[400px]  rounded-xl"
             />
           </li>
           <li>
             {" "}
             <div>Branch</div>
             <select
+              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
               name=""
               id=""
-              className="border-2 w-[400px] border-secondary text-secondary bg-tertiary rounded"
+              className="border-2 w-[400px]  rounded-xl cursor-pointer"
             >
               <option value="" disabled selected>
                 select branch
@@ -63,12 +75,19 @@ const Administration4 = () => {
             {" "}
             <div>Name Organization</div>
             <input
+              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
               type="text"
-              className="border-2 w-[400px] border-secondary text-secondary bg-tertiary rounded"
+              className="border-2 w-[400px]  rounded-xl"
             />
           </li>
           <li>
-            <button className="block mt-4 p-2 mx-auto rounded w-fit cursor-pointer  text-base bg-secondary text-black hover:scale-105 duration-150 ">
+            <button
+              style={{
+                background: SecondaryTextExist(),
+                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              }}
+              className="block mt-4 p-2 mx-auto rounded-lg w-fit cursor-pointer  text-base  hover:scale-105 duration-150 "
+            >
               Add Organization
             </button>
           </li>
