@@ -1,3 +1,4 @@
+import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
 import { Copy, Settings, UserRound } from "lucide-react";
 
 const PersonalInformation = () => {
@@ -9,11 +10,18 @@ const PersonalInformation = () => {
   };
 
   return (
-    <div className=" border-2 border-secondary rounded text-secondary items-cemter justify-center flex gap-8 p-4">
+    <div
+      style={{
+        background: UseBgDarker(),
+        color: SecondaryTextExist(),
+        borderColor: UsePrimary(),
+      }}
+      className=" border-2  rounded-2xl  items-cemter justify-center flex gap-8 p-4"
+    >
       <div className="w-1/2  rounded">
         <UserRound size={140} strokeWidth={2} className="mx-auto" />
       </div>
-      <ul className="w-1/2 flex flex-col justify-between bg-primary rounded">
+      <ul className="w-1/2 flex flex-col justify-between  rounded">
         <li className="flex gap-2">
           <div data-user="name">name</div>
 

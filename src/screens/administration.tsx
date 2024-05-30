@@ -56,7 +56,7 @@ const Administration = () => {
       >
         <div
           onClick={() => setHandleModal(!handleModal)}
-          className=" font-semibold gradient-text text-[clamp(2rem,3cqw,5rem)]"
+          className=" font-semibold gradient-text text-[clamp(1.5rem,3cqw,2.5rem)]"
           style={{
             backgroundImage: SecondaryExist(),
           }}
@@ -83,7 +83,7 @@ const Administration = () => {
           style={{
             backgroundImage: SecondaryExist(),
           }}
-          className="text-[clamp(2rem,3cqw,6rem)] absolute top-[50%] left-[2vw] translate-y-[-50%] gradient-text font-bold"
+          className="text-[clamp(2rem,3cqw,3rem)] absolute top-[50%] left-[2vw] translate-y-[-50%] gradient-text font-bold"
         >
           Gravitad
         </div>

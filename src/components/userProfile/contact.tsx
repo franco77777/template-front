@@ -3,9 +3,17 @@ import DiscordIcon from "../../assets/Img/discord.png";
 import LinkedinIcon from "../../assets/Img/linkedin.png";
 import GithubIcon from "../../assets/Img/github.png";
 import { Settings } from "lucide-react";
+import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
 const UserProfileContact = () => {
   return (
-    <div className="flex flex-col gap-2  text-secondary border-2 border-secondary rounded p-4">
+    <div
+      style={{
+        background: UseBgDarker(),
+        color: SecondaryTextExist(),
+        borderColor: UsePrimary(),
+      }}
+      className="flex flex-col gap-2  border-2  rounded-2xl p-4"
+    >
       <div>Contact:</div>
       <ul className="flex flex-col gap-2 ">
         <li className="flex gap-4">

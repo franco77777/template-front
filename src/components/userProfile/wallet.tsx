@@ -1,3 +1,4 @@
+import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
 import { Copy } from "lucide-react";
 
 const UserProfileWallet = () => {
@@ -9,7 +10,14 @@ const UserProfileWallet = () => {
   };
 
   return (
-    <ul className="flex flex-col gap-4  text-secondary border-2 border-secondary rounded p-4">
+    <ul
+      style={{
+        background: UseBgDarker(),
+        color: SecondaryTextExist(),
+        borderColor: UsePrimary(),
+      }}
+      className="flex flex-col gap-4   border-2  rounded-2xl p-4"
+    >
       <li className="flex flex-col  gap-2">
         <div>Wallet:</div>
         <div className="flex gap-4">

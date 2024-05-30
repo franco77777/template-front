@@ -1,8 +1,16 @@
+import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
 import { FileText } from "lucide-react";
 
 const UserProfileFiles = () => {
   return (
-    <ul className="flex gap-4 text-secondary border-2 border-secondary rounded p-4">
+    <ul
+      style={{
+        background: UseBgDarker(),
+        color: SecondaryTextExist(),
+        borderColor: UsePrimary(),
+      }}
+      className="flex gap-4 text-secondary border-2 border-secondary rounded-2xl p-4"
+    >
       <li>
         <FileText />
         DNI
