@@ -1,81 +1,116 @@
+import {
+  SecondaryExist,
+  SecondaryTextExist,
+  UseBgDarker,
+  UsePrimary,
+} from "@/theme/theming";
+import { Trash2 } from "lucide-react";
+
 const Administration2Table = () => {
   return (
-    <table className="border-2 bg-tertiary border-secondary rounded text-base  w-full text-black">
-      <tr className="bg-secondary ">
-        <th className=" text-left ">Name</th>
-        <th className=" text-left">ID</th>
-        <th className=" text-left">Administration</th>
-        <th className=" text-left">Branch</th>
-        <th className=" text-left">Organization</th>
-        <th className=" text-left">Users</th>
-        <th className=" text-left"></th>
-        <th className=" text-left"></th>
-      </tr>
-      <tr className="">
-        <td className="text-secondary">gravitad</td>
-        <td className="text-secondary">active</td>
-        <td className="text-secondary">200</td>
-        <td className="text-secondary">70</td>
-        <td className="text-secondary">2</td>
-        <td className="text-secondary">2</td>
-        <td className="py-2">
-          <button className="bg-secondary rounded py-[2px] px-2 text-black">
-            drive
-          </button>
-        </td>
-        <td className="text-secondary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+    <div
+      style={{ background: SecondaryExist() }}
+      className="w-full h-full p-1 rounded-2xl overflow-x-auto mb-4"
+    >
+      <table
+        style={{
+          borderColor: SecondaryExist(),
+          backgroundColor: UseBgDarker(),
+        }}
+        className="   rounded-xl overflow-hidden text-base  w-full text-black"
+      >
+        <tr style={{ background: SecondaryExist() }} className=" ">
+          <th className=" text-center ">Name</th>
+          <th className=" text-center">ID</th>
+          <th className=" text-center">Administration</th>
+          <th className=" text-center">Branch</th>
+          <th className=" text-center">Organization</th>
+          <th className=" text-center">Users</th>
+          <th className=" text-center"></th>
+          <th className=" text-center"></th>
+        </tr>
+        <tr className="">
+          <td
+            style={{ color: SecondaryTextExist() }}
+            className="text-center text-secondary"
           >
-            <path d="M3 6h18" />
-            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-            <line x1="10" x2="10" y1="11" y2="17" />
-            <line x1="14" x2="14" y1="11" y2="17" />
-          </svg>
-        </td>
-      </tr>
-      <tr className="border-t-2 border-secondary">
-        <td className="text-secondary">gravitad</td>
-        <td className="text-secondary">active</td>
-        <td className="text-secondary">200</td>
-        <td className="text-secondary">70</td>
-        <td className="text-secondary">2</td>
-        <td className="text-secondary">2</td>
-        <td className="py-2">
-          <button className="bg-secondary rounded py-[2px] px-2 text-black">
-            drive
-          </button>
-        </td>
-        <td className="text-secondary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            gravitad
+          </td>
+          <td
+            style={{ color: SecondaryTextExist() }}
+            className="text-center text-secondary"
           >
-            <path d="M3 6h18" />
-            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-            <line x1="10" x2="10" y1="11" y2="17" />
-            <line x1="14" x2="14" y1="11" y2="17" />
-          </svg>
-        </td>
-      </tr>
-    </table>
+            active
+          </td>
+          <td
+            style={{ color: SecondaryTextExist() }}
+            className="text-center text-secondary"
+          >
+            200
+          </td>
+          <td
+            style={{ color: SecondaryTextExist() }}
+            className="text-center text-secondary"
+          >
+            70
+          </td>
+          <td
+            style={{ color: SecondaryTextExist() }}
+            className="text-center text-secondary"
+          >
+            2
+          </td>
+          <td
+            style={{ color: SecondaryTextExist() }}
+            className="text-center text-secondary"
+          >
+            2
+          </td>
+          <td style={{ color: SecondaryTextExist() }} className="py-2">
+            <button
+              style={{
+                background: SecondaryTextExist(),
+                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              }}
+              className="rounded py-[2px] px-2 "
+            >
+              drive
+            </button>
+          </td>
+          <td style={{ color: SecondaryTextExist() }} className="">
+            <Trash2 />
+          </td>
+        </tr>
+        <tr
+          style={{
+            color: SecondaryTextExist(),
+            borderColor: UsePrimary(),
+          }}
+          className="border-t-2 "
+        >
+          <td className="text-center ">gravitad</td>
+          <td className="text-center ">active</td>
+          <td className="text-center ">200</td>
+          <td className="text-center ">70</td>
+          <td className="text-center ">2</td>
+          <td className="text-center ">2</td>
+          <td className="py-2">
+            <button
+              style={{
+                background: SecondaryTextExist(),
+                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              }}
+              className=" rounded py-[2px] px-2 "
+            >
+              drive
+            </button>
+          </td>
+          <td style={{ color: SecondaryTextExist() }} className="">
+            <Trash2 />
+          </td>
+        </tr>
+      </table>
+    </div>
   );
 };
 export default Administration2Table;

@@ -1,5 +1,7 @@
 import {
   SecondaryExist,
+  SecondaryTextExist,
+  UseBg,
   UseBgDarker,
   UsePrimary,
   UseSecondary,
@@ -183,18 +185,21 @@ const Administration2InputDrag = () => {
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
-          className="mx-auto bg-tertiary w-full h-full p-4 "
+          style={{ background: UseBgDarker() }}
+          className="mx-auto  w-full h-full p-4 "
         >
           <div
             data-drag="dragzone"
             onClick={OpenInput}
-            className="w-full h-full bg-primary py-4 rounded cursor-pointer active-animation flex items-center justify-center duration-500"
+            className="w-full h-full   py-4 rounded cursor-pointer active-animation flex items-center justify-center duration-500"
             style={{
+              backgroundColor: UseBg(),
               backgroundImage: `${
                 isDragging
-                  ? `linear-gradient(90deg,${UsePrimary()} 50% , transparent 50%), linear-gradient(90deg, ${UsePrimary()} 50%, transparent 50%), linear-gradient(0deg, ${UsePrimary()} 50%, transparent 50%), linear-gradient(0deg, ${UsePrimary()} 50%, transparent 50%)`
+                  ? `linear-gradient(90deg,${SecondaryTextExist()} 50% , transparent 50%), linear-gradient(90deg, ${SecondaryTextExist()} 50%, transparent 50%), linear-gradient(0deg, ${SecondaryTextExist()} 50%, transparent 50%), linear-gradient(0deg, ${SecondaryTextExist()} 50%, transparent 50%)`
                   : ""
-              }`,
+              }
+              `,
             }}
           >
             <div>

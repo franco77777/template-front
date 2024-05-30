@@ -110,6 +110,6 @@ export const UsePrimary = () =>{
 
   export const SecondaryTextExist = () => {
     return UseSecondary()
-      ? `linear-gradient(45deg, ${UsePrimary()},${UseSecondary()})`
-      : `linear-gradient(45deg, ${UsePrimary()},${UsePrimary()})`;
+      ? UseSecondary()
+      : UsePrimary()
   };

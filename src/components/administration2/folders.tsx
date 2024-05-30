@@ -1,168 +1,275 @@
+import {
+  SecondaryExist,
+  SecondaryTextExist,
+  UseBg,
+  UseBgDarker,
+  UsePrimary,
+} from "@/theme/theming";
 import { SquarePlus } from "lucide-react";
 
 const Administration2Folders = () => {
   return (
-    <ul className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(350px,1fr))] grid-rows-[repeat(auto-fill,minmax(120px,1fr))]">
-      <li className="border-4 border-secondary rounded ">
-        <div className="bg-secondary text-black">Folder</div>
-        <div className="flex gap-4 bg-tertiary p-2">
-          <ul className="grid grid-cols-4 text-secondary w-1/2 gap-2">
-            <li className="bg-primary">1</li>
-            <li className="bg-primary">2</li>
-            <li className="bg-primary">3</li>
-            <li className="bg-primary">4</li>
-            <li className="bg-primary">5</li>
-            <li className="bg-primary">6</li>
-            <li className="bg-primary">7</li>
-            <li className="bg-primary">8</li>
-            <li className="bg-primary">9</li>
-            <li className="bg-primary">10</li>
-            <li className="bg-primary">11</li>
-            <li className="bg-primary">12</li>
-          </ul>
-          <div className="flex flex-col justify-center items-center gap-2 w-1/2">
-            <input
-              type="text"
-              className="rounded h-10   bg-primary border-secondary w-full"
-            />
-            <div className="text-secondary">
-              <SquarePlus
-                size={24}
-                strokeWidth={2}
-                className="cursor-pointer hover:scale-105 duration-150 "
+    <ul className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(350px,1fr))] ">
+      <li
+        style={{ background: SecondaryExist() }}
+        className=" bg-red-500 p-[5px] rounded-2xl"
+      >
+        <div className="rounded-2xl overflow-hidden">
+          <div
+            style={{
+              background: SecondaryExist(),
+              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+            }}
+            className="pl-2 "
+          >
+            Folder
+          </div>
+          <div
+            style={{ background: UseBgDarker() }}
+            className="flex gap-4  p-2"
+          >
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid grid-cols-4 w-1/2 gap-2"
+            >
+              <li style={{ background: UseBg() }}>1</li>
+              <li style={{ background: UseBg() }}>2</li>
+              <li style={{ background: UseBg() }}>3</li>
+              <li style={{ background: UseBg() }}>4</li>
+              <li style={{ background: UseBg() }}>5</li>
+              <li style={{ background: UseBg() }}>6</li>
+              <li style={{ background: UseBg() }}>7</li>
+              <li style={{ background: UseBg() }}>8</li>
+              <li style={{ background: UseBg() }}>9</li>
+              <li style={{ background: UseBg() }}>10</li>
+              <li style={{ background: UseBg() }}>11</li>
+              <li style={{ background: UseBg() }}>12</li>
+            </ul>
+            <div className="flex flex-col justify-center items-center gap-2 w-1/2">
+              <input
+                style={{
+                  background: UseBg(),
+                  borderColor: UsePrimary(),
+                  color: SecondaryTextExist(),
+                }}
+                type="text"
+                className="rounded-xl h-10   w-full"
               />
+              <div style={{ color: UsePrimary() }} className="">
+                <SquarePlus
+                  size={24}
+                  strokeWidth={2}
+                  className="cursor-pointer hover:scale-105 duration-150 "
+                />
+              </div>
             </div>
           </div>
         </div>
       </li>
-      <li className="border-4 border-secondary rounded">
-        <div className="bg-secondary text-black">Users</div>
-        <div className="flex gap-4 bg-tertiary p-2">
-          <ul className="grid grid-cols-4 text-secondary w-1/2 gap-2">
-            <li className="bg-primary">1</li>
-            <li className="bg-primary">2</li>
-            <li className="bg-primary">3</li>
-            <li className="bg-primary">4</li>
-            <li className="bg-primary">5</li>
-            <li className="bg-primary">6</li>
-            <li className="bg-primary">7</li>
-            <li className="bg-primary">8</li>
-            <li className="bg-primary">9</li>
-            <li className="bg-primary">10</li>
-            <li className="bg-primary">11</li>
-            <li className="bg-primary">12</li>
-          </ul>
-          <div className="flex flex-col justify-center items-center gap-2 w-1/2">
-            <input
-              type="text"
-              className="rounded h-10   bg-primary border-secondary w-full"
-            />
-            <div className="text-secondary">
-              {" "}
-              <SquarePlus
-                size={24}
-                strokeWidth={2}
-                className="cursor-pointer hover:scale-105 duration-150 "
+      <li
+        style={{ background: SecondaryExist() }}
+        className=" bg-red-500 p-[5px] rounded-2xl"
+      >
+        <div className="rounded-2xl overflow-hidden">
+          <div
+            style={{
+              background: SecondaryExist(),
+              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+            }}
+            className="pl-2 "
+          >
+            Users
+          </div>
+          <div
+            style={{ background: UseBgDarker() }}
+            className="flex gap-4  p-2"
+          >
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid grid-cols-4 w-1/2 gap-2"
+            >
+              <li style={{ background: UseBg() }}>1</li>
+              <li style={{ background: UseBg() }}>2</li>
+              <li style={{ background: UseBg() }}>3</li>
+              <li style={{ background: UseBg() }}>4</li>
+              <li style={{ background: UseBg() }}>5</li>
+              <li style={{ background: UseBg() }}>6</li>
+              <li style={{ background: UseBg() }}>7</li>
+              <li style={{ background: UseBg() }}>8</li>
+              <li style={{ background: UseBg() }}>9</li>
+              <li style={{ background: UseBg() }}>10</li>
+              <li style={{ background: UseBg() }}>11</li>
+              <li style={{ background: UseBg() }}>12</li>
+            </ul>
+            <div className="flex flex-col justify-center items-center gap-2 w-1/2">
+              <input
+                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                type="text"
+                className="rounded-xl h-10   w-full"
               />
+              <div style={{ color: UsePrimary() }} className="">
+                <SquarePlus
+                  size={24}
+                  strokeWidth={2}
+                  className="cursor-pointer hover:scale-105 duration-150 "
+                />
+              </div>
             </div>
           </div>
         </div>
       </li>
-      <li className="border-4 border-secondary rounded">
-        <div className="bg-secondary text-black">Organizations</div>
-        <div className="flex gap-4 bg-tertiary p-2">
-          <ul className="grid grid-cols-4 text-secondary w-1/2 gap-2">
-            <li className="bg-primary">1</li>
-            <li className="bg-primary">2</li>
-            <li className="bg-primary">3</li>
-            <li className="bg-primary">4</li>
-            <li className="bg-primary">5</li>
-            <li className="bg-primary">6</li>
-            <li className="bg-primary">7</li>
-            <li className="bg-primary">8</li>
-            <li className="bg-primary">9</li>
-            <li className="bg-primary">10</li>
-            <li className="bg-primary">11</li>
-            <li className="bg-primary">12</li>
-          </ul>
-          <div className="flex flex-col justify-center items-center gap-2 w-1/2">
-            <input
-              type="text"
-              className="rounded h-10   bg-primary border-secondary w-full"
-            />
-            <div className="text-secondary">
-              {" "}
-              <SquarePlus
-                size={24}
-                strokeWidth={2}
-                className="cursor-pointer hover:scale-105 duration-150 "
+      <li
+        style={{ background: SecondaryExist() }}
+        className=" bg-red-500 p-[5px] rounded-2xl"
+      >
+        <div className="rounded-2xl overflow-hidden">
+          <div
+            style={{
+              background: SecondaryExist(),
+              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+            }}
+            className="pl-2 "
+          >
+            Organizations
+          </div>
+          <div
+            style={{ background: UseBgDarker() }}
+            className="flex gap-4  p-2"
+          >
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid grid-cols-4 w-1/2 gap-2"
+            >
+              <li style={{ background: UseBg() }}>1</li>
+              <li style={{ background: UseBg() }}>2</li>
+              <li style={{ background: UseBg() }}>3</li>
+              <li style={{ background: UseBg() }}>4</li>
+              <li style={{ background: UseBg() }}>5</li>
+              <li style={{ background: UseBg() }}>6</li>
+              <li style={{ background: UseBg() }}>7</li>
+              <li style={{ background: UseBg() }}>8</li>
+              <li style={{ background: UseBg() }}>9</li>
+              <li style={{ background: UseBg() }}>10</li>
+              <li style={{ background: UseBg() }}>11</li>
+              <li style={{ background: UseBg() }}>12</li>
+            </ul>
+            <div className="flex flex-col justify-center items-center gap-2 w-1/2">
+              <input
+                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                type="text"
+                className="rounded-xl h-10   w-full"
               />
+              <div style={{ color: UsePrimary() }} className="">
+                <SquarePlus
+                  size={24}
+                  strokeWidth={2}
+                  className="cursor-pointer hover:scale-105 duration-150 "
+                />
+              </div>
             </div>
           </div>
         </div>
       </li>
-      <li className="border-4 border-secondary rounded">
-        <div className="bg-secondary text-black">Branch</div>
-        <div className="flex gap-4 bg-tertiary p-2">
-          <ul className="grid grid-cols-4 text-secondary w-1/2 gap-2">
-            <li className="bg-primary">1</li>
-            <li className="bg-primary">2</li>
-            <li className="bg-primary">3</li>
-            <li className="bg-primary">4</li>
-            <li className="bg-primary">5</li>
-            <li className="bg-primary">6</li>
-            <li className="bg-primary">7</li>
-            <li className="bg-primary">8</li>
-            <li className="bg-primary">9</li>
-            <li className="bg-primary">10</li>
-            <li className="bg-primary">11</li>
-            <li className="bg-primary">12</li>
-          </ul>
-          <div className="flex flex-col justify-center items-center gap-2 w-1/2">
-            <input
-              type="text"
-              className="rounded h-10   bg-primary border-secondary w-full"
-            />
-            <div className="text-secondary">
-              {" "}
-              <SquarePlus
-                size={24}
-                strokeWidth={2}
-                className="cursor-pointer hover:scale-105 duration-150 "
+      <li
+        style={{ background: SecondaryExist() }}
+        className=" bg-red-500 p-[5px] rounded-2xl"
+      >
+        <div className="rounded-2xl overflow-hidden">
+          <div
+            style={{
+              background: SecondaryExist(),
+              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+            }}
+            className="pl-2 "
+          >
+            Branch
+          </div>
+          <div
+            style={{ background: UseBgDarker() }}
+            className="flex gap-4  p-2"
+          >
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid grid-cols-4 w-1/2 gap-2"
+            >
+              <li style={{ background: UseBg() }}>1</li>
+              <li style={{ background: UseBg() }}>2</li>
+              <li style={{ background: UseBg() }}>3</li>
+              <li style={{ background: UseBg() }}>4</li>
+              <li style={{ background: UseBg() }}>5</li>
+              <li style={{ background: UseBg() }}>6</li>
+              <li style={{ background: UseBg() }}>7</li>
+              <li style={{ background: UseBg() }}>8</li>
+              <li style={{ background: UseBg() }}>9</li>
+              <li style={{ background: UseBg() }}>10</li>
+              <li style={{ background: UseBg() }}>11</li>
+              <li style={{ background: UseBg() }}>12</li>
+            </ul>
+            <div className="flex flex-col justify-center items-center gap-2 w-1/2">
+              <input
+                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                type="text"
+                className="rounded-xl h-10   w-full"
               />
+              <div style={{ color: UsePrimary() }} className="">
+                <SquarePlus
+                  size={24}
+                  strokeWidth={2}
+                  className="cursor-pointer hover:scale-105 duration-150 "
+                />
+              </div>
             </div>
           </div>
         </div>
       </li>
-      <li className="border-4 border-secondary rounded">
-        <div className="bg-secondary text-black">Department</div>
-        <div className="flex gap-4 bg-tertiary p-2">
-          <ul className="grid grid-cols-4 text-secondary w-1/2 gap-2">
-            <li className="bg-primary">1</li>
-            <li className="bg-primary">2</li>
-            <li className="bg-primary">3</li>
-            <li className="bg-primary">4</li>
-            <li className="bg-primary">5</li>
-            <li className="bg-primary">6</li>
-            <li className="bg-primary">7</li>
-            <li className="bg-primary">8</li>
-            <li className="bg-primary">9</li>
-            <li className="bg-primary">10</li>
-            <li className="bg-primary">11</li>
-            <li className="bg-primary">12</li>
-          </ul>
-          <div className="flex flex-col justify-center items-center gap-2 w-1/2">
-            <input
-              type="text"
-              className="rounded h-10   bg-primary border-secondary w-full"
-            />
-            <div className="text-secondary">
-              {" "}
-              <SquarePlus
-                size={24}
-                strokeWidth={2}
-                className="cursor-pointer hover:scale-105 duration-150 "
+      <li
+        style={{ background: SecondaryExist() }}
+        className=" bg-red-500 p-[5px] rounded-2xl"
+      >
+        <div className="rounded-2xl overflow-hidden">
+          <div
+            style={{
+              background: SecondaryExist(),
+              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+            }}
+            className="pl-2 "
+          >
+            Department
+          </div>
+          <div
+            style={{ background: UseBgDarker() }}
+            className="flex gap-4  p-2"
+          >
+            <ul
+              style={{ color: SecondaryTextExist() }}
+              className="grid grid-cols-4 w-1/2 gap-2"
+            >
+              <li style={{ background: UseBg() }}>1</li>
+              <li style={{ background: UseBg() }}>2</li>
+              <li style={{ background: UseBg() }}>3</li>
+              <li style={{ background: UseBg() }}>4</li>
+              <li style={{ background: UseBg() }}>5</li>
+              <li style={{ background: UseBg() }}>6</li>
+              <li style={{ background: UseBg() }}>7</li>
+              <li style={{ background: UseBg() }}>8</li>
+              <li style={{ background: UseBg() }}>9</li>
+              <li style={{ background: UseBg() }}>10</li>
+              <li style={{ background: UseBg() }}>11</li>
+              <li style={{ background: UseBg() }}>12</li>
+            </ul>
+            <div className="flex flex-col justify-center items-center gap-2 w-1/2">
+              <input
+                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                type="text"
+                className="rounded-xl h-10   w-full"
               />
+              <div style={{ color: UsePrimary() }} className="">
+                <SquarePlus
+                  size={24}
+                  strokeWidth={2}
+                  className="cursor-pointer hover:scale-105 duration-150 "
+                />
+              </div>
             </div>
           </div>
         </div>
