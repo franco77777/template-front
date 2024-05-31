@@ -18,7 +18,7 @@ const ExcalidrawFiles2 = React.lazy(() => import("@/screens/excalidrawFiles2"));
 const ExcalidrawFiles2Section = React.lazy(
   () => import("@/screens/excalidrawFiles2Section")
 );
-const Elementor = React.lazy(() => import("@/screens/elementor"));
+
 const Administration = React.lazy(() => import("@/screens/administration"));
 const Administration2 = React.lazy(() => import("@/screens/administration2"));
 const Administration3 = React.lazy(() => import("@/screens/administration3"));
@@ -69,7 +69,6 @@ export default function Navigator() {
       {/*Navbar secondary */}
 
       <Routes>
-        <Route path="/elementor" element={<Elementor />} />
         <Route
           path="/excalidrawFiles2/section"
           element={<ExcalidrawFiles2Section />}

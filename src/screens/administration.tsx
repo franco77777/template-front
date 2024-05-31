@@ -35,7 +35,7 @@ const Administration = () => {
   };
 
   const handleTest = () => {
-    navigate("/administration-7");
+    navigate("/excalidrawFiles");
   };
 
   return (
@@ -56,7 +56,7 @@ const Administration = () => {
       >
         <div
           onClick={() => setHandleModal(!handleModal)}
-          className=" font-semibold gradient-text text-[clamp(1.5rem,3cqw,2.5rem)]"
+          className=" font-semibold gradient-text text-[clamp(1.8rem,3cqw,2.5rem)]"
           style={{
             backgroundImage: SecondaryExist(),
           }}

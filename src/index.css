@@ -52,9 +52,7 @@ img {
 .hoverTest:hover{
   background-color: red;
 }
-.center-traffic{
-  transform: translate(-50%, 0%)
-}
+
 
 .center-top{
   transform: translate(0%, -50%)
