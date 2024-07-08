@@ -1,12 +1,12 @@
-import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
+import { SecondaryTextExist, BgDarker, Primary } from "@/theme/theming";
 
 const UserProfileAddress = () => {
   return (
     <div
       style={{
-        background: UseBgDarker(),
+        background: BgDarker(),
         color: SecondaryTextExist(),
-        borderColor: UsePrimary(),
+        borderColor: Primary(),
       }}
       className="flex flex-col gap-2   border-2  rounded-2xl p-4"
     >

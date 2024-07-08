@@ -1,10 +1,10 @@
 import { storeAdministration6 } from "@/stores/administration/administration6Store";
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
+  Bg,
+  BgDarker,
+  Primary,
 } from "@/theme/theming";
 import { CircleX, Folder, SquarePlus, UserRound } from "lucide-react";
 import { useState } from "react";
@@ -15,7 +15,7 @@ const Administration7 = () => {
   const Folders = URL.split("/");
   return (
     <div
-      style={{ background: UseBg(), color: SecondaryTextExist() }}
+      style={{ background: Bg(), color: SecondaryTextExist() }}
       className="min-h-screen p-[4vw]  font-normal relative"
     >
       <div className="text-[clamp(1rem,3cqw,2rem)]">Structure</div>
@@ -25,7 +25,7 @@ const Administration7 = () => {
           Folders.map((e, i) => (
             <button
               key={i}
-              style={{ borderColor: UsePrimary() }}
+              style={{ borderColor: Primary() }}
               className=" border-2  rounded-lg flex  gap-1 md:gap-4 text-base items-center px-4 py-2"
             >
               <Folder data-icon="folder" className="" />
@@ -33,21 +33,21 @@ const Administration7 = () => {
             </button>
           ))}
         <button
-          style={{ borderColor: UsePrimary() }}
+          style={{ borderColor: Primary() }}
           className=" border-2  rounded-lg  flex  gap-1 md:gap-4 text-base items-center px-4 py-2"
         >
           <Folder data-icon="folder" className="" />
           <div>teasdfasdfasdfasdsdf</div>
         </button>
         <button
-          style={{ borderColor: UsePrimary() }}
+          style={{ borderColor: Primary() }}
           className=" border-2  rounded-lg  flex  gap-1 md:gap-4 text-base items-center px-4 py-2"
         >
           <Folder data-icon="folder" className="" />
           <div>teasdfasdfasdfasdsdf</div>
         </button>
         <button
-          style={{ borderColor: UsePrimary() }}
+          style={{ borderColor: Primary() }}
           className=" border-2  rounded-lg  flex  gap-1 md:gap-4 text-base items-center px-4 py-2"
         >
           <Folder data-icon="folder" className="" />
@@ -58,14 +58,14 @@ const Administration7 = () => {
         assign / revoke assignment
       </div>
       <section
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className="text-xl  rounded-2xl mt-2 md:mt-8 p-1 overflow-hidden"
       >
-        <div style={{ background: UseBgDarker() }} className="rounded-xl">
+        <div style={{ background: BgDarker() }} className="rounded-xl">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="flex gap-4 items-center  px-2"
           >
@@ -79,7 +79,7 @@ const Administration7 = () => {
           </div>
           <div className="px-2 py-4 flex gap-8 rounded-xl ">
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg  w-fit px-4 py-1 "
             >
               <UserRound
@@ -90,7 +90,7 @@ const Administration7 = () => {
               <div>branch 1</div>
             </div>
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg   w-fit px-4 py-1 "
             >
               <UserRound
@@ -104,14 +104,14 @@ const Administration7 = () => {
         </div>
       </section>
       <section
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className="text-xl  rounded-2xl mt-2 md:mt-8 p-1 overflow-hidden"
       >
-        <div style={{ background: UseBgDarker() }} className="rounded-xl">
+        <div style={{ background: BgDarker() }} className="rounded-xl">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="flex gap-4 items-center  px-2"
           >
@@ -125,7 +125,7 @@ const Administration7 = () => {
           </div>
           <div className="px-2 py-4 flex gap-8 rounded-xl ">
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg  w-fit px-4 py-1 "
             >
               <UserRound
@@ -136,7 +136,7 @@ const Administration7 = () => {
               <div>branch 1</div>
             </div>
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg   w-fit px-4 py-1 "
             >
               <UserRound
@@ -150,14 +150,14 @@ const Administration7 = () => {
         </div>
       </section>
       <section
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className="text-xl  rounded-2xl mt-2 md:mt-8 p-1 overflow-hidden"
       >
-        <div style={{ background: UseBgDarker() }} className="rounded-xl">
+        <div style={{ background: BgDarker() }} className="rounded-xl">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="flex gap-4 items-center  px-2"
           >
@@ -171,7 +171,7 @@ const Administration7 = () => {
           </div>
           <div className="px-2 py-4 flex gap-8 rounded-xl ">
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg  w-fit px-4 py-1 "
             >
               <UserRound
@@ -182,7 +182,7 @@ const Administration7 = () => {
               <div>branch 1</div>
             </div>
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg   w-fit px-4 py-1 "
             >
               <UserRound
@@ -196,14 +196,14 @@ const Administration7 = () => {
         </div>
       </section>
       <section
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className="text-xl  rounded-2xl mt-2 md:mt-8 p-1 overflow-hidden"
       >
-        <div style={{ background: UseBgDarker() }} className="rounded-xl">
+        <div style={{ background: BgDarker() }} className="rounded-xl">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="flex gap-4 items-center  px-2"
           >
@@ -217,7 +217,7 @@ const Administration7 = () => {
           </div>
           <div className="px-2 py-4 flex gap-8 rounded-xl ">
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg  w-fit px-4 py-1 "
             >
               <UserRound
@@ -228,7 +228,7 @@ const Administration7 = () => {
               <div>branch 1</div>
             </div>
             <div
-              style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+              style={{ borderColor: Primary(), color: SecondaryTextExist() }}
               className="flex gap-4 border-2 rounded-lg   w-fit px-4 py-1 "
             >
               <UserRound

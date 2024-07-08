@@ -1,11 +1,11 @@
 import { UseCreateElement } from "@/hooks/elementsHooks";
 import { storeAdministration6 } from "@/stores/administration/administration6Store";
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
+  Bg,
+  BgDarker,
+  Primary,
 } from "@/theme/theming";
 import {
   AlignJustify,
@@ -178,7 +178,7 @@ const Administration6 = () => {
   };
   return (
     <div
-      style={{ background: UseBg(), color: SecondaryTextExist() }}
+      style={{ background: Bg(), color: SecondaryTextExist() }}
       className="min-h-screen  p-[4vw]  font-normal relative "
     >
       <div
@@ -248,14 +248,14 @@ const Administration6 = () => {
       </header> */}
       <div
         style={{
-          color: UsePrimary(),
-          backgroundColor: UseBgDarker(),
+          color: Primary(),
+          backgroundColor: BgDarker(),
         }}
         className="  w-full h-14 md:h-16 xl:h-20  flex  items-center  rounded-2xl px-[2vw] relative "
       >
         <div
           style={{
-            backgroundImage: SecondaryExist(),
+            backgroundImage: SecondaryGradientExist(),
           }}
           className="text-[clamp(2rem,3cqw,6rem)] absolute top-[50%] left-[2vw] translate-y-[-50%] gradient-text font-bold"
         >
@@ -264,19 +264,22 @@ const Administration6 = () => {
         <input
           style={{
             color: SecondaryTextExist(),
-            backgroundColor: UseBg(),
-            borderColor: UsePrimary(),
+            backgroundColor: Bg(),
+            borderColor: Primary(),
           }}
           type="text"
           className="rounded-2xl h-[60%] ml-auto md:mx-auto text-[clamp(1rem,3cqw,2rem)]"
         />
       </div>
       <section
-        style={{ background: SecondaryExist(), color: SecondaryTextExist() }}
+        style={{
+          background: SecondaryGradientExist(),
+          color: SecondaryTextExist(),
+        }}
         className="mt-8 text-base rounded-2xl p-[5px] "
       >
         <div
-          style={{ background: UseBgDarker() }}
+          style={{ background: BgDarker() }}
           className="w-full h-full rounded-2xl p-4"
         >
           <div

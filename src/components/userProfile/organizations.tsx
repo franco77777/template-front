@@ -1,22 +1,22 @@
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBgDarker,
-  UsePrimary,
+  BgDarker,
+  Primary,
 } from "@/theme/theming";
 
 const UserProfileOrganizations = () => {
   return (
     <div
-      style={{ borderColor: UsePrimary(), color: SecondaryTextExist() }}
+      style={{ borderColor: Primary(), color: SecondaryTextExist() }}
       className="mt-8   border-2 rounded-2xl overflow-x-auto"
     >
       <table className=" w-full ">
         <tr className="w-full">
           <th
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             colSpan={6}
             className="  text-2xl  text-center  "
@@ -24,148 +24,148 @@ const UserProfileOrganizations = () => {
             Organizations
           </th>
         </tr>
-        <tr style={{ background: UseBgDarker() }} className=" ">
+        <tr style={{ background: BgDarker() }} className=" ">
           <th className="text-center text-xl font-normal">organization</th>
           <th
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="text-center text-xl font-normal border-l-2 "
           >
             user
           </th>
           <th
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="text-center text-xl font-normal border-l-2 "
           >
             department
           </th>
           <th
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="text-center text-xl font-normal border-l-2 "
           >
             state
           </th>
           <th
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="text-center text-xl font-normal border-l-2 "
           >
             start date
           </th>
           <th
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="text-center text-xl font-normal border-l-2 "
           >
             end date
           </th>
         </tr>
         <tr
-          style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+          style={{ borderColor: Primary(), background: BgDarker() }}
           className="border-t-2 "
         >
-          <td style={{ borderColor: UsePrimary() }} className="text-center">
+          <td style={{ borderColor: Primary() }} className="text-center">
             gravitad
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             zucadev
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             backend
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             supervised
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             27/12/2020
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             n/a
           </td>
         </tr>
         <tr
-          style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+          style={{ borderColor: Primary(), background: BgDarker() }}
           className="border-t-2 "
         >
-          <td style={{ borderColor: UsePrimary() }} className="text-center">
+          <td style={{ borderColor: Primary() }} className="text-center">
             gravitad
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             zucadev
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             backend
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             supervised
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             27/12/2020
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             n/a
           </td>
         </tr>
         <tr
-          style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+          style={{ borderColor: Primary(), background: BgDarker() }}
           className="border-t-2 "
         >
-          <td style={{ borderColor: UsePrimary() }} className="text-center">
+          <td style={{ borderColor: Primary() }} className="text-center">
             gravitad
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             zucadev
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             backend
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             supervised
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             27/12/2020
           </td>
           <td
-            style={{ borderColor: UsePrimary() }}
+            style={{ borderColor: Primary() }}
             className="border-l-2  text-center"
           >
             n/a

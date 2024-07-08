@@ -133,12 +133,12 @@
 // export default Files;
 
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
-  UseSecondary,
+  Bg,
+  BgDarker,
+  Primary,
+  Secondary,
 } from "@/theme/theming";
 import { CloudUpload } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -294,7 +294,7 @@ const Files = ({ slide, setSlide }: Props) => {
 
     const target = e.target as HTMLElement;
     console.log(target);
-    target.style.background = SecondaryExist();
+    target.style.background = SecondaryGradientExist();
     //setRendering({ background: "blue" });
   };
 
@@ -317,21 +317,24 @@ const Files = ({ slide, setSlide }: Props) => {
   //     className="bg-green-500 w-full h-full flex  transition-all duration-300 absolute top-0">
   return (
     <div
-      style={{ background: UseBg(), right: slide.files }}
+      style={{ background: Bg(), right: slide.files }}
       className="  flex flex-col rounded-2xl absolute top-0 w-full transition-all duration-300"
     >
-      <div style={{ background: SecondaryExist() }} className="rounded-2xl">
+      <div
+        style={{ background: SecondaryGradientExist() }}
+        className="rounded-2xl"
+      >
         <div
           style={{
             //backgroundColor: UseBgDarker(),
-            backgroundColor: UsePrimary(),
+            backgroundColor: Primary(),
           }}
           className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
         >
           <div
             style={{
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
-              background: SecondaryExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
             }}
             className=" font-semibold  md:text-2xl text-base"
           >
@@ -341,7 +344,7 @@ const Files = ({ slide, setSlide }: Props) => {
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onDrop={onDrop}
-            style={{ background: UseBgDarker() }}
+            style={{ background: BgDarker() }}
             className="mx-auto  w-full h-full p-4 "
           >
             <div
@@ -349,7 +352,7 @@ const Files = ({ slide, setSlide }: Props) => {
               onClick={OpenInput}
               className="w-full h-full   py-4 rounded cursor-pointer active-animation flex items-center justify-center duration-500"
               style={{
-                backgroundColor: UseBg(),
+                backgroundColor: Bg(),
                 backgroundImage: `${
                   isDragging
                     ? `linear-gradient(90deg,${SecondaryTextExist()} 50% , transparent 50%), linear-gradient(90deg, ${SecondaryTextExist()} 50%, transparent 50%), linear-gradient(0deg, ${SecondaryTextExist()} 50%, transparent 50%), linear-gradient(0deg, ${SecondaryTextExist()} 50%, transparent 50%)`
@@ -361,7 +364,7 @@ const Files = ({ slide, setSlide }: Props) => {
               <div>
                 <CloudUpload
                   style={{
-                    color: UsePrimary(),
+                    color: Primary(),
                   }}
                   data-drag="dragzone"
                   className="mx-auto h-32 w-32 "
@@ -371,7 +374,7 @@ const Files = ({ slide, setSlide }: Props) => {
                     data-drag="dragzone"
                     className=" text-center mx-auto gradient-text font-semibold"
                     style={{
-                      backgroundImage: SecondaryExist(),
+                      backgroundImage: SecondaryGradientExist(),
                     }}
                   >
                     drop here
@@ -381,7 +384,7 @@ const Files = ({ slide, setSlide }: Props) => {
                     data-drag="dragzone"
                     className=" text-center mx-auto gradient-text font-semibold text-[clamp(1.5rem,3cqw,2rem)]"
                     style={{
-                      backgroundImage: SecondaryExist(),
+                      backgroundImage: SecondaryGradientExist(),
                     }}
                   >
                     click to upload
@@ -391,7 +394,7 @@ const Files = ({ slide, setSlide }: Props) => {
                 <p
                   data-drag="dragzone"
                   className="text-xs  mx-auto w-fit"
-                  style={{ color: UsePrimary() }}
+                  style={{ color: Primary() }}
                 >
                   SVG, PNG, JPG or GIF (MAX. 800x400px)
                 </p>
@@ -410,7 +413,7 @@ const Files = ({ slide, setSlide }: Props) => {
           </div>
           {images.length !== 0 && (
             <div
-              style={{ background: UseBgDarker() }}
+              style={{ background: BgDarker() }}
               className={`pt-4 w-full grid grid-cols-[repeat(auto-fill,minmax(125px,1fr))] auto-rows-[minmax(125px,1fr)] gap-4 duration-500 ease-in-out px-4  ${
                 images.length ? "h-auto pb-4" : "h-0 pb-0"
               }`}
@@ -426,7 +429,7 @@ const Files = ({ slide, setSlide }: Props) => {
                   <div
                     style={{
                       //backgroundColor: UseBgDarker(),
-                      backgroundColor: UseBgDarker(),
+                      backgroundColor: BgDarker(),
                     }}
                     className="w-[calc(100%-7px)] h-[calc(100%-7px)] rounded-xl overflow-hidden  pointer-events-none   "
                   >
@@ -446,7 +449,7 @@ const Files = ({ slide, setSlide }: Props) => {
         <button
           style={{
             background: SecondaryTextExist(),
-            color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+            color: Primary() === "#000000" ? "#ffffff" : "#000000",
           }}
           className="font-medium px-4 rounded-lg w-fit text-[clamp(1rem,3cqw,1.5rem)] mt-2"
         >

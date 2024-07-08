@@ -1,10 +1,10 @@
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
-  UseSecondary,
+  Bg,
+  BgDarker,
+  Primary,
+  Secondary,
 } from "@/theme/theming";
 import { CloudUpload } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -140,7 +140,7 @@ const Administration2InputDrag = () => {
 
     const target = e.target as HTMLElement;
     console.log(target);
-    target.style.background = SecondaryExist();
+    target.style.background = SecondaryGradientExist();
     //setRendering({ background: "blue" });
   };
 
@@ -162,20 +162,20 @@ const Administration2InputDrag = () => {
 
   return (
     <div
-      style={{ background: SecondaryExist() }}
+      style={{ background: SecondaryGradientExist() }}
       className="  flex flex-col rounded-2xl "
     >
       <div
         style={{
           //backgroundColor: UseBgDarker(),
-          backgroundColor: UseBgDarker(),
+          backgroundColor: BgDarker(),
         }}
         className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
       >
         <div
           style={{
-            color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
-            background: SecondaryExist(),
+            color: Primary() === "#000000" ? "#ffffff" : "#000000",
+            background: SecondaryGradientExist(),
           }}
           className=" font-semibold  md:text-2xl text-base"
         >
@@ -185,7 +185,7 @@ const Administration2InputDrag = () => {
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
-          style={{ background: UseBgDarker() }}
+          style={{ background: BgDarker() }}
           className="mx-auto  w-full h-full p-4 "
         >
           <div
@@ -193,7 +193,7 @@ const Administration2InputDrag = () => {
             onClick={OpenInput}
             className="w-full h-full   py-4 rounded cursor-pointer active-animation flex items-center justify-center duration-500"
             style={{
-              backgroundColor: UseBg(),
+              backgroundColor: Bg(),
               backgroundImage: `${
                 isDragging
                   ? `linear-gradient(90deg,${SecondaryTextExist()} 50% , transparent 50%), linear-gradient(90deg, ${SecondaryTextExist()} 50%, transparent 50%), linear-gradient(0deg, ${SecondaryTextExist()} 50%, transparent 50%), linear-gradient(0deg, ${SecondaryTextExist()} 50%, transparent 50%)`
@@ -205,7 +205,7 @@ const Administration2InputDrag = () => {
             <div>
               <CloudUpload
                 style={{
-                  color: UsePrimary(),
+                  color: Primary(),
                 }}
                 data-drag="dragzone"
                 className="mx-auto h-32 w-32 "
@@ -215,7 +215,7 @@ const Administration2InputDrag = () => {
                   data-drag="dragzone"
                   className=" text-center mx-auto gradient-text font-semibold"
                   style={{
-                    backgroundImage: SecondaryExist(),
+                    backgroundImage: SecondaryGradientExist(),
                   }}
                 >
                   drop here
@@ -225,7 +225,7 @@ const Administration2InputDrag = () => {
                   data-drag="dragzone"
                   className=" text-center mx-auto gradient-text font-semibold text-[clamp(1.5rem,3cqw,2rem)]"
                   style={{
-                    backgroundImage: SecondaryExist(),
+                    backgroundImage: SecondaryGradientExist(),
                   }}
                 >
                   click to upload
@@ -235,7 +235,7 @@ const Administration2InputDrag = () => {
               <p
                 data-drag="dragzone"
                 className="text-xs  mx-auto w-fit"
-                style={{ color: UsePrimary() }}
+                style={{ color: Primary() }}
               >
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
               </p>
@@ -270,7 +270,7 @@ const Administration2InputDrag = () => {
                 <div
                   style={{
                     //backgroundColor: UseBgDarker(),
-                    backgroundColor: UseBgDarker(),
+                    backgroundColor: BgDarker(),
                   }}
                   className="w-[calc(100%-7px)] h-[calc(100%-7px)] rounded-xl overflow-hidden  pointer-events-none   "
                 >

@@ -1,5 +1,5 @@
 import Administration2InputDrag from "@/components/administration2/InputDrag";
-import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
+import { SecondaryTextExist, BgDarker, Primary } from "@/theme/theming";
 
 const Administration4 = () => {
   return (
@@ -23,7 +23,7 @@ const Administration4 = () => {
           <li>
             <div>Name Organization</div>
             <input
-              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+              style={{ borderColor: Primary(), background: BgDarker() }}
               type="text"
               className="border-2 w-[400px]    rounded-xl"
             />
@@ -31,7 +31,7 @@ const Administration4 = () => {
           <li>
             <div>Country</div>
             <input
-              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+              style={{ borderColor: Primary(), background: BgDarker() }}
               type="text"
               className="border-2 w-[400px]  rounded-xl"
             />
@@ -40,7 +40,7 @@ const Administration4 = () => {
             {" "}
             <div>State</div>
             <input
-              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+              style={{ borderColor: Primary(), background: BgDarker() }}
               type="text"
               className="border-2 w-[400px]  rounded-xl"
             />
@@ -49,7 +49,7 @@ const Administration4 = () => {
             {" "}
             <div>Address</div>
             <input
-              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+              style={{ borderColor: Primary(), background: BgDarker() }}
               type="text"
               className="border-2 w-[400px]  rounded-xl"
             />
@@ -58,7 +58,7 @@ const Administration4 = () => {
             {" "}
             <div>Branch</div>
             <select
-              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+              style={{ borderColor: Primary(), background: BgDarker() }}
               name=""
               id=""
               className="border-2 w-[400px]  rounded-xl cursor-pointer"
@@ -75,7 +75,7 @@ const Administration4 = () => {
             {" "}
             <div>Name Organization</div>
             <input
-              style={{ borderColor: UsePrimary(), background: UseBgDarker() }}
+              style={{ borderColor: Primary(), background: BgDarker() }}
               type="text"
               className="border-2 w-[400px]  rounded-xl"
             />
@@ -84,7 +84,7 @@ const Administration4 = () => {
             <button
               style={{
                 background: SecondaryTextExist(),
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
               }}
               className="block mt-4 p-2 mx-auto rounded-lg w-fit cursor-pointer  text-base  hover:scale-105 duration-150 "
             >

@@ -1,4 +1,4 @@
-import { SecondaryTextExist, UseBgDarker, UsePrimary } from "@/theme/theming";
+import { SecondaryTextExist, BgDarker, Primary } from "@/theme/theming";
 import { Copy, Settings, UserRound } from "lucide-react";
 
 const PersonalInformation = () => {
@@ -12,9 +12,9 @@ const PersonalInformation = () => {
   return (
     <div
       style={{
-        background: UseBgDarker(),
+        background: BgDarker(),
         color: SecondaryTextExist(),
-        borderColor: UsePrimary(),
+        borderColor: Primary(),
       }}
       className=" border-2  rounded-2xl  items-cemter justify-center flex gap-8 p-4"
     >

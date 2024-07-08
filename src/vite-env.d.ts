@@ -36,8 +36,6 @@ declare module "@/components/elementor/sidebarElementor";
 declare module "@/components/elementor/workAreaElementor";
 declare module "@/components/elementor/structureOptionsElementor";
 
-
-
 declare module "@/context/AppContextProvider";
 declare module "@/stores/index";
 declare module "@/stores/container/container";
@@ -64,6 +62,9 @@ declare module "@/screens/administration6";
 declare module "@/screens/administration7";
 declare module "@/screens/userProfile";
 declare module "@/screens/elementsToClone";
+declare module "@/screens/globalAdmin";
+declare module "@/screens/globalAdmin2";
+declare module "@/screens/globalAdmin3";
 
 declare module "@/theme/theme";
 

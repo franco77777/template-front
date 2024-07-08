@@ -1,25 +1,25 @@
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBgDarker,
-  UsePrimary,
+  BgDarker,
+  Primary,
 } from "@/theme/theming";
 import { Trash2 } from "lucide-react";
 
 const Administration2Table = () => {
   return (
     <div
-      style={{ background: SecondaryExist() }}
+      style={{ background: SecondaryGradientExist() }}
       className="w-full h-full p-1 rounded-2xl overflow-x-auto mb-4"
     >
       <table
         style={{
-          borderColor: SecondaryExist(),
-          backgroundColor: UseBgDarker(),
+          borderColor: SecondaryGradientExist(),
+          backgroundColor: BgDarker(),
         }}
         className="   rounded-xl overflow-hidden text-base  w-full text-black"
       >
-        <tr style={{ background: SecondaryExist() }} className=" ">
+        <tr style={{ background: SecondaryGradientExist() }} className=" ">
           <th className=" text-center ">Name</th>
           <th className=" text-center">ID</th>
           <th className=" text-center">Administration</th>
@@ -70,7 +70,7 @@ const Administration2Table = () => {
             <button
               style={{
                 background: SecondaryTextExist(),
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
               }}
               className="rounded py-[2px] px-2 "
             >
@@ -84,7 +84,7 @@ const Administration2Table = () => {
         <tr
           style={{
             color: SecondaryTextExist(),
-            borderColor: UsePrimary(),
+            borderColor: Primary(),
           }}
           className="border-t-2 "
         >
@@ -98,7 +98,7 @@ const Administration2Table = () => {
             <button
               style={{
                 background: SecondaryTextExist(),
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
               }}
               className=" rounded py-[2px] px-2 "
             >

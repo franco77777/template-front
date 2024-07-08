@@ -1,9 +1,9 @@
 import Administration2Table from "@/components/administration2/table";
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBgDarker,
-  UsePrimary,
+  BgDarker,
+  Primary,
 } from "@/theme/theming";
 import { CircleUserRound } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -22,14 +22,14 @@ const Administration3 = () => {
       <header
         style={{
           color: SecondaryTextExist(),
-          backgroundColor: UseBgDarker(),
+          backgroundColor: BgDarker(),
         }}
         className=" w-full h-12 md:h-14 xl:h-16  rounded-2xl bg  flex items-center justify-between px-[2vw] "
       >
         <div
           className=" font-semibold gradient-text text-[clamp(2rem,3cqw,5rem)]"
           style={{
-            backgroundImage: SecondaryExist(),
+            backgroundImage: SecondaryGradientExist(),
           }}
         >
           User Name
@@ -45,7 +45,7 @@ const Administration3 = () => {
       <button
         style={{
           background: SecondaryTextExist(),
-          color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+          color: Primary() === "#000000" ? "#ffffff" : "#000000",
         }}
         onClick={handlePage}
         className="block mt-4 p-2 rounded-xl w-fit cursor-pointer ml-auto text-base  hover:scale-105 duration-150 "

@@ -2,24 +2,19 @@ import Administration2InputDrag from "@/components/administration2/InputDrag";
 import Administration2Folders from "@/components/administration2/folders";
 import Administration2Table from "@/components/administration2/table";
 import { storeAdministration } from "@/stores/administration/administrationStore";
-import {
-  SecondaryExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
-} from "@/theme/theming";
+import { SecondaryGradientExist, Bg, BgDarker, Primary } from "@/theme/theming";
 
 const Administration2 = () => {
   const AdministrationName = storeAdministration((state) => state.name);
   return (
     <div className="font-normal   w-full px-[4vw] py-[4vw] bg-primary min-h-screen">
       <header
-        style={{ color: UsePrimary(), backgroundColor: UseBgDarker() }}
+        style={{ color: Primary(), backgroundColor: BgDarker() }}
         className="  w-full h-14 md:h-16 xl:h-20 bg-tertiary flex items-center  rounded-2xl px-[2vw] relative"
       >
         <div
           style={{
-            backgroundImage: SecondaryExist(),
+            backgroundImage: SecondaryGradientExist(),
           }}
           className=" gradient-text   font-semibold absolute top-[50%] left-[2vw] translate-y-[-50%]  text-[clamp(2rem,3cqw,5rem)] "
         >
@@ -27,8 +22,8 @@ const Administration2 = () => {
         </div>
         <input
           style={{
-            borderColor: UsePrimary(),
-            backgroundColor: UseBg(),
+            borderColor: Primary(),
+            backgroundColor: Bg(),
           }}
           type="text"
           className="rounded-xl h-[60%] md:h-10 sm:mx-auto ml-auto "

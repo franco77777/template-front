@@ -6,33 +6,45 @@ import UserProfileOrganizations from "@/components/userProfile/organizations";
 import PersonalInformation from "@/components/userProfile/personalInformation";
 import UserProfileWallet from "@/components/userProfile/wallet";
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
+  Bg,
+  BgDarker,
+  Primary,
 } from "@/theme/theming";
 
 import { CircleUserRound, Settings, UsersRound } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   return (
     <div className="font-normal text-base   w-full px-[4vw] py-[4vw] bg-primary min-h-screen">
       <header
         style={{
-          color: UsePrimary(),
-          backgroundColor: UseBgDarker(),
+          color: Primary(),
+          backgroundColor: BgDarker(),
         }}
         className=" w-full h-12 md:h-14 xl:h-16  rounded-2xl bg  flex items-center justify-between px-[2vw] "
       >
         <div
           className=" font-semibold gradient-text text-[clamp(1.5rem,3cqw,2.5rem)]"
           style={{
-            backgroundImage: SecondaryExist(),
+            backgroundImage: SecondaryGradientExist(),
           }}
         >
           User Name
         </div>
+
+        {/* <Link to={"/administration"}>
+          <div
+            className=" font-semibold gradient-text text-[clamp(1.5rem,3cqw,2.5rem)]"
+            style={{
+              backgroundImage: SecondaryExist(),
+            }}
+          >
+            User Name
+          </div>
+        </Link> */}
         <div
           style={{ color: SecondaryTextExist() }}
           className="cursor-pointer hover:scale-105 duration-100"
@@ -54,14 +66,14 @@ const UserProfile = () => {
       </section> */}
       <div
         style={{
-          color: UsePrimary(),
-          backgroundColor: UseBgDarker(),
+          color: Primary(),
+          backgroundColor: BgDarker(),
         }}
         className="  w-full h-14 md:h-16 xl:h-20  flex  justify-between items-center mt-[2vw] rounded-2xl px-[2vw]  "
       >
         <div
           style={{
-            backgroundImage: SecondaryExist(),
+            backgroundImage: SecondaryGradientExist(),
           }}
           className="text-[clamp(1.5rem,3cqw,3rem)] gradient-text font-bold leading-normal "
         >
@@ -70,8 +82,8 @@ const UserProfile = () => {
         <input
           style={{
             color: SecondaryTextExist(),
-            backgroundColor: UseBg(),
-            borderColor: UsePrimary(),
+            backgroundColor: Bg(),
+            borderColor: Primary(),
           }}
           type="text"
           className="rounded-2xl   text-[clamp(1rem,3cqw,1.5rem)]"

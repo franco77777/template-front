@@ -1,9 +1,9 @@
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
+  Bg,
+  BgDarker,
+  Primary,
 } from "@/theme/theming";
 import { SquarePlus } from "lucide-react";
 
@@ -11,51 +11,48 @@ const Administration2Folders = () => {
   return (
     <ul className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(350px,1fr))] ">
       <li
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className=" bg-red-500 p-[5px] rounded-2xl"
       >
         <div className="rounded-2xl overflow-hidden">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="pl-2 "
           >
             Folder
           </div>
-          <div
-            style={{ background: UseBgDarker() }}
-            className="flex gap-4  p-2"
-          >
+          <div style={{ background: BgDarker() }} className="flex gap-4  p-2">
             <ul
               style={{ color: SecondaryTextExist() }}
               className="grid grid-cols-4 w-1/2 gap-2"
             >
-              <li style={{ background: UseBg() }}>1</li>
-              <li style={{ background: UseBg() }}>2</li>
-              <li style={{ background: UseBg() }}>3</li>
-              <li style={{ background: UseBg() }}>4</li>
-              <li style={{ background: UseBg() }}>5</li>
-              <li style={{ background: UseBg() }}>6</li>
-              <li style={{ background: UseBg() }}>7</li>
-              <li style={{ background: UseBg() }}>8</li>
-              <li style={{ background: UseBg() }}>9</li>
-              <li style={{ background: UseBg() }}>10</li>
-              <li style={{ background: UseBg() }}>11</li>
-              <li style={{ background: UseBg() }}>12</li>
+              <li style={{ background: Bg() }}>1</li>
+              <li style={{ background: Bg() }}>2</li>
+              <li style={{ background: Bg() }}>3</li>
+              <li style={{ background: Bg() }}>4</li>
+              <li style={{ background: Bg() }}>5</li>
+              <li style={{ background: Bg() }}>6</li>
+              <li style={{ background: Bg() }}>7</li>
+              <li style={{ background: Bg() }}>8</li>
+              <li style={{ background: Bg() }}>9</li>
+              <li style={{ background: Bg() }}>10</li>
+              <li style={{ background: Bg() }}>11</li>
+              <li style={{ background: Bg() }}>12</li>
             </ul>
             <div className="flex flex-col justify-center items-center gap-2 w-1/2">
               <input
                 style={{
-                  background: UseBg(),
-                  borderColor: UsePrimary(),
+                  background: Bg(),
+                  borderColor: Primary(),
                   color: SecondaryTextExist(),
                 }}
                 type="text"
                 className="rounded-xl h-10   w-full"
               />
-              <div style={{ color: UsePrimary() }} className="">
+              <div style={{ color: Primary() }} className="">
                 <SquarePlus
                   size={24}
                   strokeWidth={2}
@@ -67,47 +64,44 @@ const Administration2Folders = () => {
         </div>
       </li>
       <li
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className=" bg-red-500 p-[5px] rounded-2xl"
       >
         <div className="rounded-2xl overflow-hidden">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="pl-2 "
           >
             Users
           </div>
-          <div
-            style={{ background: UseBgDarker() }}
-            className="flex gap-4  p-2"
-          >
+          <div style={{ background: BgDarker() }} className="flex gap-4  p-2">
             <ul
               style={{ color: SecondaryTextExist() }}
               className="grid grid-cols-4 w-1/2 gap-2"
             >
-              <li style={{ background: UseBg() }}>1</li>
-              <li style={{ background: UseBg() }}>2</li>
-              <li style={{ background: UseBg() }}>3</li>
-              <li style={{ background: UseBg() }}>4</li>
-              <li style={{ background: UseBg() }}>5</li>
-              <li style={{ background: UseBg() }}>6</li>
-              <li style={{ background: UseBg() }}>7</li>
-              <li style={{ background: UseBg() }}>8</li>
-              <li style={{ background: UseBg() }}>9</li>
-              <li style={{ background: UseBg() }}>10</li>
-              <li style={{ background: UseBg() }}>11</li>
-              <li style={{ background: UseBg() }}>12</li>
+              <li style={{ background: Bg() }}>1</li>
+              <li style={{ background: Bg() }}>2</li>
+              <li style={{ background: Bg() }}>3</li>
+              <li style={{ background: Bg() }}>4</li>
+              <li style={{ background: Bg() }}>5</li>
+              <li style={{ background: Bg() }}>6</li>
+              <li style={{ background: Bg() }}>7</li>
+              <li style={{ background: Bg() }}>8</li>
+              <li style={{ background: Bg() }}>9</li>
+              <li style={{ background: Bg() }}>10</li>
+              <li style={{ background: Bg() }}>11</li>
+              <li style={{ background: Bg() }}>12</li>
             </ul>
             <div className="flex flex-col justify-center items-center gap-2 w-1/2">
               <input
-                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                style={{ background: Bg(), borderColor: Primary() }}
                 type="text"
                 className="rounded-xl h-10   w-full"
               />
-              <div style={{ color: UsePrimary() }} className="">
+              <div style={{ color: Primary() }} className="">
                 <SquarePlus
                   size={24}
                   strokeWidth={2}
@@ -119,47 +113,44 @@ const Administration2Folders = () => {
         </div>
       </li>
       <li
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className=" bg-red-500 p-[5px] rounded-2xl"
       >
         <div className="rounded-2xl overflow-hidden">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="pl-2 "
           >
             Organizations
           </div>
-          <div
-            style={{ background: UseBgDarker() }}
-            className="flex gap-4  p-2"
-          >
+          <div style={{ background: BgDarker() }} className="flex gap-4  p-2">
             <ul
               style={{ color: SecondaryTextExist() }}
               className="grid grid-cols-4 w-1/2 gap-2"
             >
-              <li style={{ background: UseBg() }}>1</li>
-              <li style={{ background: UseBg() }}>2</li>
-              <li style={{ background: UseBg() }}>3</li>
-              <li style={{ background: UseBg() }}>4</li>
-              <li style={{ background: UseBg() }}>5</li>
-              <li style={{ background: UseBg() }}>6</li>
-              <li style={{ background: UseBg() }}>7</li>
-              <li style={{ background: UseBg() }}>8</li>
-              <li style={{ background: UseBg() }}>9</li>
-              <li style={{ background: UseBg() }}>10</li>
-              <li style={{ background: UseBg() }}>11</li>
-              <li style={{ background: UseBg() }}>12</li>
+              <li style={{ background: Bg() }}>1</li>
+              <li style={{ background: Bg() }}>2</li>
+              <li style={{ background: Bg() }}>3</li>
+              <li style={{ background: Bg() }}>4</li>
+              <li style={{ background: Bg() }}>5</li>
+              <li style={{ background: Bg() }}>6</li>
+              <li style={{ background: Bg() }}>7</li>
+              <li style={{ background: Bg() }}>8</li>
+              <li style={{ background: Bg() }}>9</li>
+              <li style={{ background: Bg() }}>10</li>
+              <li style={{ background: Bg() }}>11</li>
+              <li style={{ background: Bg() }}>12</li>
             </ul>
             <div className="flex flex-col justify-center items-center gap-2 w-1/2">
               <input
-                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                style={{ background: Bg(), borderColor: Primary() }}
                 type="text"
                 className="rounded-xl h-10   w-full"
               />
-              <div style={{ color: UsePrimary() }} className="">
+              <div style={{ color: Primary() }} className="">
                 <SquarePlus
                   size={24}
                   strokeWidth={2}
@@ -171,47 +162,44 @@ const Administration2Folders = () => {
         </div>
       </li>
       <li
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className=" bg-red-500 p-[5px] rounded-2xl"
       >
         <div className="rounded-2xl overflow-hidden">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="pl-2 "
           >
             Branch
           </div>
-          <div
-            style={{ background: UseBgDarker() }}
-            className="flex gap-4  p-2"
-          >
+          <div style={{ background: BgDarker() }} className="flex gap-4  p-2">
             <ul
               style={{ color: SecondaryTextExist() }}
               className="grid grid-cols-4 w-1/2 gap-2"
             >
-              <li style={{ background: UseBg() }}>1</li>
-              <li style={{ background: UseBg() }}>2</li>
-              <li style={{ background: UseBg() }}>3</li>
-              <li style={{ background: UseBg() }}>4</li>
-              <li style={{ background: UseBg() }}>5</li>
-              <li style={{ background: UseBg() }}>6</li>
-              <li style={{ background: UseBg() }}>7</li>
-              <li style={{ background: UseBg() }}>8</li>
-              <li style={{ background: UseBg() }}>9</li>
-              <li style={{ background: UseBg() }}>10</li>
-              <li style={{ background: UseBg() }}>11</li>
-              <li style={{ background: UseBg() }}>12</li>
+              <li style={{ background: Bg() }}>1</li>
+              <li style={{ background: Bg() }}>2</li>
+              <li style={{ background: Bg() }}>3</li>
+              <li style={{ background: Bg() }}>4</li>
+              <li style={{ background: Bg() }}>5</li>
+              <li style={{ background: Bg() }}>6</li>
+              <li style={{ background: Bg() }}>7</li>
+              <li style={{ background: Bg() }}>8</li>
+              <li style={{ background: Bg() }}>9</li>
+              <li style={{ background: Bg() }}>10</li>
+              <li style={{ background: Bg() }}>11</li>
+              <li style={{ background: Bg() }}>12</li>
             </ul>
             <div className="flex flex-col justify-center items-center gap-2 w-1/2">
               <input
-                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                style={{ background: Bg(), borderColor: Primary() }}
                 type="text"
                 className="rounded-xl h-10   w-full"
               />
-              <div style={{ color: UsePrimary() }} className="">
+              <div style={{ color: Primary() }} className="">
                 <SquarePlus
                   size={24}
                   strokeWidth={2}
@@ -223,47 +211,44 @@ const Administration2Folders = () => {
         </div>
       </li>
       <li
-        style={{ background: SecondaryExist() }}
+        style={{ background: SecondaryGradientExist() }}
         className=" bg-red-500 p-[5px] rounded-2xl"
       >
         <div className="rounded-2xl overflow-hidden">
           <div
             style={{
-              background: SecondaryExist(),
-              color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+              background: SecondaryGradientExist(),
+              color: Primary() === "#000000" ? "#ffffff" : "#000000",
             }}
             className="pl-2 "
           >
             Department
           </div>
-          <div
-            style={{ background: UseBgDarker() }}
-            className="flex gap-4  p-2"
-          >
+          <div style={{ background: BgDarker() }} className="flex gap-4  p-2">
             <ul
               style={{ color: SecondaryTextExist() }}
               className="grid grid-cols-4 w-1/2 gap-2"
             >
-              <li style={{ background: UseBg() }}>1</li>
-              <li style={{ background: UseBg() }}>2</li>
-              <li style={{ background: UseBg() }}>3</li>
-              <li style={{ background: UseBg() }}>4</li>
-              <li style={{ background: UseBg() }}>5</li>
-              <li style={{ background: UseBg() }}>6</li>
-              <li style={{ background: UseBg() }}>7</li>
-              <li style={{ background: UseBg() }}>8</li>
-              <li style={{ background: UseBg() }}>9</li>
-              <li style={{ background: UseBg() }}>10</li>
-              <li style={{ background: UseBg() }}>11</li>
-              <li style={{ background: UseBg() }}>12</li>
+              <li style={{ background: Bg() }}>1</li>
+              <li style={{ background: Bg() }}>2</li>
+              <li style={{ background: Bg() }}>3</li>
+              <li style={{ background: Bg() }}>4</li>
+              <li style={{ background: Bg() }}>5</li>
+              <li style={{ background: Bg() }}>6</li>
+              <li style={{ background: Bg() }}>7</li>
+              <li style={{ background: Bg() }}>8</li>
+              <li style={{ background: Bg() }}>9</li>
+              <li style={{ background: Bg() }}>10</li>
+              <li style={{ background: Bg() }}>11</li>
+              <li style={{ background: Bg() }}>12</li>
             </ul>
             <div className="flex flex-col justify-center items-center gap-2 w-1/2">
               <input
-                style={{ background: UseBg(), borderColor: UsePrimary() }}
+                style={{ background: Bg(), borderColor: Primary() }}
                 type="text"
                 className="rounded-xl h-10   w-full"
               />
-              <div style={{ color: UsePrimary() }} className="">
+              <div style={{ color: Primary() }} className="">
                 <SquarePlus
                   size={24}
                   strokeWidth={2}

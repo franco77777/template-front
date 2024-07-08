@@ -1,12 +1,12 @@
 import { storeAdministration } from "@/stores/administration/administrationStore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  SecondaryExist,
+  SecondaryGradientExist,
   SecondaryTextExist,
-  UseBg,
-  UseBgDarker,
-  UsePrimary,
-  UseSecondary,
+  Bg,
+  BgDarker,
+  Primary,
+  Secondary,
 } from "@/theme/theming";
 import ModalTheming from "@/components/administration/modalTheming";
 import { storeTheme } from "@/stores/theme/theme";
@@ -35,13 +35,13 @@ const Administration = () => {
   };
 
   const handleTest = () => {
-    navigate("/excalidrawFiles");
+    navigate("/excalidrawFiles2/section");
   };
-
+  const [color, setColor] = useState("text-red-500");
   return (
     <div
       style={{
-        backgroundColor: UseBg(),
+        backgroundColor: Bg(),
       }}
       className={`font-normal w-full px-[4vw] py-[4vw]  min-h-screen relative`}
     >
@@ -49,8 +49,8 @@ const Administration = () => {
 
       <header
         style={{
-          color: UsePrimary(),
-          backgroundColor: UseBgDarker(),
+          color: Primary(),
+          backgroundColor: BgDarker(),
         }}
         className=" w-full h-12 md:h-14 xl:h-16  rounded-2xl bg  flex items-center justify-between px-[2vw] "
       >
@@ -58,11 +58,25 @@ const Administration = () => {
           onClick={() => setHandleModal(!handleModal)}
           className=" font-semibold gradient-text text-[clamp(1.8rem,3cqw,2.5rem)]"
           style={{
-            backgroundImage: SecondaryExist(),
+            backgroundImage: SecondaryGradientExist(),
           }}
         >
           User Name
         </div>
+
+        <Link to={"/global-admin"}>
+          <div
+            //onClick={() => setHandleModal(!handleModal)}
+
+            //className=" font-semibold gradient-text text-[clamp(1.8rem,3cqw,2.5rem)]"
+            className={`${color} font-semibold text-[clamp(1.8rem,3cqw,2.5rem)]`}
+            style={{
+              backgroundImage: SecondaryGradientExist(),
+            }}
+          >
+            User Name
+          </div>
+        </Link>
         <div
           style={{ color: SecondaryTextExist() }}
           onClick={() => HandleProfile()}
@@ -73,15 +87,16 @@ const Administration = () => {
       </header>
       <div
         style={{
-          color: UsePrimary(),
-          backgroundColor: UseBgDarker(),
+          color: Primary(),
+          backgroundColor: BgDarker(),
         }}
         className="  w-full h-14 md:h-16 xl:h-20  flex  items-center mt-[2vw] rounded-2xl px-[2vw] relative "
       >
         <div
+          //onClick={() => setColor("text-blue-500")}
           onClick={handleTest}
           style={{
-            backgroundImage: SecondaryExist(),
+            backgroundImage: SecondaryGradientExist(),
           }}
           className="text-[clamp(2rem,3cqw,3rem)] absolute top-[50%] left-[2vw] translate-y-[-50%] gradient-text font-bold"
         >
@@ -90,8 +105,8 @@ const Administration = () => {
         <input
           style={{
             color: SecondaryTextExist(),
-            backgroundColor: UseBg(),
-            borderColor: UsePrimary(),
+            backgroundColor: Bg(),
+            borderColor: Primary(),
           }}
           type="text"
           className="rounded-2xl h-[60%] ml-auto md:mx-auto text-[clamp(1rem,3cqw,2rem)]"
@@ -101,7 +116,7 @@ const Administration = () => {
         <div
           style={{
             //backgroundColor: UseBgDarker(),
-            background: SecondaryExist(),
+            background: SecondaryGradientExist(),
           }}
           onClick={() => handleAdministration2("Organizations")}
           className="    rounded-2xl     "
@@ -109,15 +124,15 @@ const Administration = () => {
           <div
             style={{
               //backgroundColor: UseBgDarker(),
-              backgroundColor: UseBgDarker(),
+              backgroundColor: BgDarker(),
             }}
             className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl  my-[5px] ml-[5px] "
           >
             <div
               style={{
-                backgroundColor: UsePrimary(),
-                backgroundImage: SecondaryExist(),
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+                backgroundColor: Primary(),
+                backgroundImage: SecondaryGradientExist(),
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
               }}
               className="text-2xl font-semibold "
             >
@@ -129,7 +144,7 @@ const Administration = () => {
             >
               <li
                 style={{
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -137,9 +152,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -147,9 +162,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -157,9 +172,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -167,9 +182,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -177,9 +192,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -190,7 +205,7 @@ const Administration = () => {
         </div>
         <div
           style={{
-            background: SecondaryExist(),
+            background: SecondaryGradientExist(),
           }}
           onClick={() => handleAdministration2("Structure")}
           className="   rounded-2xl "
@@ -198,14 +213,14 @@ const Administration = () => {
           <div
             style={{
               //backgroundColor: UseBgDarker(),
-              backgroundColor: UseBgDarker(),
+              backgroundColor: BgDarker(),
             }}
             className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-b-xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
           >
             <div
               style={{
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
-                background: SecondaryExist(),
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
+                background: SecondaryGradientExist(),
               }}
               className=" text-2xl font-semibold "
             >
@@ -213,11 +228,11 @@ const Administration = () => {
             </div>
             <div
               style={{
-                backgroundColor: UseBg(),
+                backgroundColor: Bg(),
               }}
               className="  flex items-center justify-center h-full m-3 rounded"
             >
-              <div className={` ${Theme ? `text-[${UsePrimary()}]` : ""}`}>
+              <div className={` ${Theme ? `text-[${Primary()}]` : ""}`}>
                 IMAGE FILE
               </div>
             </div>
@@ -225,7 +240,7 @@ const Administration = () => {
         </div>
         <div
           style={{
-            background: SecondaryExist(),
+            background: SecondaryGradientExist(),
           }}
           onClick={() => handleAdministration2("Structure")}
           className="   rounded-2xl "
@@ -233,14 +248,14 @@ const Administration = () => {
           <div
             style={{
               //backgroundColor: UseBgDarker(),
-              backgroundColor: UseBgDarker(),
+              backgroundColor: BgDarker(),
             }}
             className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-b-xl overflow-hidden  my-[5px] ml-[5px] flex flex-col "
           >
             <div
               style={{
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
-                background: SecondaryExist(),
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
+                background: SecondaryGradientExist(),
               }}
               className=" text-2xl font-semibold "
             >
@@ -248,11 +263,11 @@ const Administration = () => {
             </div>
             <div
               style={{
-                backgroundColor: UseBg(),
+                backgroundColor: Bg(),
               }}
               className="  flex items-center justify-center h-full m-3 rounded"
             >
-              <div className={` ${Theme ? `text-[${UsePrimary()}]` : ""}`}>
+              <div className={` ${Theme ? `text-[${Primary()}]` : ""}`}>
                 IMAGE FILE
               </div>
             </div>
@@ -261,7 +276,7 @@ const Administration = () => {
         <div
           style={{
             //backgroundColor: UseBgDarker(),
-            background: SecondaryExist(),
+            background: SecondaryGradientExist(),
           }}
           onClick={() => handleAdministration2("Organizations")}
           className="    rounded-2xl     "
@@ -269,15 +284,15 @@ const Administration = () => {
           <div
             style={{
               //backgroundColor: UseBgDarker(),
-              backgroundColor: UseBgDarker(),
+              backgroundColor: BgDarker(),
             }}
             className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl  my-[5px] ml-[5px] "
           >
             <div
               style={{
-                backgroundColor: UsePrimary(),
-                backgroundImage: SecondaryExist(),
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+                backgroundColor: Primary(),
+                backgroundImage: SecondaryGradientExist(),
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
               }}
               className="text-2xl font-semibold "
             >
@@ -289,7 +304,7 @@ const Administration = () => {
             >
               <li
                 style={{
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -297,9 +312,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -307,9 +322,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -317,9 +332,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -327,9 +342,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -337,9 +352,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -351,7 +366,7 @@ const Administration = () => {
         <div
           style={{
             //backgroundColor: UseBgDarker(),
-            background: SecondaryExist(),
+            background: SecondaryGradientExist(),
           }}
           onClick={() => handleAdministration2("Organizations")}
           className="    rounded-2xl     "
@@ -359,15 +374,15 @@ const Administration = () => {
           <div
             style={{
               //backgroundColor: UseBgDarker(),
-              backgroundColor: UseBgDarker(),
+              backgroundColor: BgDarker(),
             }}
             className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl  my-[5px] ml-[5px] "
           >
             <div
               style={{
-                backgroundColor: UsePrimary(),
-                backgroundImage: SecondaryExist(),
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+                backgroundColor: Primary(),
+                backgroundImage: SecondaryGradientExist(),
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
               }}
               className="text-2xl font-semibold "
             >
@@ -379,7 +394,7 @@ const Administration = () => {
             >
               <li
                 style={{
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -387,9 +402,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -397,9 +412,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -407,9 +422,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -417,9 +432,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -427,9 +442,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -441,7 +456,7 @@ const Administration = () => {
         <div
           style={{
             //backgroundColor: UseBgDarker(),
-            background: SecondaryExist(),
+            background: SecondaryGradientExist(),
           }}
           onClick={() => handleAdministration2("Organizations")}
           className="    rounded-2xl     "
@@ -449,15 +464,15 @@ const Administration = () => {
           <div
             style={{
               //backgroundColor: UseBgDarker(),
-              backgroundColor: UseBgDarker(),
+              backgroundColor: BgDarker(),
             }}
             className="w-[calc(100%-10px)] h-[calc(100%-10px)] rounded-2xl  my-[5px] ml-[5px] "
           >
             <div
               style={{
-                backgroundColor: UsePrimary(),
-                backgroundImage: SecondaryExist(),
-                color: UsePrimary() === "#000000" ? "#ffffff" : "#000000",
+                backgroundColor: Primary(),
+                backgroundImage: SecondaryGradientExist(),
+                color: Primary() === "#000000" ? "#ffffff" : "#000000",
               }}
               className="text-2xl font-semibold "
             >
@@ -469,7 +484,7 @@ const Administration = () => {
             >
               <li
                 style={{
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -477,9 +492,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -487,9 +502,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -497,9 +512,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="  "
               >
@@ -507,9 +522,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
@@ -517,9 +532,9 @@ const Administration = () => {
               </li>
               <li
                 style={{
-                  borderColor: UsePrimary(),
+                  borderColor: Primary(),
 
-                  backgroundColor: UseBg(),
+                  backgroundColor: Bg(),
                 }}
                 className="   rounded"
               >
