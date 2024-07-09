@@ -1,103 +1,56 @@
-import {
-  Bg,
-  BgDarker,
-  Primary,
-  SecondaryGradientExist,
-  SecondaryTextExist,
-} from "@/theme/theming";
-import { CircleX } from "lucide-react";
-import { tasks } from "./globalAdmin3";
-import { useState } from "react";
-export interface prop {
-  setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setTasks: React.Dispatch<React.SetStateAction<tasks[]>>;
-}
-const GlobalAdmin4 = ({ setModal, setTasks }: prop) => {
-  const [nameTask, setNameTask] = useState("");
-  const submitTask = () => {
-    const newTask = {
-      name: nameTask,
-    };
-    setTasks((state) => [...state, newTask]);
-    setModal(false);
-  };
+import { Bg, BgDarker, Primary, SecondaryTextExist } from "@/theme/theming";
+
+const GlobalAdmin4 = () => {
   return (
     <div
-      style={{ backgroundColor: BgDarker(), borderColor: Primary() }}
-      className="z-50 modalAnimation text-lg font-medium 
-    flex-col flex gap-2 w-[min(100%,300px)] rounded-lg p-2 absolute top-1/2 
-    left-1/2 -translate-x-1/2 -translate-y-1/2 border-[1px]"
+      style={{ background: Bg(), color: SecondaryTextExist() }}
+      className="flex gap-4 flex-col lg:flex-row min-h-screen p-4 relative"
     >
-      <CircleX
-        onClick={() => setModal(false)}
-        className="absolute top-2 right-2 hover:scale-125 cursor-pointer duration-150"
-      />
-      <div className="flex flex-col mt-2">
-        <div>Task Name</div>
-        <input
-          onChange={(e) => setNameTask(e.target.value)}
-          value={nameTask}
-          style={{ backgroundColor: Bg() }}
-          type="text"
-          className="h-7 rounded-lg border-0 outline-0"
-        />
-      </div>
-      <div className="flex flex-col ">
-        <div>Assigned Person</div>
-        <input
-          style={{ backgroundColor: Bg() }}
-          type="text"
-          className="h-7 rounded-lg border-0 outline-0"
-        />
-      </div>
-      <div className="flex flex-col ">
-        <div>Start Date</div>
-        <input
-          style={{ backgroundColor: Bg() }}
-          type="text"
-          className="h-7 rounded-lg border-0 outline-0"
-        />
-      </div>
-      <div className="flex flex-col ">
-        <div>End Date</div>
-        <input
-          style={{ backgroundColor: Bg() }}
-          type="text"
-          className="h-7 rounded-lg border-0 outline-0"
-        />
-      </div>
-      <div className="flex flex-col ">
-        <div>Priority</div>
-        <input
-          style={{ backgroundColor: Bg() }}
-          type="text"
-          className="h-7 rounded-lg border-0 outline-0"
-        />
-      </div>
-      <div className="flex flex-col ">
-        <div>Description</div>
-        <textarea
-          style={{ backgroundColor: Bg() }}
-          className="h-12 rounded-lg border-0 outline-0 w-full"
-        />
-      </div>
-      <div className="flex flex-col ">
-        <div>Sub Tasks</div>
-        <textarea
-          style={{ backgroundColor: Bg() }}
-          className="h-12 rounded-lg border-0 outline-0 w-full"
-        />
-      </div>
-      <button
-        style={{
-          background: SecondaryGradientExist(),
-          color: Primary() === "#000000" ? "#ffffff" : "#000000",
-        }}
-        onClick={() => submitTask()}
-        className="rounded-lg font-semibold hover:scale-105 duration-150"
+      <section className="w-full flex-grow flex gap-2 h-auto">
+        <div
+          style={{ background: BgDarker(), borderColor: Primary() }}
+          className="rounded-2xl bg-purple-500 w-1/3 h-auto border-[1px] "
+        >
+          section1
+        </div>
+        <div className="  rounded-2xl  w-full flex flex-col gap-2 ">
+          <div
+            style={{ background: BgDarker(), borderColor: Primary() }}
+            className="border-[1px]  h-24 rounded-2xl bg-yellow-500"
+          >
+            section3
+          </div>
+          <ul
+            style={{ background: BgDarker(), borderColor: Primary() }}
+            className="p-2 border-[1px] gap-2  w-full h-full rounded-xl grid grid-cols-[repeat(auto-fit,minmax(min(100%,100px),1fr))] auto-rows-[100px]"
+          >
+            <li
+              style={{ background: Bg(), borderColor: Primary() }}
+              className="rounded-xl border-[1px]"
+            >
+              example
+            </li>
+            <li
+              style={{ background: Bg(), borderColor: Primary() }}
+              className="rounded-xl border-[1px]"
+            >
+              example
+            </li>
+            <li
+              style={{ background: Bg(), borderColor: Primary() }}
+              className="rounded-xl border-[1px]"
+            >
+              example{" "}
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section
+        style={{ background: BgDarker(), borderColor: Primary() }}
+        className="w-full border-[1px] rounded-2xl"
       >
-        add task
-      </button>
+        party members
+      </section>
     </div>
   );
 };

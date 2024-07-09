@@ -65,6 +65,7 @@ declare module "@/screens/elementsToClone";
 declare module "@/screens/globalAdmin";
 declare module "@/screens/globalAdmin2";
 declare module "@/screens/globalAdmin3";
+declare module "@/screens/globalAdmin5";
 
 declare module "@/theme/theme";
 

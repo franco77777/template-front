@@ -7,13 +7,14 @@ import {
 } from "@/theme/theming";
 import { useState } from "react";
 
-import GlobalAdmin4 from "./globalAdmin4";
-export interface tasks {
-  name: string;
-}
+import { useNavigate } from "react-router-dom";
+import { tasks } from "@/types/globalAdminTypes";
+import ModalTask from "@/components/globalAdmin3/modalTask";
+
 const GlobalAdmin3 = () => {
   const [modal, setModal] = useState(false);
   const [tasks, setTasks] = useState<tasks[]>([]);
+  const navigate = useNavigate();
   const handleModal = () => {
     setModal(!modal);
   };
@@ -44,13 +45,13 @@ const GlobalAdmin3 = () => {
               style={{ background: Bg(), borderColor: Primary() }}
               className="rounded-xl border-[1px]"
             >
-              example{" "}
+              example
             </li>
             <li
               style={{ background: Bg(), borderColor: Primary() }}
               className="rounded-xl border-[1px]"
             >
-              example{" "}
+              example
             </li>
             <li
               style={{ background: Bg(), borderColor: Primary() }}
@@ -85,15 +86,6 @@ const GlobalAdmin3 = () => {
                 style={{ background: BgDarker() }}
                 className=" rounded-xl p-2 grid grid-cols-[repeat(auto-fill,minmax(min(100%,100px),1fr))] auto-rows-[100px] gap-2"
               >
-                <li
-                  style={{
-                    backgroundColor: Bg(),
-                    borderColor: Primary(),
-                  }}
-                  className="rounded-xl w-full h-full border-[1px] p-2 break-words"
-                >
-                  organizationdddddddd example
-                </li>
                 {tasks?.map((e) => (
                   <li
                     style={{
@@ -142,11 +134,12 @@ const GlobalAdmin3 = () => {
                 className=" rounded-xl p-2 grid grid-cols-[repeat(auto-fill,minmax(min(100%,100px),1fr))] auto-rows-[100px] gap-2"
               >
                 <li
+                  onClick={() => navigate("/global-admin-4")}
                   style={{
                     backgroundColor: Bg(),
                     borderColor: Primary(),
                   }}
-                  className="flex justify-center items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
+                  className="cursor-pointer flex justify-center items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
                 >
                   + add
                 </li>
@@ -155,7 +148,7 @@ const GlobalAdmin3 = () => {
           </div>
         </div>
       </section>
-      {modal && <GlobalAdmin4 setModal={setModal} setTasks={setTasks} />}
+      {modal && <ModalTask setModal={setModal} setTasks={setTasks} />}
       {modal && (
         <div
           onClick={() => setModal(false)}

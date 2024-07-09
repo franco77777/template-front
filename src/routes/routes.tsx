@@ -28,6 +28,7 @@ const Administration7 = React.lazy(() => import("@/screens/administration7"));
 const GlobalAdmin = React.lazy(() => import("@/screens/globalAdmin"));
 const GlobalAdmin2 = React.lazy(() => import("@/screens/globalAdmin2"));
 const GlobalAdmin3 = React.lazy(() => import("@/screens/globalAdmin3"));
+const GlobalAdmin4 = React.lazy(() => import("@/screens/globalAdmin4"));
 const UserProfile = React.lazy(() => import("@/screens/userProfile"));
 
 export default function Navigator() {
@@ -95,6 +96,7 @@ export default function Navigator() {
         <Route path="/global-admin" element={<GlobalAdmin />} />
         <Route path="/global-admin-2" element={<GlobalAdmin2 />} />
         <Route path="/global-admin-3" element={<GlobalAdmin3 />} />
+        <Route path="/global-admin-4" element={<GlobalAdmin4 />} />
         <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
 
