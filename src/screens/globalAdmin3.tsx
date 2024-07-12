@@ -50,23 +50,23 @@ const GlobalAdmin3 = () => {
           </div>
           <ul
             style={{ background: BgDarker(), borderColor: Primary() }}
-            className="p-2 border-[1px] gap-2  w-full h-full rounded-xl grid grid-cols-[repeat(auto-fit,minmax(min(100%,100px),1fr))] auto-rows-[100px]"
+            className="p-2 border-[1px] gap-2  w-full h-full rounded-xl grid grid-cols-[repeat(auto-fill,minmax(min(100%,100px),1fr))] auto-rows-[100px]"
           >
             <li
               style={{ background: Bg(), borderColor: Primary() }}
-              className="rounded-xl border-[1px]"
+              className="grid place-items-center rounded-xl border-[1px]"
             >
               example
             </li>
             <li
               style={{ background: Bg(), borderColor: Primary() }}
-              className="rounded-xl border-[1px]"
+              className="grid place-items-center rounded-xl border-[1px]"
             >
               example
             </li>
             <li
               style={{ background: Bg(), borderColor: Primary() }}
-              className="rounded-xl border-[1px]"
+              className="grid place-items-center rounded-xl border-[1px]"
             >
               example{" "}
             </li>
@@ -104,7 +104,7 @@ const GlobalAdmin3 = () => {
                       backgroundColor: Bg(),
                       borderColor: Primary(),
                     }}
-                    className="rounded-xl w-full h-full border-[1px] p-2 break-words"
+                    className="hover:scale-105 duration-150 cursor-pointer grid place-items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
                   >
                     {e.name}
                   </li>
@@ -115,7 +115,7 @@ const GlobalAdmin3 = () => {
                     backgroundColor: Bg(),
                     borderColor: Primary(),
                   }}
-                  className="cursor-pointer flex justify-center items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
+                  className="hover:scale-105 duration-150 cursor-pointer flex justify-center items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
                 >
                   + add
                 </li>
@@ -153,7 +153,7 @@ const GlobalAdmin3 = () => {
                       backgroundColor: Bg(),
                       borderColor: Primary(),
                     }}
-                    className="rounded-xl w-full h-full border-[1px] p-2 break-words"
+                    className="hover:scale-105 duration-150 cursor-pointer grid place-items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
                   >
                     {e.canvasName}
                   </li>
@@ -164,7 +164,7 @@ const GlobalAdmin3 = () => {
                     backgroundColor: Bg(),
                     borderColor: Primary(),
                   }}
-                  className="cursor-pointer flex justify-center items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
+                  className="hover:scale-105 duration-150 cursor-pointer flex justify-center items-center rounded-xl w-full h-full border-[1px] p-2 break-words"
                 >
                   + add
                 </li>

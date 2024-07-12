@@ -25,41 +25,6 @@ const GlobalAdmin = () => {
         <div>section 1</div>
       </section>
       <section className=" w-full rounded-2xl  ">
-        {/* <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,150px),1fr))] auto-rows-[150px] gap-2">
-          <li
-            style={{
-              backgroundColor: Bg(),
-              borderColor: Primary(),
-            }}
-            className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
-          >
-            organizationdddddddd example
-          </li>
-          <li className="bg-blue-500 rounded-xl w-full h-full">
-            organization example
-          </li>
-          <li className="bg-blue-500 rounded-xl w-full h-full">
-            organization example
-          </li>
-          <li className="bg-blue-500 rounded-xl w-full h-full">
-            organization example
-          </li>
-          <li className="bg-blue-500 rounded-xl w-full h-full">
-            organization example
-          </li>
-          <li className="bg-blue-500 rounded-xl w-full h-full">
-            organization example
-          </li>
-          <li
-            style={{
-              backgroundColor: Bg(),
-              borderColor: Primary(),
-            }}
-            className="flex justify-center items-center bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
-          >
-            + add
-          </li>
-        </ul> */}
         <div
           style={{
             //backgroundColor: UseBgDarker(),
@@ -80,7 +45,7 @@ const GlobalAdmin = () => {
             </div>
             <ul
               style={{ background: BgDarker() }}
-              className=" rounded-xl p-2 grid grid-cols-[repeat(auto-fit,minmax(min(100%,150px),1fr))] auto-rows-[150px] gap-2"
+              className=" rounded-xl p-2 grid grid-cols-[repeat(auto-fill,minmax(min(100%,150px),1fr))] auto-rows-[150px] gap-2"
             >
               <li
                 style={{
@@ -91,21 +56,7 @@ const GlobalAdmin = () => {
               >
                 organizationdddddddd example
               </li>
-              <li className="bg-blue-500 rounded-xl w-full h-full">
-                organization example
-              </li>
-              <li className="bg-blue-500 rounded-xl w-full h-full">
-                organization example
-              </li>
-              <li className="bg-blue-500 rounded-xl w-full h-full">
-                organization example
-              </li>
-              <li className="bg-blue-500 rounded-xl w-full h-full">
-                organization example
-              </li>
-              <li className="bg-blue-500 rounded-xl w-full h-full">
-                organization example
-              </li>
+
               <li
                 style={{
                   backgroundColor: Bg(),

@@ -56,23 +56,54 @@ const GlobalAdmin2 = () => {
                   }}
                   className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
                 >
+                  organization example
+                </li>
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
                   organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
-                </li>
+
                 <li
                   style={{
                     backgroundColor: Bg(),
@@ -119,25 +150,56 @@ const GlobalAdmin2 = () => {
                     backgroundColor: Bg(),
                     borderColor: Primary(),
                   }}
+                  className=" rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organization example
+                </li>
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
                   className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
                 >
                   organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
+                <li
+                  style={{
+                    backgroundColor: Bg(),
+                    borderColor: Primary(),
+                  }}
+                  className="bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                >
+                  organizationdddddddd example
                 </li>
-                <li className="bg-blue-500 rounded-xl w-full h-full">
-                  organization example
-                </li>
+
                 <li
                   onClick={() => navigate("/global-admin-4")}
                   style={{

@@ -22,7 +22,7 @@ const GlobalAdmin4 = () => {
           </div>
           <ul
             style={{ background: BgDarker(), borderColor: Primary() }}
-            className="p-2 border-[1px] gap-2  w-full h-full rounded-xl grid grid-cols-[repeat(auto-fit,minmax(min(100%,100px),1fr))] auto-rows-[100px]"
+            className="p-2 border-[1px] gap-2  w-full h-full rounded-xl grid grid-cols-[repeat(auto-fill,minmax(min(100%,100px),1fr))] auto-rows-[100px]"
           >
             <li
               style={{ background: Bg(), borderColor: Primary() }}

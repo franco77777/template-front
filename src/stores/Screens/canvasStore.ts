@@ -4,14 +4,14 @@ export interface canvas {
   canvasName: string;
   canvas: Element[];
 }
-export interface Store {
+export interface CanvasStore {
   name: string;
   canvases: canvas[];
   setName: (value: string) => void;
   setCanvases: (value: canvas[]) => void;
 }
 
-export const canvasStore = create<Store>((set, get) => ({
+export const canvasStore = create<CanvasStore>((set, get) => ({
   name: "",
   canvases: [],
   setName: (value) => set((state) => ({ name: value })),

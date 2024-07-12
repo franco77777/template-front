@@ -54,9 +54,9 @@ function Canvas() {
   const [colorText, setColorText] = useState("rgb(255 255 255)");
   const [textSize, setTextSize] = useState(24);
   const [fillStyle, setFillStyle] = useState(false);
-  const [handleReturn, setHandleReturn] = useState(false);
+  const handleReturn = useRef(false);
   const valueRef = useRef<Element[]>(elements);
-  //const canvasesRef = useRef<canvas[]>();
+
   const setCanvases = canvasStore((state) => state.setCanvases);
   const canvases = canvasStore((state) => state.canvases);
   const nameCanvasIdStore = canvasStore((state) => state.name);
@@ -65,31 +65,37 @@ function Canvas() {
 
   useEffect(() => {
     valueRef.current = elements;
+    console.log("filling valueref elements");
   }, [elements]);
   useEffect(() => {
     return () => {
-      if (handleReturn) {
-        const exists = canvases.some((e) => e.canvasName === nameCanvasIdStore);
-        const canvasesCopy = [...canvases];
-        if (exists) {
-          const current = canvasesCopy.find(
+      setTimeout(() => {
+        if (handleReturn.current) {
+          const exists = canvases.some(
             (e) => e.canvasName === nameCanvasIdStore
-          ) as canvas;
-          current.canvas = valueRef.current;
-        } else {
-          const newCanvas = {
-            canvasName: nameCanvasIdStore as string,
-            canvas: valueRef.current,
-          };
-          canvasesCopy.push(newCanvas);
-        }
-        console.log("existsreturn", canvasesCopy);
+          );
+          const canvasesCopy = [...canvases];
+          if (exists) {
+            const current = canvasesCopy.find(
+              (e) => e.canvasName === nameCanvasIdStore
+            ) as canvas;
+            current.canvas = valueRef.current;
+          } else {
+            const newCanvas = {
+              canvasName: nameCanvasIdStore as string,
+              canvas: valueRef.current,
+            };
+            canvasesCopy.push(newCanvas);
+          }
+          console.log("existsreturn", canvases);
+          //console.log("canvasesRef.current", canvasesRef.current);
 
-        setCanvases(canvasesCopy);
-        setHandleReturn(false);
-      }
+          setCanvases(canvasesCopy);
+          handleReturn.current = false;
+        }
+      }, 0);
     };
-  }, [elements]);
+  }, []);
 
   useLayoutEffect(() => {
     const textLists = document.querySelectorAll("[data-text=textList]");
@@ -211,14 +217,16 @@ function Canvas() {
     const exists = canvasesCopy.find((e) => e.canvasName === nameCanvasIdStore);
     console.log("exists", exists);
 
-    if (exists) {
+    if (exists && exists.canvas.length) {
+      console.log("999999999999999999999999999");
+
       setElements(exists.canvas, true);
     }
 
     //setElements(test, true);
   }, []);
   useEffect(() => {
-    setHandleReturn(true);
+    handleReturn.current = true;
   }, [elements]);
 
   //console.log("tool", tool);
