@@ -75,13 +75,11 @@ export const Theming: ThemingType = {
 
 export const Primary = () => {
   const Theme = storeTheme.getState().primary;
-  console.log("theme", Theme);
 
   return Theme ? Theme : Theming[0].primary;
 };
 export const Secondary = () => {
   const Theme = storeTheme.getState().secondary;
-  console.log("theme", Theme);
 
   return Theme;
 };

@@ -5,9 +5,10 @@ import {
   SecondaryGradientExist,
   SecondaryTextExist,
 } from "@/theme/theming";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const GlobalAdmin2 = () => {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -138,11 +139,12 @@ const GlobalAdmin2 = () => {
                   organization example
                 </li>
                 <li
+                  onClick={() => navigate("/global-admin-4")}
                   style={{
                     backgroundColor: Bg(),
                     borderColor: Primary(),
                   }}
-                  className="flex justify-center items-center bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
+                  className="cursor-pointer flex justify-center items-center bg-blue-500 rounded-xl w-full h-full border-[1px] p-2 break-words"
                 >
                   + add
                 </li>

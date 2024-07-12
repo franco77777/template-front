@@ -10,13 +10,24 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { tasks } from "@/types/globalAdminTypes";
 import ModalTask from "@/components/globalAdmin3/modalTask";
+import { canvasStore } from "@/stores/Screens/canvasStore";
+import ModalCanvases from "@/components/canvas/components/modalCanvases";
 
 const GlobalAdmin3 = () => {
   const [modal, setModal] = useState(false);
+  const [ModalCanvasName, setModalCanvasName] = useState(false);
   const [tasks, setTasks] = useState<tasks[]>([]);
+  const setNameCanvasStore = canvasStore((state) => state.setName);
+  const canvases = canvasStore((state) => state.canvases);
   const navigate = useNavigate();
+  console.log("canvases", canvases);
+
   const handleModal = () => {
     setModal(!modal);
+  };
+  const handleCanvas = (value: string) => {
+    setNameCanvasStore(value);
+    navigate("/canvas");
   };
   return (
     <div
@@ -88,6 +99,7 @@ const GlobalAdmin3 = () => {
               >
                 {tasks?.map((e) => (
                   <li
+                    key={e.name}
                     style={{
                       backgroundColor: Bg(),
                       borderColor: Primary(),
@@ -133,8 +145,21 @@ const GlobalAdmin3 = () => {
                 style={{ background: BgDarker() }}
                 className=" rounded-xl p-2 grid grid-cols-[repeat(auto-fill,minmax(min(100%,100px),1fr))] auto-rows-[100px] gap-2"
               >
+                {canvases.map((e) => (
+                  <li
+                    key={e.canvasName}
+                    onClick={() => handleCanvas(e.canvasName)}
+                    style={{
+                      backgroundColor: Bg(),
+                      borderColor: Primary(),
+                    }}
+                    className="rounded-xl w-full h-full border-[1px] p-2 break-words"
+                  >
+                    {e.canvasName}
+                  </li>
+                ))}
                 <li
-                  onClick={() => navigate("/global-admin-4")}
+                  onClick={() => setModalCanvasName(true)}
                   style={{
                     backgroundColor: Bg(),
                     borderColor: Primary(),
@@ -148,6 +173,13 @@ const GlobalAdmin3 = () => {
           </div>
         </div>
       </section>
+      {ModalCanvasName && <ModalCanvases setModal={setModalCanvasName} />}
+      {ModalCanvasName && (
+        <div
+          onClick={() => setModalCanvasName(false)}
+          className="z-10 bg-black opacity-80 fixed min-h-screen min-w-full"
+        />
+      )}
       {modal && <ModalTask setModal={setModal} setTasks={setTasks} />}
       {modal && (
         <div
