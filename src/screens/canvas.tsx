@@ -32,7 +32,7 @@ import { canvas, canvasStore } from "@/stores/Screens/canvasStore";
 function Canvas() {
   const [elements, setElements, undo, redo] = useHistory([]);
   const [action, setAction] = useState("none");
-  const [tool, setTool] = useState("line");
+  const [tool, setTool] = useState("selection");
   const [selectedElement, setSelectedElement] =
     useState<SelectedElement | null>(null);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
@@ -61,41 +61,7 @@ function Canvas() {
   const canvases = canvasStore((state) => state.canvases);
   const nameCanvasIdStore = canvasStore((state) => state.name);
   console.log("elements", elements);
-  console.log("canvases11111111", canvases);
-
-  useEffect(() => {
-    valueRef.current = elements;
-    console.log("filling valueref elements");
-  }, [elements]);
-  useEffect(() => {
-    return () => {
-      setTimeout(() => {
-        if (handleReturn.current) {
-          const exists = canvases.some(
-            (e) => e.canvasName === nameCanvasIdStore
-          );
-          const canvasesCopy = [...canvases];
-          if (exists) {
-            const current = canvasesCopy.find(
-              (e) => e.canvasName === nameCanvasIdStore
-            ) as canvas;
-            current.canvas = valueRef.current;
-          } else {
-            const newCanvas = {
-              canvasName: nameCanvasIdStore as string,
-              canvas: valueRef.current,
-            };
-            canvasesCopy.push(newCanvas);
-          }
-          console.log("existsreturn", canvases);
-          //console.log("canvasesRef.current", canvasesRef.current);
-
-          setCanvases(canvasesCopy);
-          handleReturn.current = false;
-        }
-      }, 0);
-    };
-  }, []);
+  console.log("selectedElement", selectedElement);
 
   useLayoutEffect(() => {
     const textLists = document.querySelectorAll("[data-text=textList]");
@@ -155,6 +121,41 @@ function Canvas() {
     }
   }, [elements, action, selectedElement, panOffset, scale]);
   useEffect(() => {
+    valueRef.current = elements;
+  }, [elements]);
+  useEffect(() => {
+    return () => {
+      setTimeout(() => {
+        if (handleReturn.current) {
+          const exists = canvases.some(
+            (e) => e.canvasName === nameCanvasIdStore
+          );
+          const canvasesCopy = [...canvases];
+
+          valueRef.current.forEach((e) => (e.focus = false));
+          if (exists) {
+            const current = canvasesCopy.find(
+              (e) => e.canvasName === nameCanvasIdStore
+            ) as canvas;
+
+            current.canvas = valueRef.current;
+          } else {
+            const newCanvas = {
+              canvasName: nameCanvasIdStore as string,
+              canvas: valueRef.current,
+            };
+            canvasesCopy.push(newCanvas);
+          }
+
+          //console.log("canvasesRef.current", canvasesRef.current);
+
+          setCanvases(canvasesCopy);
+          handleReturn.current = false;
+        }
+      }, 0);
+    };
+  }, []);
+  useEffect(() => {
     const undoRedoFunction = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key === "z") {
         undo();
@@ -174,8 +175,21 @@ function Canvas() {
     if (action === "writing") {
       setTimeout(() => {
         if (textArea && selectedElement) {
-          textArea.focus();
           textArea.innerText = selectedElement.text as string;
+
+          const selection = document.getSelection();
+          const range = document.createRange();
+          //const contenteditable=document.querySelector('div[contenteditable="true"]');
+
+          if (textArea.lastChild && textArea.lastChild.nodeType == 5) {
+            range.setStart(textArea.lastChild, 1);
+          } else {
+            range.setStart(textArea, textArea.childNodes.length);
+          }
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+
+          textArea.focus();
         }
       }, 0);
     }
@@ -215,11 +229,8 @@ function Canvas() {
   useLayoutEffect(() => {
     const canvasesCopy = [...canvases];
     const exists = canvasesCopy.find((e) => e.canvasName === nameCanvasIdStore);
-    console.log("exists", exists);
 
     if (exists && exists.canvas.length) {
-      console.log("999999999999999999999999999");
-
       setElements(exists.canvas, true);
     }
 
@@ -229,15 +240,15 @@ function Canvas() {
     handleReturn.current = true;
   }, [elements]);
 
-  //console.log("tool", tool);
+  console.log("tool", tool);
   const blurTextList = (e: FocusEvent) => {
     if (selectedElement) {
       const diveTextFalse = document.getElementById(
         "divTextFalse"
       ) as HTMLElement;
       diveTextFalse?.classList.remove("hidden");
-      diveTextFalse.style.fontSize = "18px";
-      diveTextFalse.style.lineHeight = "normal";
+      diveTextFalse.style.fontSize = "16px";
+      diveTextFalse.style.lineHeight = "1.5rem";
       const Target = e.target as HTMLElement;
       const idArea = Target.parentElement?.children[0] as HTMLElement;
       const value = Target.innerHTML;
@@ -246,18 +257,23 @@ function Canvas() {
       const height = diveTextFalse.offsetHeight;
       const index = copyElements.findIndex((e) => e.id === selectedElement.id);
       const updateElement = {
+        focus: false,
         id: selectedElement.id,
         type: selectedElement.type,
         text: value,
         text2: idArea.innerHTML,
         x1: selectedElement.x1,
         y1: selectedElement.y1,
-        x2: selectedElement.x1 + width + 48,
-        y2: selectedElement.y1 + height + 32,
+        x2: selectedElement.x1 + width + 16.8,
+        y2: selectedElement.y1 + height,
       };
+
       copyElements[index] = updateElement;
+      console.log("copyElements9", copyElements);
+
       setElements(copyElements);
       setSelectedElement(null);
+      setTool("selection");
       diveTextFalse?.classList.add("hidden");
     }
   };
@@ -273,8 +289,45 @@ function Canvas() {
     const height = maxY - minY;
     const centerX = minX + width / 2;
     const centerY = minY + height / 2;
+    const focus = (value = true) => {
+      if (element.focus) {
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.moveTo(minX, minY);
+        ctx.lineTo(maxX, minY);
+        ctx.lineTo(maxX, maxY);
+        ctx.lineTo(minX, maxY);
+        ctx.lineTo(minX, minY);
+        ctx.strokeStyle = "#3FA2F6";
+        ctx.stroke();
+        if (value) {
+          ctx.beginPath();
+
+          ctx.arc(minX, minY, 5, 0, 2 * Math.PI);
+          ctx.fillStyle = "white";
+          ctx.fill();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(maxX, minY, 5, 0, 2 * Math.PI);
+          ctx.fillStyle = "white";
+          ctx.fill();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(maxX, maxY, 5, 0, 2 * Math.PI);
+          ctx.fillStyle = "white";
+          ctx.fill();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(minX, maxY, 5, 0, 2 * Math.PI);
+          ctx.fillStyle = "white";
+          ctx.fill();
+          ctx.stroke();
+        }
+      }
+    };
     switch (element.type) {
       case "textList": {
+        focus(false);
         const canvasContainer = document.getElementById("canvasContainer");
 
         const divTextContainer = document.createElement("div");
@@ -282,7 +335,7 @@ function Canvas() {
         const divText = document.createElement("div") as HTMLElement;
         const divNumber1 = document.createElement("div");
         const divTextContainerClasses =
-          "z-30 p-4 flex gap-2 absolute bg-gray-800 rounded-lg text-white";
+          "z-30 p-4 flex gap-2 absolute bg-gray-800 rounded-lg text-white text-base";
         const divNumerationClasses = "flex flex-col";
         const divTextClasses = "h-fit outline-none";
         divNumber1.append("1");
@@ -332,6 +385,7 @@ function Canvas() {
         break;
       }
       case "triangle": {
+        focus();
         if (element.color) {
           ctx.beginPath();
           ctx.moveTo(centerX, minY);
@@ -353,7 +407,9 @@ function Canvas() {
       }
       case "circle": {
         if (element.color) {
+          focus();
           ctx.beginPath();
+          ctx.fillStyle = "";
           ctx.lineWidth = 3;
           ctx.ellipse(
             centerX,
@@ -381,6 +437,22 @@ function Canvas() {
 
       case "line":
         if (element.color && element.lineWidth) {
+          if (element.focus) {
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+
+            ctx.strokeStyle = "#3FA2F6";
+            ctx.arc(element.x1, element.y1, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(element.x2, element.y2, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.stroke();
+            ctx.stroke();
+          }
           ctx.beginPath();
           ctx.strokeStyle = element.color;
           ctx.lineWidth = element.lineWidth;
@@ -390,6 +462,7 @@ function Canvas() {
         }
         break;
       case "rectangle":
+        focus();
         if (element.color) {
           if (element.fillStyle) {
             ctx.beginPath();
@@ -455,6 +528,7 @@ function Canvas() {
             default:
               break;
           }
+          focus(false);
           ctx.beginPath();
           ctx.fillStyle = element.color as string;
           ctx.textBaseline = "top";
@@ -482,6 +556,7 @@ function Canvas() {
             element.x2 - element.x1,
             element.y2 - element.y1
           );
+          focus();
         }
         break;
       default:
@@ -514,7 +589,7 @@ function Canvas() {
       case "circle": {
         const newElement = {
           fillStyle,
-
+          focus: false,
           color: colorShape,
           x1: clientX,
           y1: clientY,
@@ -527,6 +602,7 @@ function Canvas() {
       }
       case "line": {
         const newElement = {
+          focus: false,
           lineWidth,
           color: colorLine,
           x1: clientX,
@@ -540,6 +616,7 @@ function Canvas() {
       }
       case "pencil": {
         const newElement = {
+          focus: false,
           colorPencil,
           pencilWidth,
           points: [{ x: clientX, y: clientY }],
@@ -551,6 +628,7 @@ function Canvas() {
       case "text":
       case "textList": {
         const newElement = {
+          focus: false,
           x1: clientX,
           y1: clientY,
           color: colorText,
@@ -585,6 +663,7 @@ function Canvas() {
 
         img.src = "";
         const newElement = {
+          focus: true,
           x1: clientX - offsetX,
           y1: clientY - offsetY,
           x2: clientX + offsetX,
@@ -641,12 +720,14 @@ function Canvas() {
     e: React.MouseEvent<HTMLCanvasElement, MouseEvent>
   ) => {
     //e.preventDefault();
+    if (tool === "none") return;
     if (action === "writing") return;
     if (action === "writing2") return;
     if (action === "textListing") {
       setAction("none");
       return;
     }
+
     const { clientX, clientY } = getMouseCoordinates(e);
 
     if (e.button === 1 || pressedKeys.has(" ")) {
@@ -676,29 +757,44 @@ function Canvas() {
 
           setSelectedElement({ ...element, offsetX, offsetY });
         }
+        const copyElements = [...elements];
+        copyElements.forEach((e) =>
+          e.id === element.id ? (e.focus = true) : (e.focus = false)
+        );
+        console.log("copyElements10", copyElements);
 
-        setElements((previousState) => previousState);
+        setElements(copyElements, true);
 
         if (element.position === "inside") {
           setAction("moving");
         } else {
           setAction("resizing");
         }
+      } else {
+        const copyElements = [...elements];
+        copyElements.forEach((e) => (e.focus = false));
+        console.log("copyElements", copyElements);
+        setElements(copyElements, true);
       }
     } else {
       const newElement = generateElementType(
         clientX,
         clientY
       ) as SelectedElement;
-      console.log("newElement", newElement);
 
       if (newElement) {
         const canvas = document.getElementById("canvas") as HTMLElement;
         setSelectedElement(newElement);
-        setElements((state) => [...state, newElement]);
+        const copyElements = [...elements];
+        copyElements.forEach((e) => (e.focus = false));
+        copyElements.push(newElement);
+        console.log("copyElements2", copyElements);
+        setElements(copyElements);
         setImageUrl("");
         if (action === "addingImage") {
           canvas.style.cursor = "auto";
+          setAction("none");
+          setTool("selection");
           return;
         }
         if (tool === "textList") {
@@ -706,6 +802,7 @@ function Canvas() {
           return;
         }
         setAction(tool === "text" ? "writing" : "drawning");
+        console.log("activating textoll");
       }
     }
   };
@@ -713,7 +810,21 @@ function Canvas() {
   const handleMouseMove = (
     e: React.MouseEvent<HTMLCanvasElement, MouseEvent>
   ) => {
+    if (tool === "none") return;
     const { clientX, clientY } = getMouseCoordinates(e);
+    if (action === "textListing" || action === "writing") {
+      return;
+    }
+    // if (selectedElement) {
+    //   console.log("selectedElement111111111", selectedElement);
+
+    //   const copyElements = [...elements];
+    //   copyElements.forEach((e) =>
+    //     e.id === selectedElement.id ? (e.focus = true) : (e.focus = false)
+    //   );
+    //   console.log("copyElement3", copyElements);
+    //   setElements(copyElements, true);
+    // }
     if (action === "panning") {
       const canvas = document.getElementById("canvas") as HTMLElement;
       canvas.style.cursor = "grab";
@@ -750,6 +861,7 @@ function Canvas() {
       const offsetY = Y / 2;
       canvas.style.cursor = "none";
       cursorImage.classList.remove("hidden");
+
       cursorImage.style.width = `${X}px`;
       cursorImage.style.height = `${Y}px`;
       cursorImage.style.left = `${
@@ -783,7 +895,7 @@ function Canvas() {
         currentElement.x2 = clientX;
         currentElement.y2 = clientY;
       }
-
+      console.log("copyElements4", elementsCopy);
       setElements(elementsCopy, true);
     } else if (action === "moving" && selectedElement) {
       if (selectedElement.type === "pencil" && selectedElement.points) {
@@ -802,6 +914,7 @@ function Canvas() {
           ...elementsCopy[index],
           points: newPoints as Point[],
         };
+        console.log("elementsCopy5", elementsCopy);
 
         setElements(elementsCopy, true);
       } else {
@@ -841,6 +954,8 @@ function Canvas() {
         const { id } = element;
         const ElementsCopy = [...elements];
         const newElements = ElementsCopy.filter((e) => e.id !== id);
+        console.log("newElements6", newElements);
+
         setElements(newElements);
       }
     }
@@ -865,6 +980,7 @@ function Canvas() {
       case "line":
         {
           newElement = {
+            focus: elementForUpdate.focus,
             fillStyle: elementForUpdate.fillStyle,
             lineWidth: elementForUpdate.lineWidth,
             color: elementForUpdate.color,
@@ -880,6 +996,7 @@ function Canvas() {
       case "image":
         {
           newElement = {
+            focus: elementForUpdate.focus,
             x1,
             y1,
             x2,
@@ -896,15 +1013,15 @@ function Canvas() {
             document.getElementById("canvas") as HTMLCanvasElement
           ).getContext("2d") as CanvasRenderingContext2D;
           const divTextFalse = document.getElementById(
-            "divTextFalse"
+            "divTextFalse2"
           ) as HTMLElement;
           const textHeight = elementForUpdate.size as number;
           divTextFalse.classList.remove("hidden");
+
           divTextFalse.innerText = text;
-          divTextFalse.style.fontSize = `${textHeight}px`;
+          divTextFalse.style.font = `${textHeight}px sans-serif`;
           ctx.font = `${textHeight}px sans-serif`;
 
-          console.log("text", text);
           let lineHeight = 0;
           switch (textHeight as number) {
             case 34:
@@ -936,6 +1053,7 @@ function Canvas() {
           //const textHeight = ctx.measureText('M').width;
 
           newElement = {
+            focus: elementForUpdate.focus,
             color: elementForUpdate.color,
             size: textHeight,
             x1,
@@ -952,6 +1070,7 @@ function Canvas() {
         break;
       case "textList": {
         newElement = {
+          focus: elementForUpdate.focus,
           text: elementForUpdate.text,
           text2: elementForUpdate.text2,
           x1,
@@ -969,6 +1088,7 @@ function Canvas() {
     }
     if (newElement) {
       copyElements[index] = newElement;
+      console.log("copyElements7", copyElements);
 
       setElements(copyElements, true);
     }
@@ -977,6 +1097,7 @@ function Canvas() {
   const handleMouseUp = (
     e: React.MouseEvent<HTMLCanvasElement, MouseEvent>
   ) => {
+    if (tool === "none") return;
     const { clientX, clientY } = getMouseCoordinates(e);
     if (action === "panning") {
       const canvas = document.getElementById("canvas") as HTMLElement;
@@ -990,6 +1111,7 @@ function Canvas() {
           clientY - selectedElement.offsetY === selectedElement.y1
         ) {
           setAction("writing2");
+          setTool("none");
 
           return;
         }
@@ -999,6 +1121,7 @@ function Canvas() {
           clientY - selectedElement.offsetY === selectedElement.y1
         ) {
           setAction("writing");
+
           return;
         }
       }
@@ -1008,10 +1131,15 @@ function Canvas() {
         const { x1, y1, x2, y2 } = adjustElementCoordinates(currentElement);
         if (tool !== "pencil" && tool !== "text" && tool !== "image")
           updateElement(id, x1, y1, x2, y2);
+        setTool("selection");
+        setAction("none");
+        setSelectedElement(null);
+        return;
       }
       if (action === "writing") return;
     }
     if (action === "textListing") return;
+
     setAction("none");
     setSelectedElement(null);
   };
@@ -1022,14 +1150,15 @@ function Canvas() {
     const Target = e.target as HTMLDivElement;
     const text = Target.innerText;
 
-    console.log("textsize", textSize);
-
     if (!text) {
       setAction("none");
+      setTool("selection");
       setSelectedElement(null);
       return;
     }
+
     setAction("none");
+    setTool("selection");
     setSelectedElement(null);
     updateElement(id, x1, y1, 0, 0, text);
   };
@@ -1159,7 +1288,7 @@ function Canvas() {
             //background: "transparent",
             zIndex: 2,
           }}
-          className="text-white w-max overflow-visible"
+          className="text-white w-max overflow-visible "
         />
       ) : null}
       <canvas
@@ -1172,7 +1301,14 @@ function Canvas() {
         onMouseUp={handleMouseUp}
         style={{ position: "absolute", zIndex: 40 }}
       ></canvas>
-      <div id="divTextFalse" className="hidden w-fit bg-red-500 m-0 p-0" />
+      <div
+        id="divTextFalse"
+        className="hidden w-fit bg-red-500 ml-2 mt-2 p-4 text-base"
+      />
+      <div
+        id="divTextFalse2"
+        className="hidden w-fit bg-blue-500 ml-2 mt-2  "
+      />
       <img
         id="cursorImage"
         src=""

@@ -20,7 +20,7 @@ export const useHistory = (initialState: []) => {
     const newState =
       typeof action === "function" ? action(history[index]) : action;
 
-    //console.log("newstate", newState);
+    console.log("newstate", newState);
 
     if (overwrite) {
       const historyCopy = [...history];

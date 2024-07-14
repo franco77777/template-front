@@ -63,9 +63,11 @@ export interface Element {
   points?: Point[];
   size?: number | undefined;
   src?: string;
+  focus: boolean;
 }
 
 export interface SelectedElement {
+  focus: boolean;
   x1: number;
   y1: number;
   x2: number;
