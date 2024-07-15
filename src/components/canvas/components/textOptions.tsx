@@ -16,7 +16,9 @@ const TextOptions = ({
   return (
     <>
       <div
-        className={`${tool === "text" ? "-top-10" : "top-0"}
+        className={`${
+          tool === "text" || tool === "textList" ? "-top-10" : "top-0"
+        }
   flex gap-2 items-center text-white h-10 w-[90%]  p-2 absolute -z-10  duration-300 ease-in-out rounded-t-lg left-1/2 -translate-x-1/2 bg-black border-x-[1px] border-t-[1px] border-gray-500`}
       >
         {/* <input
@@ -28,8 +30,10 @@ const TextOptions = ({
           onClick={() => SetTextSize(34)}
           data-size={34}
           className={`${
-            textSize === 34 ? "bg-blue-500 scale-110" : "hover:scale-110"
-          } duration-150 rounded px-[3px] h-fit cursor-pointer`}
+            textSize === 34 && tool === "text"
+              ? "bg-blue-500 scale-110"
+              : "hover:scale-110"
+          } duration-150 rounded px-[3px] h-fit cursor-pointer `}
         >
           H1
         </div>
@@ -37,7 +41,9 @@ const TextOptions = ({
           onClick={() => SetTextSize(30)}
           data-size={30}
           className={`${
-            textSize === 30 ? "bg-blue-500 scale-110" : "hover:scale-110"
+            textSize === 30 && tool === "text"
+              ? "bg-blue-500 scale-110"
+              : "hover:scale-110"
           } duration-150 rounded px-[3px] h-fit cursor-pointer`}
         >
           H2
@@ -46,7 +52,9 @@ const TextOptions = ({
           onClick={() => SetTextSize(24)}
           data-size={24}
           className={`${
-            textSize === 24 ? "bg-blue-500 scale-110" : "hover:scale-110"
+            textSize === 24 && tool === "text"
+              ? "bg-blue-500 scale-110"
+              : "hover:scale-110"
           } duration-150 rounded px-[3px] h-fit cursor-pointer`}
         >
           H3
@@ -55,7 +63,9 @@ const TextOptions = ({
           onClick={() => SetTextSize(20)}
           data-size={20}
           className={`${
-            textSize === 20 ? "bg-blue-500 scale-110" : "hover:scale-110"
+            textSize === 20 && tool === "text"
+              ? "bg-blue-500 scale-110"
+              : "hover:scale-110"
           } duration-150 rounded px-[3px] h-fit cursor-pointer`}
         >
           H4
@@ -64,7 +74,9 @@ const TextOptions = ({
           onClick={() => SetTextSize(14)}
           data-size={14}
           className={`${
-            textSize === 14 ? "bg-blue-500 scale-110" : "hover:scale-110"
+            textSize === 14 && tool === "text"
+              ? "bg-blue-500 scale-110"
+              : "hover:scale-110"
           } duration-150 rounded px-[3px] h-fit cursor-pointer`}
         >
           H5
@@ -73,7 +85,9 @@ const TextOptions = ({
           onClick={() => SetTextSize(10)}
           data-size={10}
           className={`${
-            textSize === 10 ? "bg-blue-500 scale-110" : "hover:scale-110"
+            textSize === 10 && tool === "text"
+              ? "bg-blue-500 scale-110"
+              : "hover:scale-110"
           } duration-150 rounded px-[3px] h-fit cursor-pointer`}
         >
           H6
@@ -85,7 +99,9 @@ const TextOptions = ({
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="hover:scale-110 duration-150 rounded h-fit cursor-pointer"
+          className={`${
+            tool === "textList" ? "bg-blue-500 scale-110" : "hover:scale-110"
+          } duration-150 rounded px-[3px] h-fit cursor-pointer`}
         >
           <path
             fillRule="evenodd"

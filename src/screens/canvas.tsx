@@ -195,9 +195,23 @@ function Canvas() {
     }
   }, [action, selectedElement]);
   useEffect(() => {
+    const focusElement = elements.some((e) => e.focus === true);
+    if (
+      pressedKeys.has("Delete") &&
+      focusElement &&
+      action !== "writing2" &&
+      action !== "writing"
+    ) {
+      const ElementsCopy = [...elements];
+      const newElements = ElementsCopy.filter((e) => e.focus === false);
+      console.log("newElements9999999999999", newElements);
+
+      setElements(newElements);
+    }
     const panOrZoomFunction = (event: WheelEventInit) => {
       const deltaX = event.deltaX as number;
       const deltaY = event.deltaY as number;
+
       if (pressedKeys.has("Meta") || pressedKeys.has("Control")) {
         onZoom(deltaY * -0.01);
       } else {
@@ -214,7 +228,7 @@ function Canvas() {
     };
   }, [pressedKeys]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const document2 = document.getElementById("root") as HTMLElement;
     document2.addEventListener(
       "wheel",
@@ -226,7 +240,7 @@ function Canvas() {
       true
     );
   }, []);
-  useLayoutEffect(() => {
+  useEffect(() => {
     const canvasesCopy = [...canvases];
     const exists = canvasesCopy.find((e) => e.canvasName === nameCanvasIdStore);
 
@@ -710,7 +724,7 @@ function Canvas() {
       case "image":
         break;
       default:
-        canvas.style.cursor = "auto";
+        //canvas.style.cursor = "auto";
         break;
     }
   }, [tool]);
@@ -733,6 +747,7 @@ function Canvas() {
     if (e.button === 1 || pressedKeys.has(" ")) {
       const canvas = document.getElementById("canvas") as HTMLElement;
       canvas.style.cursor = "grab";
+
       setAction("panning");
       setStartPanMousePosition({ x: clientX, y: clientY });
       return;
@@ -815,16 +830,7 @@ function Canvas() {
     if (action === "textListing" || action === "writing") {
       return;
     }
-    // if (selectedElement) {
-    //   console.log("selectedElement111111111", selectedElement);
 
-    //   const copyElements = [...elements];
-    //   copyElements.forEach((e) =>
-    //     e.id === selectedElement.id ? (e.focus = true) : (e.focus = false)
-    //   );
-    //   console.log("copyElement3", copyElements);
-    //   setElements(copyElements, true);
-    // }
     if (action === "panning") {
       const canvas = document.getElementById("canvas") as HTMLElement;
       canvas.style.cursor = "grab";
