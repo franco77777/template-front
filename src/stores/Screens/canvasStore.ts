@@ -3,6 +3,7 @@ import { create } from "zustand";
 export interface canvas {
   canvasName: string;
   canvas: Element[];
+  url: string;
 }
 export interface CanvasStore {
   name: string;

@@ -56,6 +56,7 @@ function Canvas() {
   const [fillStyle, setFillStyle] = useState(false);
   const handleReturn = useRef(false);
   const valueRef = useRef<Element[]>(elements);
+  const canvasRef = useRef<HTMLCanvasElement>();
 
   const setCanvases = canvasStore((state) => state.setCanvases);
   const canvases = canvasStore((state) => state.canvases);
@@ -121,17 +122,24 @@ function Canvas() {
     }
   }, [elements, action, selectedElement, panOffset, scale]);
   useEffect(() => {
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     valueRef.current = elements;
+    canvasRef.current = canvas;
   }, [elements]);
   useEffect(() => {
     return () => {
       setTimeout(() => {
         if (handleReturn.current) {
+          //const url = canvas.toDataURL();
           const exists = canvases.some(
             (e) => e.canvasName === nameCanvasIdStore
           );
           const canvasesCopy = [...canvases];
+          const canvas = canvasRef.current as HTMLCanvasElement;
+          const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+          ctx.translate(0, 0);
 
+          const url = canvas.toDataURL() as string;
           valueRef.current.forEach((e) => (e.focus = false));
           if (exists) {
             const current = canvasesCopy.find(
@@ -139,15 +147,17 @@ function Canvas() {
             ) as canvas;
 
             current.canvas = valueRef.current;
+            current.url = url;
           } else {
             const newCanvas = {
               canvasName: nameCanvasIdStore as string,
               canvas: valueRef.current,
+              url,
             };
             canvasesCopy.push(newCanvas);
           }
 
-          //console.log("canvasesRef.current", canvasesRef.current);
+          console.log("canvas", canvasRef.current?.toDataURL());
 
           setCanvases(canvasesCopy);
           handleReturn.current = false;
