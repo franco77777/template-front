@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { coordinates, Element, Point } from "../types/canvasTypes";
+import { coordinates, canvas, Point } from "../types/canvasTypes";
 
 export const usePressedKeys = () => {
   const [pressedKeys, setPressedKeys] = useState(new Set());
@@ -89,7 +89,7 @@ export const nearPoint = (
 export const positionWithinElement = (
   clientX: number,
   clientY: number,
-  element: Element
+  element: canvas
 ) => {
   const { type, x1, y1, x2, y2 } = element;
   switch (type) {
@@ -185,7 +185,7 @@ export const resizedCoordinates = (
       return null; //should not really get here...
   }
 };
-export const adjustElementCoordinates = (element: Element) => {
+export const adjustElementCoordinates = (element: canvas) => {
   const { type, x1, y1, x2, y2 } = element;
   if (type === "rectangle") {
     const minX = Math.min(x1, x2);

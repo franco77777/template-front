@@ -1,16 +1,61 @@
+import { pageStore } from "@/stores/Screens/canvasStore";
+import { Bg, BgDarker, Primary } from "@/theme/theming";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export interface prop {
-  modalBlackboard: string;
+  classes: string;
+  id: number | null;
+  first: boolean;
 }
-const ModalBlackboard = ({ modalBlackboard }: prop) => {
+const ModalBlackboard = ({ classes, id, first }: prop) => {
+  const [bg, setBg] = useState("");
+  const setInsertStore = pageStore((state) => state.setInsert);
+  const setIdStore = pageStore((state) => state.setId);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      setBg(Bg());
+    }, 0);
+    console.log("bgdfdf", Bg());
+  }, []);
+  const mouseOver = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const Target = e.target as HTMLElement;
+    Target.style.backgroundColor = Bg();
+    console.log("target", Target);
+  };
+  const mouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const Target = e.target as HTMLElement;
+    Target.style.backgroundColor = "transparent";
+  };
+  const handleCanvas = () => {
+    if (!first) {
+      setIdStore(id);
+      setInsertStore(true);
+    }
+    navigate("/canvas");
+  };
   return (
-    <div className={`${modalBlackboard} w-44 bg-purple-500`}>
-      <div className="flex gap-2 ">
+    <div
+      style={{ background: BgDarker(), borderColor: Primary() }}
+      id="modalBlackboard"
+      data-modal="modalBlackboard"
+      className={`${
+        classes ? classes : "left-14"
+      } opacity-0 top-0 -translate-x-[125%] border-[1px] pointer-events-none rounded px-2 py-1 flex items-center text-base font-base w-52 z-50  absolute  duration-300 transition-all`}
+    >
+      <div
+        onMouseLeave={(e) => mouseLeave(e)}
+        onMouseOver={(e) => mouseOver(e)}
+        onClick={handleCanvas}
+        className={`py-1 w-full rounded flex gap-2 cursor-pointer hover:scale-105 duration-150 `}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 16 16"
           preserveAspectRatio="xMidYMid meet"
-          className="w-5 h-5 "
+          className="w-5 h-5 pointer-events-none"
         >
           <g fill="currentColor" clip-path="url(#EditDrawing_svg__a)">
             <path
@@ -26,7 +71,7 @@ const ModalBlackboard = ({ modalBlackboard }: prop) => {
             </clipPath>
           </defs>
         </svg>
-        <div>Drawning</div>
+        <div className="pointer-events-none">Drawning</div>
       </div>
     </div>
   );

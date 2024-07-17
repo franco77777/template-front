@@ -46,7 +46,7 @@ export interface Point {
   x: number;
   y: number;
 }
-export interface Element {
+export interface canvas {
   x1: number;
   y1: number;
   x2: number;

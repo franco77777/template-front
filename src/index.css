@@ -112,6 +112,31 @@ img {
     }
   }
   
+  .scrollbar::-webkit-scrollbar{
+    
+    z-index: 9999;
+    width:5px;
+    background-color:#000;
+    }
+    
+  .scrollbar::-webkit-scrollbar-thumb{
+    
+    z-index: 9999;
+  background:rgb(147 51 234);
+  border-radius:5px;
+  }
+       
+  body::-webkit-scrollbar{
+    z-index: 9999;
+    width:5px;
+    background-color:#000;
+    }
+    
+  body::-webkit-scrollbar-thumb{
+    z-index: 9999;
+  background:rgb(147 51 234);
+  border-radius:5px;
+  }
 
   
 
@@ -129,6 +154,11 @@ img {
 
   html {
     cursor: url('https://i.sstatic.net/wu8CP.png'), auto;
+  }
+
+  .test{
+    overflow-y: scroll;
+    overflow-x: visible;
   }
 
  

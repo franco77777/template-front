@@ -1,4 +1,4 @@
-import { canvasStore } from "@/stores/Screens/canvasStore";
+import { pageStore } from "@/stores/Screens/canvasStore";
 import { Bg, BgDarker, Primary, SecondaryGradientExist } from "@/theme/theming";
 
 import { CircleX } from "lucide-react";
@@ -10,8 +10,8 @@ export interface prop {
 }
 const ModalCanvases = ({ setModal }: prop) => {
   const [nameCanvas, setNameCanvas] = useState("");
-  const canvases = canvasStore((state) => state.canvases);
-  const setNameCanvasStore = canvasStore((state) => state.setName);
+  const canvases = pageStore((state) => state.Page);
+  const setNameCanvasStore = pageStore((state) => state.setId);
   const navigate = useNavigate();
   const submitCanvasName = () => {
     if (!nameCanvas) {

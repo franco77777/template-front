@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { tasks } from "@/types/globalAdminTypes";
 import ModalTask from "@/components/globalAdmin3/modalTask";
-import { canvasStore } from "@/stores/Screens/canvasStore";
+import { pageStore } from "@/stores/Screens/canvasStore";
 import ModalCanvases from "@/components/canvas/components/modalCanvases";
 import PageSection from "@/components/globalAdmin3/pageSection";
 import Tasks from "@/components/globalAdmin3/tasks";
@@ -19,28 +19,25 @@ const GlobalAdmin3 = () => {
   const [modal, setModal] = useState(false);
   const [ModalCanvasName, setModalCanvasName] = useState(false);
   const [tasks, setTasks] = useState<tasks[]>([]);
-  const setNameCanvasStore = canvasStore((state) => state.setName);
-  const canvases = canvasStore((state) => state.canvases);
-  const navigate = useNavigate();
-  console.log("canvases", canvases);
 
-  const handleModal = () => {
-    setModal(!modal);
-  };
-  const handleCanvas = (value: string) => {
-    setNameCanvasStore(value);
-    navigate("/canvas");
-  };
+  const canvases = pageStore((state) => state.page);
+
+  console.log("canvases", canvases);
 
   return (
     <div
       style={{ background: Bg(), color: SecondaryTextExist() }}
-      className="flex gap-2 flex-col lg:flex-row min-h-screen p-4 relative"
+      className="flex gap-2 flex-col lg:flex-row h-screen p-4 relative"
     >
-      <section className="w-full flex-grow flex flex-col gap-2 h-auto">
+      <section className="w-full  flex-grow flex flex-col gap-2 h-full">
         <Tasks tasks={tasks} setModal={setModal} modal={modal} />
       </section>
-      <section className=" w-full flex flex-col gap-2">
+      <section
+        style={{
+          background: SecondaryGradientExist(),
+        }}
+        className=" w-full h-full flex flex-col gap-2  p-[2px] rounded-2xl "
+      >
         <PageSection />
       </section>
       {ModalCanvasName && <ModalCanvases setModal={setModalCanvasName} />}

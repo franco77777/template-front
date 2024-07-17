@@ -1,17 +1,15 @@
 import { useState } from "react";
-import { Element } from "../types/canvasTypes";
+import { canvas } from "../types/canvasTypes";
 
 export const useHistory = (initialState: []) => {
   const [index, setIndex] = useState(0);
-  const [history, setHistory] = useState<Element[][]>([initialState]);
+  const [history, setHistory] = useState<canvas[][]>([initialState]);
   // console.log("index", index);
   // console.log("history", history);ddddddddddddddddddd
   // console.log("historyindex", history[index]);
 
   const setState = (
-    action:
-      | ((previousState: Array<Element>) => Array<Element>)
-      | Array<Element>,
+    action: ((previousState: Array<canvas>) => Array<canvas>) | Array<canvas>,
     overwrite = false
   ) => {
     // console.log("action", action);

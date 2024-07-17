@@ -1,7 +1,7 @@
 import { useHistory } from "@/components/canvas/hooks/canvasHooks";
 import {
   coordinates,
-  Element,
+  canvas,
   Point,
   SelectedElement,
 } from "@/components/canvas/types/canvasTypes";
@@ -27,7 +27,7 @@ import LineOptions from "@/components/canvas/components/lineOptions";
 import PencilOptions from "@/components/canvas/components/pencilOptions";
 import ShapeOptions from "@/components/canvas/components/shapeOptions";
 import TextOptions from "@/components/canvas/components/textOptions";
-import { canvas, canvasStore } from "@/stores/Screens/canvasStore";
+import { PageElement, pageStore } from "@/stores/Screens/canvasStore";
 
 function Canvas() {
   const [elements, setElements, undo, redo] = useHistory([]);
@@ -55,12 +55,15 @@ function Canvas() {
   const [textSize, setTextSize] = useState(24);
   const [fillStyle, setFillStyle] = useState(false);
   const handleReturn = useRef(false);
-  const valueRef = useRef<Element[]>(elements);
+  const valueRef = useRef<canvas[]>(elements);
   const canvasRef = useRef<HTMLCanvasElement>();
 
-  const setCanvases = canvasStore((state) => state.setCanvases);
-  const canvases = canvasStore((state) => state.canvases);
-  const nameCanvasIdStore = canvasStore((state) => state.name);
+  const setCanvases = pageStore((state) => state.setPageElements);
+  const canvases = pageStore((state) => state.page);
+  const pageIdStore = pageStore((state) => state.id);
+  const insertStore = pageStore((state) => state.insert);
+  const setInsertStore = pageStore((state) => state.setInsert);
+  const setPageIdStore = pageStore((state) => state.setId);
   console.log("elements", elements);
   console.log("selectedElement", selectedElement);
 
@@ -130,36 +133,49 @@ function Canvas() {
     return () => {
       setTimeout(() => {
         if (handleReturn.current) {
-          //const url = canvas.toDataURL();
-          const exists = canvases.some(
-            (e) => e.canvasName === nameCanvasIdStore
-          );
           const canvasesCopy = [...canvases];
           const canvas = canvasRef.current as HTMLCanvasElement;
           const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
           ctx.translate(0, 0);
 
           const url = canvas.toDataURL() as string;
+
           valueRef.current.forEach((e) => (e.focus = false));
-          if (exists) {
+          if (insertStore && pageIdStore !== null) {
+            const newCanvas = {
+              id: canvases.length,
+              canvas: valueRef.current,
+              url,
+              type: "canvas",
+            };
+            const index = canvasesCopy.findIndex((e) => e.id === pageIdStore);
+            canvasesCopy.splice(index + 1, 0, newCanvas);
+            setCanvases(canvasesCopy);
+            setPageIdStore(null);
+            setInsertStore(false);
+            handleReturn.current = false;
+            return;
+          }
+          if (pageIdStore !== null) {
             const current = canvasesCopy.find(
-              (e) => e.canvasName === nameCanvasIdStore
-            ) as canvas;
+              (e) => e.id === pageIdStore
+            ) as PageElement;
 
             current.canvas = valueRef.current;
             current.url = url;
           } else {
             const newCanvas = {
-              canvasName: nameCanvasIdStore as string,
+              id: canvases.length,
               canvas: valueRef.current,
               url,
+              type: "canvas",
             };
             canvasesCopy.push(newCanvas);
           }
 
-          console.log("canvas", canvasRef.current?.toDataURL());
-
           setCanvases(canvasesCopy);
+          setPageIdStore(null);
+          setInsertStore(false);
           handleReturn.current = false;
         }
       }, 0);
@@ -218,6 +234,7 @@ function Canvas() {
 
       setElements(newElements);
     }
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const panOrZoomFunction = (event: WheelEventInit) => {
       const deltaX = event.deltaX as number;
       const deltaY = event.deltaY as number;
@@ -232,30 +249,30 @@ function Canvas() {
       }
     };
 
-    document.addEventListener("wheel", panOrZoomFunction);
+    canvas.addEventListener("wheel", panOrZoomFunction);
     return () => {
-      document.removeEventListener("wheel", panOrZoomFunction);
+      canvas.removeEventListener("wheel", panOrZoomFunction);
     };
   }, [pressedKeys]);
 
-  useEffect(() => {
-    const document2 = document.getElementById("root") as HTMLElement;
-    document2.addEventListener(
-      "wheel",
-      (event) => {
-        if (event.ctrlKey) {
-          event.preventDefault();
-        }
-      },
-      true
-    );
-  }, []);
+  // useEffect(() => {
+  //   const document2 = document.getElementById("root") as HTMLElement;
+  //   document2.addEventListener(
+  //     "wheel",
+  //     (event) => {
+  //       if (event.ctrlKey) {
+  //         event.preventDefault();
+  //       }
+  //     },
+  //     true
+  //   );
+  // }, []);
   useEffect(() => {
     const canvasesCopy = [...canvases];
-    const exists = canvasesCopy.find((e) => e.canvasName === nameCanvasIdStore);
 
-    if (exists && exists.canvas.length) {
-      setElements(exists.canvas, true);
+    if (pageIdStore !== null && insertStore === null) {
+      const exists = canvasesCopy.find((e) => e.id === pageIdStore);
+      setElements(exists?.canvas as canvas[], true);
     }
 
     //setElements(test, true);
@@ -302,7 +319,7 @@ function Canvas() {
     }
   };
 
-  const createElement = async (element: Element) => {
+  const createElement = async (element: canvas) => {
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     const minX = Math.min(element.x1, element.x2);
@@ -591,7 +608,7 @@ function Canvas() {
   const getElementAtPosition = (
     clientX: number,
     clientY: number,
-    elements: Element[]
+    elements: canvas[]
   ) => {
     return elements
       .map((element) => ({
@@ -1143,7 +1160,7 @@ function Canvas() {
       }
       if (action === "drawning" || action === "resizing") {
         const id = selectedElement.id;
-        const currentElement = elements.find((e) => e.id === id) as Element;
+        const currentElement = elements.find((e) => e.id === id) as canvas;
         const { x1, y1, x2, y2 } = adjustElementCoordinates(currentElement);
         if (tool !== "pencil" && tool !== "text" && tool !== "image")
           updateElement(id, x1, y1, x2, y2);
