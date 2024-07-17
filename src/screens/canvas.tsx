@@ -146,7 +146,7 @@ function Canvas() {
               id: canvases.length,
               canvas: valueRef.current,
               url,
-              type: "canvas",
+              type: "drawning",
             };
             const index = canvasesCopy.findIndex((e) => e.id === pageIdStore);
             canvasesCopy.splice(index + 1, 0, newCanvas);
@@ -168,7 +168,7 @@ function Canvas() {
               id: canvases.length,
               canvas: valueRef.current,
               url,
-              type: "canvas",
+              type: "drawning",
             };
             canvasesCopy.push(newCanvas);
           }

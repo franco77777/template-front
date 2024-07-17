@@ -9,10 +9,12 @@ import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { tasks } from "@/types/globalAdminTypes";
-import ModalTask from "@/components/globalAdmin3/modalTask";
+
 import { pageStore } from "@/stores/Screens/canvasStore";
 import ModalCanvases from "@/components/canvas/components/modalCanvases";
 import PageSection from "@/components/globalAdmin3/pageSection";
+
+import ModalTask from "@/components/globalAdmin3/modalTask";
 import Tasks from "@/components/globalAdmin3/tasks";
 
 const GlobalAdmin3 = () => {
