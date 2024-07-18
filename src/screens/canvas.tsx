@@ -269,9 +269,13 @@ function Canvas() {
   // }, []);
   useEffect(() => {
     const canvasesCopy = [...canvases];
+    console.log("pageidSotre", pageIdStore);
+    console.log("insertStore", insertStore);
 
-    if (pageIdStore !== null && insertStore === null) {
+    if (pageIdStore !== null && !insertStore) {
       const exists = canvasesCopy.find((e) => e.id === pageIdStore);
+      console.log("exists", exists);
+
       setElements(exists?.canvas as canvas[], true);
     }
 

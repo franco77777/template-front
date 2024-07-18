@@ -1,13 +1,15 @@
 import { Bg, BgDarker, Primary, SecondaryGradientExist } from "@/theme/theming";
-import ModalBlackboard from "./modalBlackboard";
+
 import { PageElement, pageStore } from "@/stores/Screens/canvasStore";
 import { useEffect } from "react";
+import ModalBlackboard from "./modalBlackboard";
+import { GenerateElements } from "../utils/GA3Utils";
+import { useNavigate } from "react-router-dom";
 
 const PageSection = () => {
   const page = pageStore((state) => state.page);
-  const setPageStore = pageStore((state) => state.setPageElements);
+  const navigate = useNavigate();
   const focusStore = pageStore((state) => state.focus);
-  const setFocusStore = pageStore((state) => state.setFocus);
 
   const handleModalOptions = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -53,52 +55,7 @@ const PageSection = () => {
       i.addEventListener("dragstart", dragStart);
     }
   }, []);
-  const setParagraph = (
-    event: React.FocusEvent<HTMLDivElement, Element>,
-    id: number
-  ) => {
-    const Target = event.target as HTMLElement;
-    const value = Target.innerHTML;
-    const copyPage = [...page];
-    const current = copyPage.find((e) => e.id === id);
 
-    if (current) {
-      current.text = value;
-      setPageStore(copyPage);
-    }
-
-    setFocusStore(null);
-  };
-  const GenerateElements = (e: PageElement) => {
-    switch (e.type) {
-      case "drawning":
-        return (
-          <img
-            src={e.url}
-            key={e.id}
-            style={{
-              backgroundColor: Bg(),
-              borderColor: Primary(),
-            }}
-            className="w-[80%] h-[40%] mx-auto rounded-xl  hover:scale-[1.01] duration-150 cursor-pointer"
-          ></img>
-        );
-      case "paragraph":
-        return (
-          <div
-            data-id={`page-${e.id}`}
-            style={{
-              backgroundColor: Bg(),
-            }}
-            onBlur={(event) => setParagraph(event, e.id)}
-            className="font-normal outline-none px-2 text-base w-[80%] mx-auto min-h-6 rounded-xl bg-red-500"
-            contentEditable="true"
-          ></div>
-        );
-      default:
-        break;
-    }
-  };
   useEffect(() => {
     for (const i of page) {
       if (i.text) {
@@ -116,6 +73,21 @@ const PageSection = () => {
       divText.focus();
     }
   }, [page]);
+  useEffect(() => {
+    for (const i of page) {
+      if (i.type === "unorderedList") {
+        const divEditable = document.querySelector(
+          `[data-id=page-${i.id}]`
+        ) as HTMLElement;
+        const divUL = divEditable.parentElement?.children[0] as HTMLElement;
+        const childrens = divEditable.children.length;
+        divUL.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
+        for (let i = 0; i < childrens; i++) {
+          divUL.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
+        }
+      }
+    }
+  }, []);
   return (
     <div className="relative  w-full rounded-2xl  h-full grid place-items-center overflow-hidden">
       <div
@@ -176,7 +148,7 @@ const PageSection = () => {
                     ></path>
                   </svg>
                 </div>
-                {GenerateElements(e)}
+                {GenerateElements(e, navigate)}
               </div>
             ))}
           </section>

@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalDrawningOption from "./modalDrawningOption";
 import ModalParagraphOption from "./modalParagraphOption";
+import ModalHeadingOption from "./modalHeadingOption";
+import ModalHeading2Option from "./modalHeading2Option";
+import ModalHeading3Option from "./modalHeadin3Option";
+import ModalUnorderedList from "./modalUnorderedListOption";
 
 export interface prop {
   classes: string;
@@ -66,6 +70,26 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
         setFocus(getPageStore.length);
         setPageStore(pageCopy);
         break;
+      case "paragraph":
+      case "heading":
+      case "heading2":
+      case "heading3":
+      case "unorderedList": {
+        const newElement = {
+          id: getPageStore.length,
+          type: e,
+        };
+        if (first) {
+          pageCopy.push(newElement);
+        } else {
+          pageCopy.splice(index + 1, 0, newElement);
+        }
+
+        setFocus(getPageStore.length);
+        setPageStore(pageCopy);
+        break;
+      }
+
       default:
         console.log("no option");
 
@@ -88,6 +112,26 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
         mouseOver={mouseOver}
       />
       <ModalParagraphOption
+        handleCanvas={handleCanvas}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalHeadingOption
+        handleCanvas={handleCanvas}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalHeading2Option
+        handleCanvas={handleCanvas}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalHeading3Option
+        handleCanvas={handleCanvas}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalUnorderedList
         handleCanvas={handleCanvas}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}

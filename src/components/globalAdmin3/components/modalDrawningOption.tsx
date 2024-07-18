@@ -1,4 +1,4 @@
-import { modalGlobalAdmin3Options } from "./globalAdmin3Types";
+import { modalGlobalAdmin3Options } from "../types/globalAdmin3Types";
 
 const ModalDrawningOption = ({
   handleCanvas,

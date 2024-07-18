@@ -12,10 +12,10 @@ import { tasks } from "@/types/globalAdminTypes";
 
 import { pageStore } from "@/stores/Screens/canvasStore";
 import ModalCanvases from "@/components/canvas/components/modalCanvases";
-import PageSection from "@/components/globalAdmin3/pageSection";
+import PageSection from "@/components/globalAdmin3/components/pageSection";
 
-import ModalTask from "@/components/globalAdmin3/modalTask";
-import Tasks from "@/components/globalAdmin3/tasks";
+import ModalTask from "@/components/globalAdmin3/components/modalTask";
+import Tasks from "@/components/globalAdmin3/components/tasks";
 
 const GlobalAdmin3 = () => {
   const [modal, setModal] = useState(false);
