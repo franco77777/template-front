@@ -86,6 +86,17 @@ const PageSection = () => {
           divUL.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
         }
       }
+      if (i.type === "orderedList") {
+        const divEditable = document.querySelector(
+          `[data-id=page-${i.id}]`
+        ) as HTMLElement;
+        const divOL = divEditable.parentElement?.children[0] as HTMLElement;
+        const childrens = divEditable.children.length;
+        divOL.innerHTML = "<div>0</div>";
+        for (let i = 0; i < childrens; i++) {
+          divOL.innerHTML += `<div>${i + 1}</div>`;
+        }
+      }
     }
   }, []);
   return (

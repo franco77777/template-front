@@ -22,15 +22,25 @@ export const setTextElement = (
   setFocusStore(null);
 };
 
-export const handleInputModal = (e: React.FormEvent<HTMLDivElement>) => {
+export const handleInputList = (
+  e: React.FormEvent<HTMLDivElement>,
+  type: string
+) => {
   const Target = e.target as HTMLElement;
   const divNumber = Target.parentElement?.children[0];
 
   const childrens = Target.children.length;
-  if (divNumber) {
+
+  if (divNumber && type === "unorderedList") {
     divNumber.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
     for (let i = 0; i < childrens; i++) {
       divNumber.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
+    }
+  }
+  if (divNumber && type === "orderedList") {
+    divNumber.innerHTML = "<div>0</div>";
+    for (let i = 0; i < childrens; i++) {
+      divNumber.innerHTML += `<div>${i + 1}</div>`;
     }
   }
 };
@@ -108,6 +118,7 @@ export const GenerateElements = (
         ></h3>
       );
     case "unorderedList":
+    case "orderedList":
       return (
         <div className="flex gap-2 w-[80%] mx-auto ">
           <div className="text-base font-normal h-auto flex flex-col justify-around " />
@@ -116,7 +127,7 @@ export const GenerateElements = (
             style={{
               backgroundColor: Bg(),
             }}
-            onInput={(e) => handleInputModal(e)}
+            onInput={(event) => handleInputList(event, e.type)}
             onBlur={(event) => setTextElement(event, e.id)}
             className="font-normal  outline-none px-2 text-base  min-h-6 rounded-lg "
             contentEditable="true"

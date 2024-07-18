@@ -1,7 +1,7 @@
 import { modalGlobalAdmin3Options } from "../types/globalAdmin3Types";
 
 const ModalHeading2Option = ({
-  handleCanvas,
+  handleModalPageOptions: handleCanvas,
   mouseLeave,
   mouseOver,
 }: modalGlobalAdmin3Options) => {

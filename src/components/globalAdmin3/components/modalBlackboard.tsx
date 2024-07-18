@@ -8,6 +8,7 @@ import ModalHeadingOption from "./modalHeadingOption";
 import ModalHeading2Option from "./modalHeading2Option";
 import ModalHeading3Option from "./modalHeadin3Option";
 import ModalUnorderedList from "./modalUnorderedListOption";
+import ModalOrderedList from "./modalOrderedListOption";
 
 export interface prop {
   classes: string;
@@ -36,7 +37,7 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
     const Target = e.target as HTMLElement;
     Target.style.backgroundColor = "transparent";
   };
-  const handleCanvas = (e: string) => {
+  const handleModalPageOptions = (e: string) => {
     const modals = document.querySelectorAll("[data-modal=modalBlackboard]");
     for (const i of modals) {
       if (!i.classList.contains("opacity-0")) {
@@ -57,24 +58,11 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
         navigate("/canvas");
         break;
       case "paragraph":
-        const newElement = {
-          id: getPageStore.length,
-          type: "paragraph",
-        };
-        if (first) {
-          pageCopy.push(newElement);
-        } else {
-          pageCopy.splice(index + 1, 0, newElement);
-        }
-
-        setFocus(getPageStore.length);
-        setPageStore(pageCopy);
-        break;
-      case "paragraph":
       case "heading":
       case "heading2":
       case "heading3":
-      case "unorderedList": {
+      case "unorderedList":
+      case "orderedList": {
         const newElement = {
           id: getPageStore.length,
           type: e,
@@ -107,32 +95,37 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
       } flex-col gap-2 opacity-0 top-0 -translate-x-[125%] border-[1px] pointer-events-none rounded px-2 py-1 flex items-center text-base font-base w-52 z-50  absolute  duration-300 transition-all`}
     >
       <ModalDrawningOption
-        handleCanvas={handleCanvas}
+        handleModalPageOptions={handleModalPageOptions}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}
       />
       <ModalParagraphOption
-        handleCanvas={handleCanvas}
+        handleModalPageOptions={handleModalPageOptions}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}
       />
       <ModalHeadingOption
-        handleCanvas={handleCanvas}
+        handleModalPageOptions={handleModalPageOptions}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}
       />
       <ModalHeading2Option
-        handleCanvas={handleCanvas}
+        handleModalPageOptions={handleModalPageOptions}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}
       />
       <ModalHeading3Option
-        handleCanvas={handleCanvas}
+        handleModalPageOptions={handleModalPageOptions}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}
       />
       <ModalUnorderedList
-        handleCanvas={handleCanvas}
+        handleModalPageOptions={handleModalPageOptions}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalOrderedList
+        handleModalPageOptions={handleModalPageOptions}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}
       />
