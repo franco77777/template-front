@@ -3,12 +3,17 @@ import { ChevronDown, Search, UsersRound } from "lucide-react";
 import {
   SecondaryExist,
   SecondaryTextExist,
-  UseBg,
   UseBgDarker,
   UsePrimary,
 } from "@/theme/theming";
+import Prism from "prismjs";
 
 const ExcalidrawFilesSection = () => {
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      Prism.highlightAll();
+    }
+  }, []);
   return (
     <div
       style={{ background: UseBg() }}

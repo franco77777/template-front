@@ -115,14 +115,16 @@ img {
   .scrollbar::-webkit-scrollbar{
     
     z-index: 9999;
-    width:5px;
-    background-color:#000;
+    height: 10px;
+    border-radius:5px;
+    background-color:#424242;
     }
     
   .scrollbar::-webkit-scrollbar-thumb{
+    height: 5px;
     
     z-index: 9999;
-  background:rgb(147 51 234);
+  background:rgb(123 123 123);
   border-radius:5px;
   }
        
@@ -160,5 +162,9 @@ img {
     overflow-y: scroll;
     overflow-x: visible;
   }
+  input[type="checkbox"]:focus{
+    outline:0;
+    box-shadow: none;
+}
 
  

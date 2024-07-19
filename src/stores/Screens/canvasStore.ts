@@ -6,6 +6,7 @@ export interface PageElement {
   url?: string;
   type: string;
   text?: string;
+  checks?: number[];
 }
 export interface PageStore {
   id: number | null;

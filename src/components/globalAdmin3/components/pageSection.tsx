@@ -1,16 +1,21 @@
 import { Bg, BgDarker, Primary, SecondaryGradientExist } from "@/theme/theming";
 
 import { PageElement, pageStore } from "@/stores/Screens/canvasStore";
-import { useEffect } from "react";
+import { MouseEventHandler, useEffect } from "react";
 import ModalBlackboard from "./modalBlackboard";
-import { GenerateElements } from "../utils/GA3Utils";
+import { createInputElement, GenerateElements } from "../utils/GA3Utils";
 import { useNavigate } from "react-router-dom";
+import Prism from "prismjs";
 
 const PageSection = () => {
   const page = pageStore((state) => state.page);
   const navigate = useNavigate();
   const focusStore = pageStore((state) => state.focus);
-
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      Prism.highlightAll();
+    }
+  }, [page]);
   const handleModalOptions = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
@@ -46,30 +51,56 @@ const PageSection = () => {
       page.style.scrollbarColor = "red";
     }, 100);
   }, []);
-  useEffect(() => {
-    const pagesElements = document.querySelectorAll(
-      "[data-drag=pageElement]"
-    ) as NodeListOf<HTMLElement>;
-    const dragStart = () => {};
-    for (const i of pagesElements) {
-      i.addEventListener("dragstart", dragStart);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const pagesElements = document.querySelectorAll(
+  //     "[data-drag=pageElement]"
+  //   ) as NodeListOf<HTMLElement>;
+  //   const dragStart = () => {};
+  //   for (const i of pagesElements) {
+  //     i.addEventListener("dragstart", dragStart);
+  //   }
+  // }, []);
 
   useEffect(() => {
     for (const i of page) {
-      if (i.text) {
+      if (i.text && i.type !== "code") {
         const divText = document.querySelector(
           `[data-id=page-${i.id}]`
         ) as HTMLElement;
 
         divText.innerHTML = i.text;
       }
+      if (i.text && i.type === "code") {
+        const divText = document.querySelector(
+          `[data-id=page-${i.id}]`
+        ) as HTMLElement;
+        const codeContainer = divText.parentElement
+          ?.parentElement as HTMLElement;
+        const brother = codeContainer.children[0].children[0] as HTMLElement;
+        if (!divText.innerText) {
+          divText.innerText = i.text;
+        }
+      }
+      if (i.type === "code") {
+        const divText = document.querySelector(
+          `[data-id=page-${i.id}]`
+        ) as HTMLElement;
+        const codeContainer = divText.parentElement
+          ?.parentElement as HTMLElement;
+        const brother = codeContainer.children[0] as HTMLElement;
+        const scrollEditableText = (e: Event) => {
+          const event = e as WheelEvent;
+          const Target = event.target as HTMLElement;
+          brother.scrollLeft = Target.scrollLeft;
+        };
+        divText.parentElement?.addEventListener("scroll", scrollEditableText);
+      }
     }
     if (focusStore !== null) {
       const divText = document.querySelector(
         `[data-id=page-${focusStore}]`
       ) as HTMLElement;
+
       divText.focus();
     }
   }, [page]);
@@ -95,6 +126,24 @@ const PageSection = () => {
         divOL.innerHTML = "<div>0</div>";
         for (let i = 0; i < childrens; i++) {
           divOL.innerHTML += `<div>${i + 1}</div>`;
+        }
+      }
+      if (i.type === "taskList") {
+        const divEditable = document.querySelector(
+          `[data-id=page-${i.id}]`
+        ) as HTMLElement;
+        const divContainerInputs = divEditable.parentElement
+          ?.children[0] as HTMLElement;
+        const childrens = divEditable.children.length;
+        console.log("childrens", childrens);
+
+        for (let b = 0; b < childrens + 1; b++) {
+          const input = createInputElement();
+          if (i.checks?.includes(b)) {
+            input.checked = true;
+            input.style.backgroundColor = Primary();
+          }
+          divContainerInputs.appendChild(input);
         }
       }
     }
@@ -136,14 +185,16 @@ const PageSection = () => {
           <section className="flex flex-col gap-2">
             {page.map((e) => (
               <div
+                key={e.id}
                 data-drag="pageElement"
-                draggable="true"
                 className="relative gap-4   rounded-xl w-full group"
               >
                 <ModalBlackboard classes="" id={e.id} first={false} />
                 <div
                   onClick={(e) => handleModalOptions(e)}
-                  className="hidden group-hover:block cursor-pointer hover:scale-125 duration-150 absolute top-0 left-2"
+                  className={`${
+                    e.type === "divider" ? "top-1/2 -translate-y-1/2" : "top-0"
+                  } hidden group-hover:block cursor-pointer hover:scale-125 duration-150 absolute  left-2`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

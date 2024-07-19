@@ -9,6 +9,10 @@ import ModalHeading2Option from "./modalHeading2Option";
 import ModalHeading3Option from "./modalHeadin3Option";
 import ModalUnorderedList from "./modalUnorderedListOption";
 import ModalOrderedList from "./modalOrderedListOption";
+import ModalTaskList from "./modalTaskListOption";
+import ModalDivider from "./modalDividerOption";
+import ModalHint from "./modalHintOption";
+import ModalCode from "./modalCodeOption";
 
 export interface prop {
   classes: string;
@@ -62,7 +66,11 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
       case "heading2":
       case "heading3":
       case "unorderedList":
-      case "orderedList": {
+      case "orderedList":
+      case "taskList":
+      case "divider":
+      case "hint":
+      case "code": {
         const newElement = {
           id: getPageStore.length,
           type: e,
@@ -73,7 +81,7 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
           pageCopy.splice(index + 1, 0, newElement);
         }
 
-        setFocus(getPageStore.length);
+        if (e !== "divider") setFocus(getPageStore.length);
         setPageStore(pageCopy);
         break;
       }
@@ -125,6 +133,26 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
         mouseOver={mouseOver}
       />
       <ModalOrderedList
+        handleModalPageOptions={handleModalPageOptions}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalTaskList
+        handleModalPageOptions={handleModalPageOptions}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalDivider
+        handleModalPageOptions={handleModalPageOptions}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalHint
+        handleModalPageOptions={handleModalPageOptions}
+        mouseLeave={mouseLeave}
+        mouseOver={mouseOver}
+      />
+      <ModalCode
         handleModalPageOptions={handleModalPageOptions}
         mouseLeave={mouseLeave}
         mouseOver={mouseOver}

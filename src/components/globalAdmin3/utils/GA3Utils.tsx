@@ -1,7 +1,9 @@
 import { PageElement, pageStore } from "@/stores/Screens/canvasStore";
-import { Bg, Primary } from "@/theme/theming";
+import { Bg, BgDarker, Primary } from "@/theme/theming";
 import { createRef } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import "prismjs/themes/prism-synthwave84.css";
+
 export const setTextElement = (
   event: React.FocusEvent<HTMLDivElement, Element>,
   id: number
@@ -16,6 +18,8 @@ export const setTextElement = (
 
   if (current) {
     current.text = value;
+    console.log("current", current);
+
     setPageStore(copyPage);
   }
 
@@ -24,25 +28,75 @@ export const setTextElement = (
 
 export const handleInputList = (
   e: React.FormEvent<HTMLDivElement>,
-  type: string
+  element: PageElement
 ) => {
   const Target = e.target as HTMLElement;
-  const divNumber = Target.parentElement?.children[0];
+  const divNumber = Target.parentElement?.children[0] as HTMLElement;
 
   const childrens = Target.children.length;
 
-  if (divNumber && type === "unorderedList") {
-    divNumber.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
+  if (element.type === "unorderedList") {
+    divNumber.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fillRule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
     for (let i = 0; i < childrens; i++) {
-      divNumber.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
+      divNumber.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fillRule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
     }
   }
-  if (divNumber && type === "orderedList") {
+  if (element.type === "orderedList") {
     divNumber.innerHTML = "<div>0</div>";
     for (let i = 0; i < childrens; i++) {
       divNumber.innerHTML += `<div>${i + 1}</div>`;
     }
   }
+  if (element.type === "taskList") {
+    divNumber.innerHTML = "";
+
+    for (let b = 0; b < childrens + 1; b++) {
+      const input = createInputElement();
+      if (element.checks?.includes(b)) {
+        input.checked = true;
+        input.style.backgroundColor = Primary();
+      }
+      divNumber.appendChild(input);
+    }
+  }
+};
+export const changeInputTaskList = (e: Event) => {
+  const getPageStore = pageStore.getState().page;
+  const setPageStore = pageStore.getState().setPageElements;
+  const Target = e.target as HTMLInputElement;
+  const inputContainer = Target.parentElement as HTMLElement;
+  const Brother = Target.parentElement?.parentElement
+    ?.children[1] as HTMLElement;
+  const data = Brother.getAttribute("data-id") as String;
+  const id = Number.parseInt(data.split("page-")[1]);
+
+  const valuesChecked = [];
+  for (let i = 0; i < inputContainer.children.length; i++) {
+    const children = inputContainer.children[i] as HTMLInputElement;
+    if (children.checked) {
+      valuesChecked.push(i);
+    }
+  }
+  console.log("valueschecjed", valuesChecked);
+
+  const pageCopy = [...getPageStore];
+  const current = pageCopy.find((e) => e.id === id);
+  if (current) current.checks = valuesChecked;
+  setPageStore(pageCopy);
+
+  Target.style.backgroundColor = Target.checked ? Primary() : BgDarker();
+};
+export const createInputElement = () => {
+  const input = document.createElement("input");
+  input.addEventListener("change", changeInputTaskList);
+  input.type = "checkbox";
+  input.classList.add("border-[1px]");
+  input.classList.add("rounded");
+  input.setAttribute("data-input", "");
+  input.classList.add("cursor-pointer");
+  input.style.backgroundColor = BgDarker();
+  input.style.borderColor = Primary();
+  return input;
 };
 export const editCanvas = (id: number, navigate: NavigateFunction) => {
   const setPageIdStore = pageStore.getState().setId;
@@ -51,10 +105,44 @@ export const editCanvas = (id: number, navigate: NavigateFunction) => {
   setPageIdStore(id);
   navigate("/canvas");
 };
+export const inputCodeFalse = (
+  event: React.FormEvent<HTMLDivElement>,
+  id: number
+) => {
+  const getPageStore = pageStore.getState().page;
+  const setPageStore = pageStore.getState().setPageElements;
+
+  const Target = event.target as HTMLElement;
+
+  const value = Target.innerText;
+  const copyPage = [...getPageStore];
+  const current = copyPage.find((e) => e.id === id);
+
+  if (current) {
+    current.text = value;
+    console.log("current", current);
+
+    setPageStore(copyPage);
+  }
+};
+export const blurCodeFalse = () => {
+  const setFocusStore = pageStore.getState().setFocus;
+  setFocusStore(null);
+};
+export const focusCodeFalse = (id: number) => {
+  const setFocusStore = pageStore.getState().setFocus;
+  //setFocusStore(id);
+};
 export const GenerateElements = (
   e: PageElement,
   navigate: NavigateFunction
 ) => {
+  const code = `p {
+  color:red 
+  }`;
+  const code2 = `const test = (a,b) =>{
+    return a + b
+    }`;
   switch (e.type) {
     case "drawning":
       return (
@@ -119,21 +207,110 @@ export const GenerateElements = (
       );
     case "unorderedList":
     case "orderedList":
+    case "taskList":
       return (
-        <div className="flex gap-2 w-[80%] mx-auto ">
+        <div className="flex gap-2 w-[80%] mx-auto break-all">
           <div className="text-base font-normal h-auto flex flex-col justify-around " />
           <div
             data-id={`page-${e.id}`}
             style={{
               backgroundColor: Bg(),
             }}
-            onInput={(event) => handleInputList(event, e.type)}
+            onInput={(event) => handleInputList(event, e)}
             onBlur={(event) => setTextElement(event, e.id)}
             className="font-normal  outline-none px-2 text-base  min-h-6 rounded-lg "
             contentEditable="true"
           ></div>
         </div>
       );
+    case "divider":
+      return (
+        <div
+          style={{ background: Primary() }}
+          className="my-4 mx-auto w-[80%] h-[1px] rounded "
+        />
+      );
+    case "hint":
+      return (
+        <div
+          style={{
+            backgroundColor: Bg(),
+            borderColor: Primary(),
+          }}
+          className="flex gap-2 w-[80%] mx-auto border-l-4 rounded-md items-center break-all"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 16 16"
+            preserveAspectRatio="xMidYMid meet"
+            className="ml-2 w-5 h-5 pointer-events-none"
+          >
+            <g fill="currentColor" clip-path="url(#InfoCircle_svg__a)">
+              <path
+                fillRule="evenodd"
+                d="M8 1.6a6.4 6.4 0 1 0 0 12.8A6.4 6.4 0 0 0 8 1.6ZM.4 8a7.6 7.6 0 1 1 15.2 0A7.6 7.6 0 0 1 .4 8Z"
+                clip-rule="evenodd"
+              ></path>
+              <path
+                fillRule="evenodd"
+                d="M5.4 7a.6.6 0 0 1 .6-.6h2a.6.6 0 0 1 .6.6v3.9H10a.6.6 0 0 1 0 1.2H6a.6.6 0 1 1 0-1.2h1.4V7.6H6a.6.6 0 0 1-.6-.6Z"
+                clip-rule="evenodd"
+              ></path>
+              <path d="M8 3.6a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8Z"></path>
+            </g>
+            <defs>
+              <clipPath id="InfoCircle_svg__a">
+                <path fill="#fff" d="M0 0h16v16H0z"></path>
+              </clipPath>
+            </defs>
+          </svg>
+          <div
+            data-id={`page-${e.id}`}
+            onInput={(event) => handleInputList(event, e)}
+            onBlur={(event) => setTextElement(event, e.id)}
+            className="font-normal  outline-none px-2 text-base  min-h-6 rounded-lg "
+            contentEditable="true"
+          ></div>
+        </div>
+      );
+    case "code":
+      return (
+        <div
+          style={{
+            backgroundColor: Bg(),
+            borderColor: Primary(),
+          }}
+          className=" min-h-6 flex gap-2 w-[80%] mx-auto  rounded-md relative "
+        >
+          <pre
+            className="scrollbar z-0"
+            style={{
+              backgroundImage: "none",
+              padding: "0px",
+              margin: "0px",
+              fontSize: "16px",
+            }}
+          >
+            <code className="language-javascript font-thin text-sm ">
+              {e.text}
+            </code>
+          </pre>
+          <pre className="scrollbar overflow-x-auto text-transparent  w-full   text-base top-0 left-0 absolute z-30">
+            <div
+              style={{ caretColor: Primary() }}
+              data-id={`page-${e.id}`}
+              onBlur={() => blurCodeFalse()}
+              onFocus={() => focusCodeFalse(e.id)}
+              onInput={(event) => inputCodeFalse(event, e.id)}
+              contentEditable="true"
+              spellCheck="false"
+              className="w-full outline-none shadow-none"
+            ></div>
+          </pre>
+        </div>
+      );
+
     default:
       break;
   }
