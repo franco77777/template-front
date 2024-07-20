@@ -2,17 +2,17 @@ import { pageStore } from "@/stores/Screens/canvasStore";
 import { Bg, BgDarker, Primary } from "@/theme/theming";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ModalDrawningOption from "./modalDrawningOption";
-import ModalParagraphOption from "./modalParagraphOption";
-import ModalHeadingOption from "./modalHeadingOption";
-import ModalHeading2Option from "./modalHeading2Option";
-import ModalHeading3Option from "./modalHeadin3Option";
-import ModalUnorderedList from "./modalUnorderedListOption";
-import ModalOrderedList from "./modalOrderedListOption";
-import ModalTaskList from "./modalTaskListOption";
-import ModalDivider from "./modalDividerOption";
-import ModalHint from "./modalHintOption";
-import ModalCode from "./modalCodeOption";
+import ModalDrawningOption from "./drawningOption";
+import ModalParagraphOption from "./paragraphOption";
+import ModalHeadingOption from "./headingOption";
+import ModalHeading2Option from "./heading2Option";
+import ModalHeading3Option from "./heading3Option";
+import ModalUnorderedList from "./unorderedListOption";
+import ModalOrderedList from "./orderedListOption";
+import ModalTaskList from "./taskListOption";
+import ModalDivider from "./dividerOption";
+import ModalHint from "./hintOption";
+import ModalCode from "./codeOption";
 
 export interface prop {
   classes: string;
@@ -24,7 +24,7 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
   const setInsertStore = pageStore((state) => state.setInsert);
   const setIdStore = pageStore((state) => state.setId);
   const getPageStore = pageStore((state) => state.page);
-  const setPageStore = pageStore((state) => state.setPageElements);
+  const setPageStore = pageStore((state) => state.setPage);
   const setFocus = pageStore((state) => state.setFocus);
   const navigate = useNavigate();
   // useEffect(() => {
@@ -69,8 +69,7 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
       case "orderedList":
       case "taskList":
       case "divider":
-      case "hint":
-      case "code": {
+      case "hint": {
         const newElement = {
           id: getPageStore.length,
           type: e,
@@ -82,6 +81,22 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
         }
 
         if (e !== "divider") setFocus(getPageStore.length);
+        setPageStore(pageCopy);
+        break;
+      }
+      case "code": {
+        const newElement = {
+          id: getPageStore.length,
+          type: e,
+          language: "typescript",
+        };
+        if (first) {
+          pageCopy.push(newElement);
+        } else {
+          pageCopy.splice(index + 1, 0, newElement);
+        }
+
+        setFocus(getPageStore.length);
         setPageStore(pageCopy);
         break;
       }

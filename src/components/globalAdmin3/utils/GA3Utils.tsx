@@ -3,13 +3,15 @@ import { Bg, BgDarker, Primary } from "@/theme/theming";
 import { createRef } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import "prismjs/themes/prism-synthwave84.css";
+import ModalCode from "../components/modalCode";
+import { codeListState } from "./globalAdmin3States";
 
 export const setTextElement = (
   event: React.FocusEvent<HTMLDivElement, Element>,
   id: number
 ) => {
   const getPageStore = pageStore.getState().page;
-  const setPageStore = pageStore.getState().setPageElements;
+  const setPageStore = pageStore.getState().setPage;
   const setFocusStore = pageStore.getState().setFocus;
   const Target = event.target as HTMLElement;
   const value = Target.innerHTML;
@@ -62,7 +64,7 @@ export const handleInputList = (
 };
 export const changeInputTaskList = (e: Event) => {
   const getPageStore = pageStore.getState().page;
-  const setPageStore = pageStore.getState().setPageElements;
+  const setPageStore = pageStore.getState().setPage;
   const Target = e.target as HTMLInputElement;
   const inputContainer = Target.parentElement as HTMLElement;
   const Brother = Target.parentElement?.parentElement
@@ -110,7 +112,7 @@ export const inputCodeFalse = (
   id: number
 ) => {
   const getPageStore = pageStore.getState().page;
-  const setPageStore = pageStore.getState().setPageElements;
+  const setPageStore = pageStore.getState().setPage;
 
   const Target = event.target as HTMLElement;
 
@@ -133,16 +135,50 @@ export const focusCodeFalse = (id: number) => {
   const setFocusStore = pageStore.getState().setFocus;
   //setFocusStore(id);
 };
+export const handleModalCode = (
+  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  id: number
+) => {
+  const searcher = document.querySelector(
+    `[data-input=searcher-${id}]`
+  ) as HTMLInputElement;
+  const Target = e.target as HTMLElement;
+  const modal = Target.parentElement?.children[0] as HTMLElement;
+  const divFixed = Target.parentElement?.lastChild as HTMLElement;
+  // const allModals = document.querySelectorAll("[data-modalCode]");
+  // for (const i of allModals) {
+  //   if (!i.classList.contains("opacity-0")) {
+  //     modal.classList.toggle("opacity-0");
+  //     modal.classList.toggle("-translate-y-full");
+  //   }
+  // }
+  //console.log("allModals", allModals);
+  modal.classList.remove("pointer-events-none");
+  modal.classList.remove("opacity-0");
+  modal.classList.remove("-translate-y-full");
+  divFixed.classList.remove("hidden");
+  searcher.focus();
+  console.log("searcher", searcher);
+};
+export const handleModalCodeFromDivFixed = (
+  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  setSearcher: React.Dispatch<React.SetStateAction<string>>
+) => {
+  const Target = e.target as HTMLElement;
+  const modal = Target.parentElement?.children[0] as HTMLElement;
+  modal.classList.toggle("pointer-events-none");
+  modal.classList.toggle("opacity-0");
+  modal.classList.toggle("-translate-y-full");
+  Target.classList.toggle("hidden");
+  setSearcher("");
+};
 export const GenerateElements = (
   e: PageElement,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
+  searcher: string,
+  setSearcher: React.Dispatch<React.SetStateAction<string>>
 ) => {
-  const code = `p {
-  color:red 
-  }`;
-  const code2 = `const test = (a,b) =>{
-    return a + b
-    }`;
+  const language = codeListState.find((b) => b.code === e.language);
   switch (e.type) {
     case "drawning":
       return (
@@ -281,10 +317,33 @@ export const GenerateElements = (
             backgroundColor: Bg(),
             borderColor: Primary(),
           }}
-          className=" min-h-6 flex gap-2 w-[80%] mx-auto  rounded-md relative "
+          className="group px-3 pb-2 pt-6 min-h-14 flex flex-col gap-2 w-[80%] mx-auto  rounded-md relative "
         >
+          <ModalCode
+            element={e}
+            searcher={searcher}
+            setSearcher={setSearcher}
+          />
+          <div
+            onClick={(event) => handleModalCode(event, e.id)}
+            className="hidden group-hover:flex absolute top-1 right-2 z-30 hover:scale-105 duration-150 text-sm font-normal ml-auto  gap-2 items-center cursor-pointer"
+          >
+            <div className="pointer-events-none">{language?.name}</div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-4 h-4 pointer-events-none"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </div>
           <pre
-            className="scrollbar z-0"
+            className="pt-2 scrollbar z-0 overflow-x-auto"
             style={{
               backgroundImage: "none",
               padding: "0px",
@@ -292,11 +351,15 @@ export const GenerateElements = (
               fontSize: "16px",
             }}
           >
-            <code className="language-javascript font-thin text-sm ">
+            <code className={`language-${e.language} font-thin text-sm `}>
               {e.text}
             </code>
           </pre>
-          <pre className="scrollbar overflow-x-auto text-transparent  w-full   text-base top-0 left-0 absolute z-30">
+          {/* text-transparent */}
+          <pre
+            className="pt-6 min-h-14  px-3 pb-2 
+          scrollbar w-full text-base top-0 text-transparent left-0 absolute z-20"
+          >
             <div
               style={{ caretColor: Primary() }}
               data-id={`page-${e.id}`}
@@ -305,9 +368,13 @@ export const GenerateElements = (
               onInput={(event) => inputCodeFalse(event, e.id)}
               contentEditable="true"
               spellCheck="false"
-              className="w-full outline-none shadow-none"
+              className=" outline-none shadow-none w-full overflow-x-auto scrollbar"
             ></div>
           </pre>
+          <div
+            onClick={(e) => handleModalCodeFromDivFixed(e, setSearcher)}
+            className="top-0 left-0 hidden fixed h-screen w-screen z-40"
+          ></div>
         </div>
       );
 

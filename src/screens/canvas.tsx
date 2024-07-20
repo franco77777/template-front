@@ -58,7 +58,7 @@ function Canvas() {
   const valueRef = useRef<canvas[]>(elements);
   const canvasRef = useRef<HTMLCanvasElement>();
 
-  const setCanvases = pageStore((state) => state.setPageElements);
+  const setCanvases = pageStore((state) => state.setPage);
   const canvases = pageStore((state) => state.page);
   const pageIdStore = pageStore((state) => state.id);
   const insertStore = pageStore((state) => state.insert);

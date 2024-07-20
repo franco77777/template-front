@@ -1,7 +1,7 @@
 import { Bg, BgDarker, Primary, SecondaryGradientExist } from "@/theme/theming";
 
 import { PageElement, pageStore } from "@/stores/Screens/canvasStore";
-import { MouseEventHandler, useEffect } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import ModalBlackboard from "./modalBlackboard";
 import { createInputElement, GenerateElements } from "../utils/GA3Utils";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ const PageSection = () => {
   const page = pageStore((state) => state.page);
   const navigate = useNavigate();
   const focusStore = pageStore((state) => state.focus);
+  const [searcher, setSearcher] = useState("");
   useEffect(() => {
     if (typeof window !== undefined) {
       Prism.highlightAll();
@@ -87,13 +88,15 @@ const PageSection = () => {
         ) as HTMLElement;
         const codeContainer = divText.parentElement
           ?.parentElement as HTMLElement;
-        const brother = codeContainer.children[0] as HTMLElement;
+        const brother = codeContainer.children[2] as HTMLElement;
         const scrollEditableText = (e: Event) => {
           const event = e as WheelEvent;
           const Target = event.target as HTMLElement;
           brother.scrollLeft = Target.scrollLeft;
         };
-        divText.parentElement?.addEventListener("scroll", scrollEditableText);
+        console.log("codeContainer", codeContainer);
+
+        divText.addEventListener("scroll", scrollEditableText);
       }
     }
     if (focusStore !== null) {
@@ -155,7 +158,7 @@ const PageSection = () => {
         style={{
           backgroundColor: BgDarker(),
         }}
-        className="flex flex-col gap-2  rounded-2xl w-full h-full overflow-y-auto "
+        className="flex flex-col gap-2  rounded-2xl w-full h-full overflow-y-auto scrollbar2"
       >
         <div className="m-2 z-20 h-full ">
           {!page.length && (
@@ -210,7 +213,7 @@ const PageSection = () => {
                     ></path>
                   </svg>
                 </div>
-                {GenerateElements(e, navigate)}
+                {GenerateElements(e, navigate, searcher, setSearcher)}
               </div>
             ))}
           </section>

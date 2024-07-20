@@ -7,6 +7,7 @@ export interface PageElement {
   type: string;
   text?: string;
   checks?: number[];
+  language?: string;
 }
 export interface PageStore {
   id: number | null;
@@ -15,7 +16,7 @@ export interface PageStore {
   focus: number | null;
   setId: (value: number | null) => void;
   setFocus: (value: number | null) => void;
-  setPageElements: (value: PageElement[]) => void;
+  setPage: (value: PageElement[]) => void;
   setInsert: (value: boolean) => void;
 }
 
@@ -26,6 +27,6 @@ export const pageStore = create<PageStore>((set, get) => ({
   focus: null,
   setId: (value) => set((state) => ({ id: value })),
   setFocus: (value) => set((state) => ({ focus: value })),
-  setPageElements: (value) => set((state) => ({ page: value })),
+  setPage: (value) => set((state) => ({ page: value })),
   setInsert: (value) => set((state) => ({ insert: value })),
 }));

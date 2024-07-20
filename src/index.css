@@ -127,6 +127,22 @@ img {
   background:rgb(123 123 123);
   border-radius:5px;
   }
+  .scrollbar2::-webkit-scrollbar{
+    
+    z-index: 9999;
+    width: 10px;
+    border-radius:5px;
+    background-color:#424242;
+    }
+    
+  .scrollbar2::-webkit-scrollbar-thumb{
+    width: 5px;
+    
+    z-index: 9999;
+  background:rgb(123 123 123);
+  border-radius:5px;
+  }
+
        
   body::-webkit-scrollbar{
     z-index: 9999;
@@ -157,14 +173,28 @@ img {
   html {
     cursor: url('https://i.sstatic.net/wu8CP.png'), auto;
   }
-
-  .test{
-    overflow-y: scroll;
-    overflow-x: visible;
+  .inputFocus{
+    border: 0px;
   }
+  .inputFocus:focus{
+    outline:0;
+    box-shadow: none;
+    
+  }
+  
   input[type="checkbox"]:focus{
     outline:0;
     box-shadow: none;
 }
+
+.overflowCode  {     
+  
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y:auto;
+  text-overflow: ellipsis;
+  
+  
+  }
 
  
