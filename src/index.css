@@ -147,12 +147,12 @@ img {
   body::-webkit-scrollbar{
     z-index: 9999;
     width:5px;
-    background-color:#000;
+    background-color:#424242;
     }
     
   body::-webkit-scrollbar-thumb{
     z-index: 9999;
-  background:rgb(147 51 234);
+    background:rgb(123 123 123);
   border-radius:5px;
   }
 

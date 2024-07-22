@@ -2,7 +2,7 @@ import { PageElement, pageStore } from "@/stores/Screens/canvasStore";
 import { Bg, BgDarker, Primary } from "@/theme/theming";
 import { createRef } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import "prismjs/themes/prism-synthwave84.css";
+
 import ModalCode from "../components/modalCode";
 import { codeListState } from "./globalAdmin3States";
 
@@ -20,7 +20,7 @@ export const setTextElement = (
 
   if (current) {
     current.text = value;
-    console.log("current", current);
+    console.log("valueeeeeeeeee222222", value);
 
     setPageStore(copyPage);
   }
@@ -34,8 +34,11 @@ export const handleInputList = (
 ) => {
   const Target = e.target as HTMLElement;
   const divNumber = Target.parentElement?.children[0] as HTMLElement;
-
   const childrens = Target.children.length;
+
+  //const childrens = (Text.match(/\n/g) || []).length;
+  console.log("childrens", childrens);
+  console.log("divNumber", divNumber);
 
   if (element.type === "unorderedList") {
     divNumber.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fillRule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
@@ -145,14 +148,7 @@ export const handleModalCode = (
   const Target = e.target as HTMLElement;
   const modal = Target.parentElement?.children[0] as HTMLElement;
   const divFixed = Target.parentElement?.lastChild as HTMLElement;
-  // const allModals = document.querySelectorAll("[data-modalCode]");
-  // for (const i of allModals) {
-  //   if (!i.classList.contains("opacity-0")) {
-  //     modal.classList.toggle("opacity-0");
-  //     modal.classList.toggle("-translate-y-full");
-  //   }
-  // }
-  //console.log("allModals", allModals);
+
   modal.classList.remove("pointer-events-none");
   modal.classList.remove("opacity-0");
   modal.classList.remove("-translate-y-full");
@@ -172,12 +168,44 @@ export const handleModalCodeFromDivFixed = (
   Target.classList.toggle("hidden");
   setSearcher("");
 };
+export const pasteEditable = (e: React.ClipboardEvent<HTMLDivElement>) => {
+  e.preventDefault();
+  const text = e.clipboardData.getData("text/plain");
+  document.execCommand("insertHTML", false, text);
+};
+export const loadBrotherEditable = (
+  event: React.SyntheticEvent<HTMLDivElement, Event>,
+  element: PageElement
+) => {
+  const Target = event.target as HTMLElement;
+
+  const divNumber = Target.parentElement as HTMLElement;
+
+  console.log("loading");
+  if (Target && divNumber) {
+    if (element.type === "unorderedList") {
+      divNumber.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fillRule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
+    }
+    if (element.type === "orderedList") {
+      divNumber.innerHTML = "<div>0</div>";
+    }
+    if (element.type === "taskList") {
+      const input = createInputElement();
+
+      divNumber.appendChild(input);
+    }
+  }
+};
 export const GenerateElements = (
   e: PageElement,
   navigate: NavigateFunction,
   searcher: string,
   setSearcher: React.Dispatch<React.SetStateAction<string>>
 ) => {
+  const clickCopyCode = () => {
+    if (e.text) navigator.clipboard.writeText(e.text);
+    console.log("copinggg");
+  };
   const language = codeListState.find((b) => b.code === e.language);
   switch (e.type) {
     case "drawning":
@@ -202,7 +230,7 @@ export const GenerateElements = (
           }}
           onBlur={(event) => setTextElement(event, e.id)}
           className="font-normal outline-none px-2 text-base w-[80%] mx-auto min-h-6 rounded-lg"
-          contentEditable="true"
+          contentEditable="plaintext-only"
         ></div>
       );
     case "heading":
@@ -214,7 +242,7 @@ export const GenerateElements = (
           }}
           onBlur={(event) => setTextElement(event, e.id)}
           className="text-4xl font-bold  outline-none px-2 w-[80%] mx-auto min-h-6 rounded-lg "
-          contentEditable="true"
+          contentEditable="plaintext-only"
         ></h1>
       );
     case "heading2":
@@ -226,7 +254,7 @@ export const GenerateElements = (
           }}
           onBlur={(event) => setTextElement(event, e.id)}
           className="font-semibold outline-none px-2 text-3xl w-[80%] mx-auto min-h-6 rounded-lg"
-          contentEditable="true"
+          contentEditable="plaintext-only"
         ></h2>
       );
     case "heading3":
@@ -238,7 +266,7 @@ export const GenerateElements = (
           }}
           onBlur={(event) => setTextElement(event, e.id)}
           className="font-medium outline-none px-2 text-2xl w-[80%] mx-auto min-h-6 rounded-lg "
-          contentEditable="true"
+          contentEditable="plaintext-only"
         ></h3>
       );
     case "unorderedList":
@@ -246,14 +274,24 @@ export const GenerateElements = (
     case "taskList":
       return (
         <div className="flex gap-2 w-[80%] mx-auto break-all">
-          <div className="text-base font-normal h-auto flex flex-col justify-around " />
+          <div className="text-base font-normal h-auto flex flex-col justify-around ">
+            <img
+              className="hidden pointer-events-none"
+              src="https://www.w3schools.com/tags/w3html.gif"
+              alt="test"
+              onLoad={(event) => loadBrotherEditable(event, e)}
+            />
+          </div>
           <div
             data-id={`page-${e.id}`}
             style={{
               backgroundColor: Bg(),
             }}
-            onInput={(event) => handleInputList(event, e)}
+            //onInput={(event) => handleInputList(event, e)}
+
+            onPaste={(event) => pasteEditable(event)}
             onBlur={(event) => setTextElement(event, e.id)}
+            onInput={(event) => handleInputList(event, e)}
             className="font-normal  outline-none px-2 text-base  min-h-6 rounded-lg "
             contentEditable="true"
           ></div>
@@ -306,7 +344,7 @@ export const GenerateElements = (
             onInput={(event) => handleInputList(event, e)}
             onBlur={(event) => setTextElement(event, e.id)}
             className="font-normal  outline-none px-2 text-base  min-h-6 rounded-lg "
-            contentEditable="true"
+            contentEditable="plaintext-only"
           ></div>
         </div>
       );
@@ -326,9 +364,9 @@ export const GenerateElements = (
           />
           <div
             onClick={(event) => handleModalCode(event, e.id)}
-            className="hidden group-hover:flex absolute top-1 right-2 z-30 hover:scale-105 duration-150 text-sm font-normal ml-auto  gap-2 items-center cursor-pointer"
+            className="px-1 py-[2px] border-[1px] border-gray-500 rounded hidden group-hover:flex absolute top-1 right-12 z-30 hover:scale-105 duration-150 text-sm font-normal ml-auto  gap-2 items-center cursor-pointer"
           >
-            <div className="pointer-events-none">{language?.name}</div>
+            <div className="text-xs pointer-events-none">{language?.name}</div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -342,6 +380,7 @@ export const GenerateElements = (
               <path d="m6 9 6 6 6-6" />
             </svg>
           </div>
+
           <pre
             className="pt-2 scrollbar z-0 overflow-x-auto"
             style={{
@@ -355,10 +394,10 @@ export const GenerateElements = (
               {e.text}
             </code>
           </pre>
-          {/* text-transparent */}
+
           <pre
             className="pt-6 min-h-14  px-3 pb-2 
-          scrollbar w-full text-base top-0 text-transparent left-0 absolute z-20"
+          scrollbar w-full text-base top-0 text-transparent  left-0 absolute z-20"
           >
             <div
               style={{ caretColor: Primary() }}
@@ -366,11 +405,39 @@ export const GenerateElements = (
               onBlur={() => blurCodeFalse()}
               onFocus={() => focusCodeFalse(e.id)}
               onInput={(event) => inputCodeFalse(event, e.id)}
-              contentEditable="true"
+              contentEditable="plaintext-only"
               spellCheck="false"
               className=" outline-none shadow-none w-full overflow-x-auto scrollbar"
             ></div>
           </pre>
+          <div
+            onClick={clickCopyCode}
+            className="px-1 py-1 border-[1px] border-gray-500 hidden 
+          group-hover:block absolute rounded top-1 right-5 z-30 hover:scale-105 
+          duration-150 text-sm font-normal ml-auto  gap-2 items-center cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 16 16"
+              preserveAspectRatio="xMidYMid meet"
+              className="w-3 h-3 pointer-events-none"
+            >
+              <g clipPath="url(#Copy_svg__a)">
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="M6.5.4A2.6 2.6 0 0 0 3.9 3v.9H3A2.6 2.6 0 0 0 .4 6.5V13A2.6 2.6 0 0 0 3 15.6h6.5a2.6 2.6 0 0 0 2.6-2.6v-.9h.9a2.6 2.6 0 0 0 2.6-2.6V3A2.6 2.6 0 0 0 13 .4H6.5Zm5.6 10.5h.9a1.4 1.4 0 0 0 1.4-1.4V3A1.4 1.4 0 0 0 13 1.6H6.5A1.4 1.4 0 0 0 5.1 3v.9h4.4a2.6 2.6 0 0 1 2.6 2.6v4.4ZM9.5 5.1a1.4 1.4 0 0 1 1.4 1.4V13a1.4 1.4 0 0 1-1.4 1.4H3A1.4 1.4 0 0 1 1.6 13V6.5A1.4 1.4 0 0 1 3 5.1h6.5Z"
+                  clipRule="evenodd"
+                ></path>
+              </g>
+              <defs>
+                <clipPath id="Copy_svg__a">
+                  <path fill="#fff" d="M0 0h16v16H0z"></path>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
           <div
             onClick={(e) => handleModalCodeFromDivFixed(e, setSearcher)}
             className="top-0 left-0 hidden fixed h-screen w-screen z-40"

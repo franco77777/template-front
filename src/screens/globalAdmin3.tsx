@@ -29,7 +29,7 @@ const GlobalAdmin3 = () => {
   return (
     <div
       style={{ background: Bg(), color: SecondaryTextExist() }}
-      className="flex gap-2 flex-col lg:flex-row h-screen p-4 relative"
+      className="flex gap-2 flex-col lg:flex-row p-4 relative"
     >
       <section className="w-full  flex-grow flex flex-col gap-2 h-full">
         <Tasks tasks={tasks} setModal={setModal} modal={modal} />
@@ -38,7 +38,7 @@ const GlobalAdmin3 = () => {
         style={{
           background: SecondaryGradientExist(),
         }}
-        className=" w-full h-full flex flex-col gap-2  p-[2px] rounded-2xl "
+        className="h-[calc(100vh-32px)] w-full  flex flex-col gap-2  p-[2px] rounded-2xl "
       >
         <PageSection />
       </section>

@@ -6,19 +6,26 @@ import ModalBlackboard from "./modalBlackboard";
 import { createInputElement, GenerateElements } from "../utils/GA3Utils";
 import { useNavigate } from "react-router-dom";
 import Prism from "prismjs";
+import "prismjs/themes/prism-synthwave84.css";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/";
 
 const PageSection = () => {
   const page = pageStore((state) => state.page);
+  const setPageStore = pageStore((state) => state.setPage);
   const navigate = useNavigate();
   const focusStore = pageStore((state) => state.focus);
+  const [handleModal, setHandleModal] = useState(false);
+  const [handleModal2, setHandleModal2] = useState(false);
   const [searcher, setSearcher] = useState("");
   useEffect(() => {
     if (typeof window !== undefined) {
       Prism.highlightAll();
     }
   }, [page]);
-  const handleModalOptions = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  const handleModalOptions2 = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    first: boolean
   ) => {
     const Target = e.target as HTMLElement;
     const modals = document.querySelectorAll("[data-modal=modalBlackboard]");
@@ -26,25 +33,47 @@ const PageSection = () => {
     const modalBlackboard = Target.parentElement?.querySelector(
       "[data-modal=modalBlackboard]"
     ) as HTMLElement;
-    if (!modalBlackboard.classList.contains("opacity-0")) {
-      modalBlackboard.classList.toggle("opacity-0");
-      modalBlackboard.classList.toggle("pointer-events-none");
-      modalBlackboard.classList.toggle("-translate-x-[125%]");
-      return;
+    const exists = modalBlackboard.classList.contains("opacity-0");
+
+    if (!exists) {
+      modalBlackboard.classList.add("-translate-x-[125%]");
+      modalBlackboard.classList.add("opacity-0");
+      modalBlackboard.classList.add("pointer-events-none");
     }
-    for (const i of modals) {
-      if (!i.classList.contains("opacity-0")) {
-        i.classList.toggle("pointer-events-none");
-        i.classList.toggle("opacity-0");
-        i.classList.toggle("-translate-x-[125%]");
-      }
-    }
+
+    if (first) setHandleModal(false);
+    else setHandleModal2(false);
+  };
+
+  const handleModalOptions = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    first: boolean
+  ) => {
+    const Target = e.target as HTMLElement;
+    const modals = document.querySelectorAll("[data-modal=modalBlackboard]");
+
+    const modalBlackboard = Target.parentElement?.querySelector(
+      "[data-modal=modalBlackboard]"
+    ) as HTMLElement;
+    // if (!modalBlackboard.classList.contains("opacity-0")) {
+    //   modalBlackboard.classList.toggle("opacity-0");
+    //   modalBlackboard.classList.toggle("pointer-events-none");
+    //   modalBlackboard.classList.toggle("-translate-x-[125%]");
+    //   return;
+    // }
+    // for (const i of modals) {
+    //   if (!i.classList.contains("opacity-0")) {
+    //     i.classList.toggle("pointer-events-none");
+    //     i.classList.toggle("opacity-0");
+    //     i.classList.toggle("-translate-x-[125%]");
+    //   }
+    // }
 
     modalBlackboard.classList.toggle("-translate-x-[125%]");
     modalBlackboard.classList.toggle("opacity-0");
     modalBlackboard.classList.toggle("pointer-events-none");
-
-    //parent.appendChild(modalBlackboard);
+    if (first) setHandleModal(!handleModal);
+    else setHandleModal2(!handleModal2);
   };
   useEffect(() => {
     setTimeout(() => {
@@ -52,15 +81,6 @@ const PageSection = () => {
       page.style.scrollbarColor = "red";
     }, 100);
   }, []);
-  // useEffect(() => {
-  //   const pagesElements = document.querySelectorAll(
-  //     "[data-drag=pageElement]"
-  //   ) as NodeListOf<HTMLElement>;
-  //   const dragStart = () => {};
-  //   for (const i of pagesElements) {
-  //     i.addEventListener("dragstart", dragStart);
-  //   }
-  // }, []);
 
   useEffect(() => {
     for (const i of page) {
@@ -106,6 +126,8 @@ const PageSection = () => {
 
       divText.focus();
     }
+    setHandleModal(false);
+    setHandleModal2(false);
   }, [page]);
   useEffect(() => {
     for (const i of page) {
@@ -114,6 +136,7 @@ const PageSection = () => {
           `[data-id=page-${i.id}]`
         ) as HTMLElement;
         const divUL = divEditable.parentElement?.children[0] as HTMLElement;
+
         const childrens = divEditable.children.length;
         divUL.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet" class="text-base" width="12" height="12" style="vertical-align: middle;"><path fill="currentColor" fill-rule="evenodd" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path></svg>`;
         for (let i = 0; i < childrens; i++) {
@@ -139,7 +162,7 @@ const PageSection = () => {
           ?.children[0] as HTMLElement;
         const childrens = divEditable.children.length;
         console.log("childrens", childrens);
-
+        divContainerInputs.innerHTML = "";
         for (let b = 0; b < childrens + 1; b++) {
           const input = createInputElement();
           if (i.checks?.includes(b)) {
@@ -151,6 +174,11 @@ const PageSection = () => {
       }
     }
   }, []);
+  const clickEditElement = (id: number) => {
+    const copyPage = [...page];
+    const deleted = copyPage.filter((e) => e.id !== id);
+    setPageStore(deleted);
+  };
   return (
     <div className="relative  w-full rounded-2xl  h-full grid place-items-center overflow-hidden">
       <div
@@ -165,7 +193,7 @@ const PageSection = () => {
             <div className="flex gap-2 items-center relative w-[80%] mx-auto">
               <ModalBlackboard classes="left-0" id={null} first={true} />
               <div
-                onClick={(e) => handleModalOptions(e)}
+                onClick={(e) => handleModalOptions(e, false)}
                 className=" cursor-pointer hover:scale-125 duration-150 absolute top-1/2 -translate-y-1/2 -left-10"
               >
                 <svg
@@ -182,6 +210,12 @@ const PageSection = () => {
                   ></path>
                 </svg>
               </div>
+              {handleModal2 && (
+                <div
+                  onClick={(e) => handleModalOptions2(e, false)}
+                  className="top-0 left-0 fixed h-screen w-screen z-40"
+                ></div>
+              )}
               Page
             </div>
           )}
@@ -194,10 +228,10 @@ const PageSection = () => {
               >
                 <ModalBlackboard classes="" id={e.id} first={false} />
                 <div
-                  onClick={(e) => handleModalOptions(e)}
+                  onClick={(e) => handleModalOptions(e, true)}
                   className={`${
                     e.type === "divider" ? "top-1/2 -translate-y-1/2" : "top-0"
-                  } hidden group-hover:block cursor-pointer hover:scale-125 duration-150 absolute  left-2`}
+                  } hidden group-hover:block cursor-pointer hover:scale-125 duration-150 absolute  left-0`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -213,6 +247,37 @@ const PageSection = () => {
                     ></path>
                   </svg>
                 </div>
+                <div
+                  onClick={() => clickEditElement(e.id)}
+                  className={`${
+                    e.type === "divider" ? "top-1/2 -translate-y-1/2" : "top-0"
+                  } hidden group-hover:block cursor-pointer hover:scale-125 duration-150 absolute  left-[22px]`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-[18px] h-[18px]  pointer-events-none"
+                  >
+                    <path d="M3 6h18" />
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                    <line x1="10" x2="10" y1="11" y2="17" />
+                    <line x1="14" x2="14" y1="11" y2="17" />
+                  </svg>
+                </div>
+                {handleModal && (
+                  <div
+                    onClick={(e) => handleModalOptions2(e, true)}
+                    className=" top-0 left-0 fixed h-screen w-screen z-40"
+                  ></div>
+                )}
                 {GenerateElements(e, navigate, searcher, setSearcher)}
               </div>
             ))}

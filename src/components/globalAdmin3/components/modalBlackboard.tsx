@@ -88,7 +88,7 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
         const newElement = {
           id: getPageStore.length,
           type: e,
-          language: "typescript",
+          language: "jsx",
         };
         if (first) {
           pageCopy.push(newElement);
@@ -115,7 +115,9 @@ const ModalBlackboard = ({ classes, id, first }: prop) => {
       data-modal="modalBlackboard"
       className={`${
         classes ? classes : "left-14"
-      } flex-col gap-2 opacity-0 top-0 -translate-x-[125%] border-[1px] pointer-events-none rounded px-2 py-1 flex items-center text-base font-base w-52 z-50  absolute  duration-300 transition-all`}
+      } scrollbar2 h-80 overflow-y-auto flex-col gap-2 opacity-0 top-0 -translate-x-[125%] 
+      border-[1px] pointer-events-none rounded px-2 py-1 flex items-center text-base 
+      font-base w-52 z-50  absolute  duration-300 transition-all`}
     >
       <ModalDrawningOption
         handleModalPageOptions={handleModalPageOptions}

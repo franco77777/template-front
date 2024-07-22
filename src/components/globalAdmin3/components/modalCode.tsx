@@ -50,6 +50,7 @@ const ModalCode = ({ element, searcher, setSearcher }: prop) => {
     if (current) {
       current.language = codeType;
       setPageStore(copyPage);
+      console.log("codeType", codeType);
     }
     setSearcher("");
   };
